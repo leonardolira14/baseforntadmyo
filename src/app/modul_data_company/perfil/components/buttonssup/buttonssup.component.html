@@ -1,0 +1,25 @@
+<div class="container">
+    <div class="row m-t-30">
+        <div class="col-8 m-auto">
+            <div class="row">
+                <a [ngClass]="{'btn-outline-azulcielo':activo_mes,'btn-azulcielo':!activo_mes}"
+                    class="col-4 btn  btn-grande">
+                    Últimos 30 días
+                </a>
+                <a [ngClass]="{'btn-outline-azulcielo':activo_mes_MA,'btn-azulcielo':!activo_mes_MA}"
+                    class="col-4 btn  btn-grande">
+                    Mes Actual
+                </a>
+                <a [ngClass]="{'btn-outline-azulcielo':activo_mes_anio,'btn-azulcielo':!activo_mes_anio}"
+                    class="col-4 btn  btn-grande">
+                    Acumulado
+                </a>
+                <div class="col-12 text-center periodo m-b-40 m-t-10">
+                    <strong>Periodo: </strong> <span>{{text}}</span>
+                </div>
+            </div>
+        </div>
+
+       
+    </div>
+</div>

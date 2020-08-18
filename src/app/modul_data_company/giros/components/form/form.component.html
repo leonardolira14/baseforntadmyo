@@ -1,0 +1,64 @@
+<div class="container">
+    <div class="row m-t-30  mb-3">
+        <div class="col-12 titulos m-b-30">
+            Giros
+        </div>
+        <div class="col-12 text-uppercase d-flex align-content-center">
+            <div class="cuadro-bineta mr-3"></div>
+            <span class="subtitle">Registrar Giro</span>
+
+        </div>
+        
+        <div class="col-12 text-work">
+            <form   [formGroup]='form_data' (ngSubmit)='addGiro()'>
+                <div class="row m-t-30 m-b-30">
+                    <div class="form-group col-6">
+                        <label for="razon_social">Giro <span class="text-danger">*</span></label>
+                        <select [ngClass]="{'is-invalid': submitt &&  get_Form_data.IDGiro.errors}" (change)="selectSub()" formControlName='IDGiro' class="form-control " >
+                            <option [value]="item.IDNivel1" *ngFor="let item of Lista_giros">
+                                {{item.Giro}}
+                            </option>
+                        </select>
+                        <small *ngIf='get_Form_data.IDGiro.errors && submitt' class="text-danger">Este campo es necesario</small>
+
+                    </div>
+
+                    <div class="form-group col-6">
+                        <label for="nombre_comercial">Subgiro <span class="text-danger">*</span></label>
+                        <select [ngClass]="{'is-invalid': submitt &&  get_Form_data.IDGiro2.errors}" (change)="Rama()" formControlName='IDGiro2' class="form-control " >
+                        <option  [value]="item.IDNivel2" *ngFor="let item of Lista_subgiros">
+                            {{item.Giro}}
+                        </option>
+                        </select>
+                        <small *ngIf='get_Form_data.IDGiro2.errors && submitt' class="text-danger">Este campo es necesario</small>
+
+                    </div>
+                    <div class="form-group col-6">
+                        <label for="razon_social">Rama <span class="text-danger">*</span></label>
+                        <select [ngClass]="{'is-invalid': submitt &&  get_Form_data.IDGiro3.errors}" formControlName='IDGiro3' class="form-control ">
+                        <option [value]="item.IDGiro3" *ngFor="let item of Lista_Ramas">
+                            {{item.Giro}}
+                        </option>
+                        </select>
+                        <small *ngIf='get_Form_data.IDGiro3.errors && submitt' class="text-danger">Este campo es necesario</small>
+
+                    </div>
+                
+                    <div class="col-12 text-left">
+                        <div class="btn-group">
+                            <button type="submit" class="btn btn-azulcielo mr-3">Guardar</button>
+                            <button type="reset" class="btn btn-outline-azulcielo">Cancelar</button>
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+
+            </form>
+        </div>
+    </div>
+</div>
+<app-cards></app-cards>

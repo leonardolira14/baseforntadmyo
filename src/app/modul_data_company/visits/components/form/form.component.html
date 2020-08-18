@@ -1,0 +1,67 @@
+<div class="container">
+    <div class="row m-t-30  mb-3">
+        <div class="col-12 titulos m-b-30">
+            Configuración
+        </div>
+        <div class="col-12 text-uppercase d-flex align-content-center">
+            <div class="cuadro-bineta mr-3"></div>
+            <span class="subtitle">Notificaciónes</span>
+
+        </div>
+        <div class="col-3 cont-switch ">
+            <label class="switch">
+                <input  (change)="ngChange()"  [(ngModel)]="confdata.crealizadas" type="checkbox">
+                <span class="slider round"></span>
+                
+            </label>
+            <div class="text">Calificaciones Recibidas</div>
+        </div>
+        <div class="col-3 cont-switch ">
+            <label class="switch">
+                <input  (change)="ngChange()"  [(ngModel)]="confdata.riesgoc"  type="checkbox">
+                <span class="slider round"></span>
+        
+            </label>
+            <div class="text">Riesgo de Cliente</div>
+        </div>
+        <div class="col-3 cont-switch ">
+            <label class="switch">
+                <input  (change)="ngChange()"  [(ngModel)]="confdata.vista"    type="checkbox">
+                <span class="slider round"></span>
+        
+            </label>
+            <div class="text">Visita Recibida</div>
+        </div>
+        <div class="col-3 cont-switch ">
+            <label class="switch">
+                <input  (change)="ngChange()"  [(ngModel)]="confdata.crecibidas"  type="checkbox">
+                <span class="slider round"></span>
+        
+            </label>
+            <div class="text">Calificaciones Realizadas</div>
+        </div>
+        <div class="col-3 cont-switch ">
+            <label class="switch">
+                <input  (change)="ngChange()"  [(ngModel)]="confdata.riesgop"  type="checkbox">
+                <span class="slider round"></span>
+        
+            </label>
+            <div class="text">Ríesgo Proveedor</div>
+        </div>
+        <div class="col-3 cont-switch ">
+            <label class="switch">
+                <input  (change)="ngChange()"  [(ngModel)]="confdata.follow"  type="checkbox">
+                <span class="slider round"></span>
+        
+            </label>
+            <div class="text">Seguimiento de empresas</div>
+        </div>
+        <div class="col-12 m-t-30">
+            <label class="container-check"> Quiero recibir mis notificaciones por correo electrónico.
+                <input (change)="ngChange()" [(ngModel)]="confdata.porcorreo"  type="checkbox" checked='checked'>
+                <span class="chekmark"></span>
+            </label>
+        </div>
+    </div>
+</div>
+<app-cards></app-cards>

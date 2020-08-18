@@ -1,0 +1,44 @@
+<div class="container">
+    <div class="row">
+        <!-----inciop de cardd-->
+        <div *ngFor='let item of certification' class="col-4 card-data">
+            <div class="card container-fluid">
+                <div class="name_cetifiation" [ngClass]="{'d-none': item.Tipo==='Fiscal' || item.Clase===''}">
+                    {{item.Clase}}
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="titulo">{{item.Norma}}</div>
+                    </div>
+                    <div class="col-12 mt-3">
+                        <div class="small">calificación</div>
+                    </div>
+                    <div class="col-12 m-b-25">
+                        <div class="numero">{{item.Calif}}</div>
+                    </div>
+                    <div class="col-6 ">
+                        <div class="small">fecha de certificación</div>
+                        <div class="fecha">{{item.Fecha}}</div>
+                    </div>
+                    <div class="col-6">
+                        <div class="small">fecha de verificación</div>
+                        <div class="fecha">{{item.FechaVencimiento}}</div>
+                    </div>
+                    <div class="col-2 m-t-20">
+
+                    </div>
+                    <div class="col-9 btn-rigth m-t-20">
+                        
+                        <span (click)="ngDelete(item.IDNorma)" class="bt-rodn">
+                            <span class="material-icons">
+                                delete
+                            </span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--fin de cards-->
+    </div>
+</div>

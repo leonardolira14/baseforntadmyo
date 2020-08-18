@@ -1,0 +1,117 @@
+@import '../../../../../styles.scss';
+
+.text{
+    font-size: 14px;
+    font-family: map-get($fonts, regular );
+}
+.columna-caracteristicas{
+    position: relative;
+    left: 0;
+    width: 40%;
+    & ul{
+        list-style: none;
+        padding: 0;
+        & li{
+            border-top: 1px solid rgba(0, 0, 0, 0.12);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+            font-size: 14px;
+            font-family: map-get($fonts, regular );
+            color:map-get($colorsN, negro2N);
+            line-height: 3;
+            padding-left: 17px;
+            background: white ;
+            height: 42px;
+            
+            
+            &.head{
+                background: map-get($colors, primary );
+                color:white;
+            }
+            &.pago{
+                 height: 100px;
+                display: flex;
+                justify-content: start;
+                align-items: center;
+
+            }
+        }
+    }
+}
+.columna-sino{
+    position: relative;
+    left: 0;
+    width: 20%;
+    &.active{
+        transition: all .5s ease-in-out;
+        & li{
+            background: map-get($colors, secondary ) !important;
+            color:white;
+              & .material-icons{
+                    color:#fff !important;
+                }
+            &.head{
+                 color:#fff;
+                  background: map-get($colors, secondary ) !important;  
+            }
+            & .material-icons{
+                 color:#fff;
+                background: map-get($colors, secondary ) !important; 
+            }
+            &.pago{
+                color:#fff;
+                 background: map-get($colors, secondary ) !important; 
+                 
+
+            }
+            &.btns{
+                
+                background: transparent !important ;
+                
+            }
+        }
+    }
+    & ul{
+        list-style: none;
+        padding: 0;
+        & li{
+            border-top: 1px solid rgba(0, 0, 0, 0.12);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+            font-size: 14px;
+            font-family: map-get($fonts, regular );
+            color:map-get($colorsN, negro2N);
+            line-height: 3;
+            padding-left: 17px;
+            background: white ;
+            height: 42px;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            &.btns{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 60px;
+                background: transparent ;
+                border-top: 0px solid rgba(0, 0, 0, 0.12);
+                border-bottom: 0px solid rgba(0, 0, 0, 0.12);
+            }
+            &.head{
+                text-align: center;
+                background: map-get($colors, primary );
+                color:white;
+            }
+            & .material-icons{
+                color:map-get($colors, secondary );
+            }
+            &.pago{
+                height: 100px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+            }
+        }
+    }
+}
+

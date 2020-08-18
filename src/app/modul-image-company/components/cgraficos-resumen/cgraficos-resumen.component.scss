@@ -1,0 +1,83 @@
+
+@import '../../../../styles.scss';
+.card-numero,.card-media,.card-general,.container-grafico{
+    margin-top: 15px;
+    border-color: transparent;
+}
+.card-numero,.card-media,.card-general{
+    position: relative;
+    width: 329px;
+    height: 329px;
+    padding: 26px 30px;
+    
+    & .titulo,& .numero{
+        font-family: map-get($fonts, semiBold );
+        text-transform: uppercase;
+        display: block;
+        width: 100%;
+    }
+    & .subtitulo{
+        font-family: map-get($fonts, w-l );
+        display: block;
+          font-size: 22px;
+          margin-top: 5px;
+    }
+     & .titulo{
+        font-size: 12px;
+     }
+    & .numero{
+        font-size: 100px;
+        text-align: center;
+        margin-top: 50px;
+        line-height: 1;
+    }
+    & .leyenda{
+        display: block;
+        text-align: center;
+        font-size: 12px;
+         font-family: map-get($fonts, regular );
+    }
+}
+
+.card-numero{
+    background-color: map-get($colors, primary );
+    & .titulo,& .numero,& .subtitulo,& .leyenda{
+        color:#fff;
+    }
+}
+
+.card-media{
+    background-color:#87F2EA;
+      & .titulo,& .subtitulo,& .leyenda{
+        color:map-get($colors, gris1N );
+    }
+    & .numero{
+       color:#04195D;
+    }
+    
+}
+
+.card-general{
+    background-color: map-get($colors, blanco );
+    & .titulo,& .subtitulo,& .leyenda{
+        color:map-get($colors, gris1N );
+    }
+    & .numero{
+        color:map-get($colors,  alight-gray );
+    }
+}
+
+.cont-grafico{
+    padding-left: 75px;
+    padding-right: 0px;
+    & .container-grafico{
+        background-color: #fff;
+        position: relative;
+        top: 0;
+        right: 1px;
+        width: 100%;
+        height: 330px;
+        padding: 20px;
+
+    }
+}

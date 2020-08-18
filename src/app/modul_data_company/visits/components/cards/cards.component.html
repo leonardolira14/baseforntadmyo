@@ -1,0 +1,79 @@
+<div class="container-fluid bg-white">
+    <div class="container">
+        <div class="row p-t-40 ">
+            <div class="col-12 text-uppercase d-flex align-content-center">
+                <div class="cuadro-bineta mr-3"></div>
+                <p class="subtitle">Consulta de Notificaciónes</p>
+            </div>
+            <div class="form-group col-4">
+                <label for="razon_social">Tipo de notificación <span class="text-danger">*</span></label>
+            <select [(ngModel)]="TipoNotificacion" class="form-control " >
+                <option *ngFor='let item of tipo_notificacion' value="{{item.Value}}">{{item.Nombre}}</option>
+            </select>
+            </div>
+            <div class="form-group col-4">
+                <label for="razon_social">Fecha <span class="text-danger">*</span></label>
+                <input [(ngModel)]="Fecha" type="text"  class="form-control"  (click)="v.toggle()" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker #v="ngbDatepicker">
+            
+            </div>
+            <div class="col-12 text-left">
+                <div class="btn-group">
+                    <button (click)="aplicarfiltro()" class="btn btn-azulcielo mr-3">Aplicar filtros</button>
+                    <button (click)="limpiaraplicarfiltro()" class="d-none btn btn-outline-azulcielo">Limpiar filtros</button>
+                </div>
+            
+            </div>
+        </div>
+    </div>
+    <div class="container m-t-50 bg-white">
+        <div class="row">
+            <table class="table ">
+                <thead class="thead-primary">
+                    <tr>
+                        <th scope="col">Tipo de Notificaciones</th>
+                        <th scope="col">Empresa</th>
+                        <th scope="col">Usuario</th>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor='let item of lista_notificacion'>
+                        <th scope="row" [ngSwitch]="item.Descript" >
+                            <span *ngSwitchCase="'vista'">Visita a perfil</span>
+                            <span *ngSwitchCase="'Follow'">La empresa lo esta siguiendo</span>
+                            <span *ngSwitchCase="'calificacionrp'">Calificacion recibida de Proveedor</span>
+                            <span *ngSwitchCase="'calificacionrc'">Calificacion recibida de Cliente</span>
+                            <span *ngSwitchCase="'calificacionC'">Calificacion realizada a Cliente</span>
+                            <span *ngSwitchCase="'calificacionp'">Calificacion realizada a Cliente</span>
+                            <span *ngSwitchCase="'riesgop'">Riesgo Proveedor</span>
+                            <span *ngSwitchCase="'riesgoc'">Calificacion Cliente</span>
+                            <span *ngSwitchCase="'imagenc'">Imagen Proveedor</span>
+                            <span *ngSwitchCase="'imagenp'">Imagen Cliente</span>
+                        </th>
+                        <td>{{item.Razon_Social}}</td>
+                        <td>{{item.Nombre_Usurio}}</td>
+                        <td>{{item.Fecha}}</td>
+                        <td >
+                            <div class="btn-group btng">
+                                <span  (click)="ngEdit(item.IDNotificacion)" class="d-none bt-rodn mr-2">
+                                    <span class="material-icons">
+                                        edit
+                                    </span>
+                                </span>
+                                <span class="bt-rodn">
+                                    <span (click)="ngDelete(item.IDNotificacion)" class="material-icons">
+                                        delete
+                                    </span>
+                                </span>
+                            </div>
+                        </td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+

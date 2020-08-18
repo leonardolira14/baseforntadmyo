@@ -1,0 +1,76 @@
+<div class="container-fluid bg-white">
+    <div class="container">
+        <div class="row p-t-40  ">
+            <div class="col-12 text-uppercase d-flex align-content-center">
+                <div class="cuadro-bineta mr-3"></div>
+                <p class="subtitle">Consultar asociaciones</p>
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="form-group col-12 barr-search">
+                <div class="input-group">
+                    <div class="input-group-prepend ">
+                        <span class="input-group-text text-muted left" id="basic-addon2">
+                            <span class="material-icons">
+                                search
+                            </span>
+                        </span>
+                    </div>
+                    <input (keyup)="buscar()" [(ngModel)]='palabra' placeholder="Buscar asociaciones" type="text" class="form-control">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text text-azulcielo bg-white right" id="basic-addon1">Buscar
+                            <img src="/assets/icons/AMY_SearchArrow_Active_Blue.svg" class="m-l-20" alt="">
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <!-----inciop de cardd-->
+            <div *ngFor='let i of Lista_asociaciones' class="col-3 card-data">
+                <div class="card container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <img ng-fallimg src="{{url_server}}/assets/img/asociaciones/{{i.Imagen}}" class="logo-marca" alt="">
+                        </div>
+                        <div class="col-12">
+                            <div class="titulo">{{i.Nombre}}</div>
+                        </div>
+                        <div class="col-12 mt-3">
+                            <div class="small">Siglas</div>
+                            <div class="fecha">{{i.Siglas}}</div>
+                        </div>
+                        <div class="col-12 mt-3 ">
+                            <div class="small">Página Web</div>
+                            <div class="fecha">{{i.Web}}</div>
+                        </div>
+                   
+                        <div class="col-12  mt-3">
+                            <div class="small">Telefono</div>
+                            <div class="fecha">{{i.Telefono}}</div>
+                        </div>
+                        <div class="col-12  mt-3" *ngIf="i.Direccion!==''">
+                            <div class="small">Dirección</div>
+                            <div class="fecha">{{i.Direccion}}, Col. {{i.Colonia}}, {{i.Municipio}} {{i.Estado}}</div>
+                        </div>
+                        
+                        <div class="col-12 btn-rigth m-t-20 btn-button">
+                            <span (click)="ngEdit(i.IDAsocia)" class="bt-rodn mr-2">
+                                <span class="material-icons">
+                                    edit
+                                </span>
+                            </span>
+                            <span (click)="delete(i.IDAsocia)" class="bt-rodn">
+                                <span class="material-icons">
+                                    delete
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           
+            
+            <!--fin de cards-->
+        </div>
+    </div>
+</div>

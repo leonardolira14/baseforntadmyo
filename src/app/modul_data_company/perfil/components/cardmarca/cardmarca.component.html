@@ -1,0 +1,33 @@
+<div class="container-fluid ">
+    <div class="container">
+        <div class="row">
+
+    
+            <!-----inciop de cardd-->
+
+            <div *ngFor="let item of listadomarcas" class="col-4 card-data">
+                <div class="card container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <img [src]="dameLogo(item.logo)" class="logo-marca" alt="">
+                        </div>
+                        <div class="col-12 m-t-20">
+                            <div class="titulo">{{item.Marca}}</div>
+                        </div>
+                        <div class="col-12 btn-rigth m-t-20">
+                         
+                            <span class="bt-rodn">
+                                <span (click)="ngDelete(item.IDMarca)" class="material-icons">
+                                    delete
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!--fin de cards-->
+        </div>
+    </div>
+</div>

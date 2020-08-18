@@ -1,0 +1,118 @@
+<div class="container">
+    <div class="row m-t-30  mb-3">
+        <div class="col-12 titulos m-b-30">
+            Calificar {{tipo}}
+        </div>
+        <div class="col-12 text-uppercase d-flex align-content-center">
+            <div class="cuadro-bineta mr-3"></div>
+            <span class="subtitle">Datos del {{tipo}}</span>
+    
+        </div>
+    </div>
+    <form class="row"   [formGroup]='form_qualify'>
+    <div class="form-group col-8">
+        <label for="razon_social">Nombre o Razón Social <span class="text-danger">*</span></label>
+        <input [matAutocomplete]="auto" [ngClass]="{'is-invalid': subttmited && from_get_data.Razon_Social.errors}" formControlName='Razon_Social' type="text"
+            class="form-control ">
+        <small *ngIf='subttmited &&  from_get_data.Razon_Social.errors' class="text-red-t-danger">Este campo es
+            necesario</small>
+            <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                <mat-option (click)="select_empresa(option.IDEmpresa)" *ngFor="let option of filteredOptions | async" [value]="option.Razon_Social">
+                    {{option.Razon_Social}}
+                </mat-option>
+            </mat-autocomplete>
+    </div>
+    <div class="form-group col-4">
+        <label for="razon_social">R.F.C.(Registro Federal de Contribuyentes) <span class="text-danger">*</span></label>
+        <input [ngClass]="{'is-invalid': subttmited && from_get_data.RFC.errors}" formControlName='RFC'
+            type="text" class="form-control ">
+        <small *ngIf='subttmited &&  from_get_data.RFC.errors' class="text-red-t-danger">Este campo es
+            necesario</small>
+    </div>
+    <div class="form-group col-6">
+        <label for="razon_social">Correo Electrónico <span class="text-danger">*</span></label>
+        <input [matAutocomplete]="user" [ngClass]="{'is-invalid': subttmited && from_get_data.Correo.errors}" formControlName='Correo' type="text"
+            class="form-control ">
+        <small *ngIf='subttmited &&  from_get_data.Correo.errors' class="text-red-t-danger">Este campo es
+            necesario</small>
+            <mat-autocomplete autoActiveFirstOption #user="matAutocomplete">
+                <mat-option  *ngFor="let option of fileterUsuarios | async"
+                    [value]="option.Correo">
+                    {{option.Nombre}} {{option.Apellidos}} | {{option.Correo}}
+                </mat-option>
+            </mat-autocomplete>
+    </div>
+    <div class="form-group col-6">
+        <label for="razon_social">Giro <span class="text-danger">*</span></label>
+            <select (change)="ngGetSubgiro()" [ngClass]="{'is-invalid': subttmited && from_get_data.Giro.errors}" formControlName='Giro' type="text"
+                class="form-control ">
+                <option value="">Selecciona</option>
+                <option *ngFor="let item of Giros" value="{{item.IDNivel1}}">{{item.Giro}}</option>
+            </select>
+        <small *ngIf='subttmited &&  from_get_data.Giro.errors' class="text-red-t-danger">Este campo es
+            necesario</small>
+    </div>
+    <div class="form-group col-4">
+        <label for="razon_social">SubGiro <span class="text-danger">*</span></label>
+        <select   (change)="ngGetRamas()"   [ngClass]="{'is-invalid': subttmited && from_get_data.SubGiro.errors}" formControlName='SubGiro' type="text"
+            class="form-control ">
+            <option value="">Selecciona</option>
+            <option *ngFor="let item of SubSectores" value="{{item.IDNivel2}}">{{item.Giro}}</option>
+        </select>
+        <small *ngIf='subttmited &&  from_get_data.SubGiro.errors' class="text-red-t-danger">Este campo es
+            necesario</small>
+    </div>
+    <div class="form-group col-4">
+        <label for="razon_social">Rama <span class="text-danger">*</span></label>
+    <select [ngClass]="{'is-invalid': subttmited && from_get_data.Rama.errors}" formControlName='Rama' type="text"
+        class="form-control ">
+        <option value="">Selecciona</option>
+        <option *ngFor="let item of Ramas" value="{{item.IDNivel3}}">{{item.Giro}}</option>
+    </select>
+        <small *ngIf='subttmited &&  from_get_data.Rama.errors' class="text-red-t-danger">Este campo es
+            necesario</small>
+    </div>
+    <div class="form-group col-4">
+        <label for="">Fecha de aplicación</label>
+        <div class="input-group">
+            <input (dateChange)="addEvent('fin', $event)"  type="text"
+                [matDatepicker]="picker2" placeholder="AAAA-MM-DD" class="form-control" >
+            <div class="input-group-append" (click)="picker2.open()">
+                <span class="input-group-text" id="basic-addon2"><span class="material-icons">event</span></span>
+            </div>
+        </div>    
+        <mat-datepicker #picker2></mat-datepicker>
+    </div>
+    </form>
+    <div class="col-12 text-right">
+        <div class="btn-group">
+            <button  class="btn btn-outline-azulcielo mr-3">Limpiar</button>
+            <button  (click)="ngSelecciona()"  class="btn btn-azulcielo">Calificar</button>
+        </div>
+    </div>
+</div>
+
+
+<div class="preload-modal" *ngIf="modal_precalif">
+    <div class="container">
+        <div class="row">
+            <div class="col-5 card m-auto">
+            
+                <div class="card-body">
+                    <div class="d-block text-center m-b-30 m-t-30">
+                        <img src="assets/img/AMY_RegistroNuevo.svg" class="m-auto" alt="">
+                    </div>
+            
+                    <span class="titulos d-block text-center">Nuevo registro</span>
+                    <p>
+                        <br>
+                        <span class="subtitulos d-block text-center">Los datos que has proporcionado serán utilizados para generar un pre-reístro. ¿Deseas continuar?</span>
+                    <div class="btn-group d-flex  w-70 m-auto text-center">
+                        <button (click)="nggetCustionario()"  class="btn btn-azulcielo mr-3">Si</button>
+                        <button  (click)="modal_precalif=!modal_precalif" class="btn btn-outline-azulcielo">No</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

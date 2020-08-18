@@ -1,0 +1,164 @@
+<nav class="bg-primary ">
+    <ul class="menu">
+        <li><a href="#"><img style="width: 100px;" class="img-fluid" src="/assets/img/logoblanco.png" alt=""></a></li>
+    <li>
+        <a (click)="entramenu('empresa')">Tu empresa</a>
+    </li>
+        <li >
+            <a (click)="entramenu('imagen')">Tu imagen</a>
+        </li>
+        <li><a (click)="entramenu('riesgo')">Tu riesgo</a></li>
+        <li><a class="calificar" (click)="entramenu('califica')">Calificar</a></li>
+        <li><a routerLink='analisis-company'>Análisis de mercado</a></li>
+        <li><a href="#">Qval</a></li>
+        <li class="m-r-10">
+            <div ngbDropdown class=" nav-item d-inline-block">
+                <button class="btn btn-primary drop" id="dropdownBasic1" ngbDropdownToggle><span class="text-regular">Hola,  </span>  <span class="text-bold">Leonardo</span> </button>
+                <div ngbDropdownMenu aria-labelledby="dropdownConfig">
+                    <button routerLink="data-user" ngbDropdownItem>Mis Datos</button>
+                    <button routerLink='miplan' ngbDropdownItem>Mi Plan</button>
+                    <button ngbDropdownItem>Configuración</button>
+                    <button (click)="inac = !inac" ngbDropdownItem class="text-primary">
+                        <img src="/assets/icons/AMY_CloseSession_Active_Blue.svg" class="m-r-20" alt=""> Cerrar Sesión</button>
+                </div>
+            </div>
+            
+        </li>
+        <li>
+            <div class="link-notificaciones"  routerLink="notifications-company">
+                <span class="badge badge-light">9</span>
+                <span class="material-icons ">
+                    notifications_none
+                </span>
+            
+            </div>
+        </li>
+    </ul>
+</nav>
+<div *ngIf="iteempresa" class="container-fluid submenu-flotante">
+    <div class="container">
+        <div class="row">
+            <div class="col bt-menu">
+                <a (click)="close_menu()" routerLinkActive="active" routerLink='/profile-company/resume/MA'>
+                    Tu perfil
+                </a>
+            
+            </div>
+            <div class="col bt-menu">
+                <a (click)="close_menu()" routerLinkActive="active" routerLink='/data-company'>
+                    Datos de tu empresa
+                </a>
+               
+            </div>
+            <div class="col bt-menu">
+                <a (click)="close_menu()" routerLink='/certifications-company' routerLinkActive="active">Certificaciones</a>
+            </div>
+            <div class="col bt-menu">
+                <a  (click)="close_menu()" routerLinkActive="active" routerLink="marcas-company">Marcas</a>
+            </div>
+            <div class="col bt-menu">
+                <a (click)="close_menu()"  routerLinkActive="active" routerLink="giros-company">
+                    Giros
+                </a>
+            </div>
+            <div class="col bt-menu">
+                <a (click)="close_menu()" routerLink='/associations-company' routerLinkActive="active">
+                    Asociaciones
+                </a>
+            </div>
+            <div class="col bt-menu">
+                <a (click)="close_menu()" routerLinkActive="active" routerLink="products-company">
+                    Productos y servicios
+                </a>
+            </div>
+            <div class="col bt-menu">
+                <a  (click)="close_menu()" routerLinkActive="active" routerLink="visitis-company">
+                    Estado de Visitas
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<div *ngIf="imagen" class="container-fluid submenu-flotante">
+    <div class="container">
+        <div class="row">
+            <div class="col-2 bt-menu">
+                <a (click)="close_menu()" [routerLink]="'/image-company/resume/cliente/MA'" routerLinkActive="active">
+                    Como Cliente
+                </a>
+
+            </div>
+            <div class="col-2 bt-menu">
+                <a (click)="close_menu()" [routerLink]="'/image-company/resume/proveedor/MA'" routerLinkActive="active" >Como Proveedor</a>
+            </div>
+            
+        </div>
+    </div>
+</div>
+<div *ngIf="califica" class="container-fluid submenu-flotante-calificar">
+    <div class="container">
+        <div class="row">
+            <div class="col-2 bt-menu">
+                <a (click)="close_menu()" [routerLink]="'/qualify/score/cliente'" routerLinkActive="active">
+                    Como Cliente
+                </a>
+
+            </div>
+            <div class="col-2 bt-menu">
+                <a (click)="close_menu()" [routerLink]="'/qualify/score/proveedor'"
+                    routerLinkActive="active">Como Proveedor</a>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div *ngIf="riesgo" class="container-fluid submenu-flotante">
+    <div class="container">
+        <div class="row">
+            <div class="col-2 bt-menu">
+                <a (click)="close_menu()" [routerLink]="'/riesgo-company/resume/cliente/MA'" routerLinkActive="active">
+                    De clientes
+                </a>
+
+            </div>
+            <div class="col-2 bt-menu">
+                <a (click)="close_menu()" [routerLink]="'/riesgo-company/resume/proveedor/MA'" routerLinkActive="active">De
+                    proveedores</a>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+<!--========================================
+    ===========Incio modal de salida=====---->
+
+    <div class="preload-modal" *ngIf='inac'>
+        <div class="container">
+            <div class="row">
+                <div class="col-5 card m-auto">
+                   
+                    <div class="card-body">
+                        <div class="d-block text-center m-b-30 m-t-30">
+                            <img src="assets/img/AMY_Reloj.svg" class="m-auto" alt="">
+                        </div>
+                        
+                        <span class="titulos d-block text-center">¿Estas seguro?</span>
+                        <p>
+                            <br>
+                        <span class="subtitulos d-block text-center">Tu sesión se cerrará pronto</span>
+                        <div class="btn-group  w-100 text-center">
+                            <button (click)="inac = !inac" class="btn btn-azulcielo mr-3">Cancelar</button>
+                            <button (click)="close_sesion()" class="btn btn-outline-azulcielo">Aceptar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--========================================
+        ===========fin modal de salida=====---->
+    

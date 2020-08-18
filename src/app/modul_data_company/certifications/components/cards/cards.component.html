@@ -1,0 +1,75 @@
+
+<div class="container-fluid bg-white">
+<div class="container">
+    <div class="row p-t-40  mb-3">
+        <div class="col-12 text-uppercase d-flex align-content-center">
+            <div class="cuadro-bineta mr-3"></div>
+            <p class="subtitle">Consultar certificaciones</p>
+        </div>
+    </div>
+    <div class="row">
+
+        <div class="form-group col-12 barr-search">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend ">
+                    <span class="input-group-text text-muted left" id="basic-addon2">
+                        <span class="material-icons">
+                            search
+                        </span>
+                    </span>
+                </div>
+                <input (keyup)='ngBuscar()' [(ngModel)]="palabra" placeholder="Buscar certificaciones registradas" type="text" class="form-control">
+                <div class="input-group-prepend">
+                    <span class="input-group-text text-azulcielo bg-white right" id="basic-addon1">Buscar
+                        <img src="/assets/icons/AMY_SearchArrow_Active_Blue.svg" class="m-l-20" alt="">
+                    </span>
+                </div>
+            </div>
+        </div>
+        <!-----inciop de cardd-->
+        <div *ngFor='let item of certification' class="col-3 card-data">
+            <div class="card container-fluid">
+                <div class="name_cetifiation"  [ngClass]="{'d-none': item.Tipo==='Fiscal' || item.Clase===''}">
+                    {{item.Clase}}
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="titulo">{{item.Norma}}</div>
+                    </div>
+                    <div class="col-12 mt-3">
+                        <div class="small">calificación</div>
+                    </div>
+                    <div class="col-12 m-b-25">
+                        <div class="numero">{{item.Calif}}</div>
+                    </div>
+                    <div class="col-6 ">
+                        <div class="small">fecha de certificación</div>
+                        <div class="fecha">{{item.Fecha}}</div>
+                    </div>
+                    <div class="col-6">
+                        <div class="small">fecha de verificación</div>
+                        <div class="fecha">{{item.FechaVencimiento}}</div>
+                    </div>
+                    <div class="col-2 m-t-20">
+                        
+                    </div>
+                    <div class="col-9 btn-rigth m-t-20">
+                        <span (click)="ngUpdate(item.IDNorma)" class="bt-rodn mr-2">
+                            <span class="material-icons">
+                                edit
+                            </span>
+                        </span>
+                        <span (click)="ngDelete(item.IDNorma)" class="bt-rodn">
+                            <span class="material-icons">
+                                delete
+                            </span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!--fin de cards-->
+    </div>
+</div>
+</div>

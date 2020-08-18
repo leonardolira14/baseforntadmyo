@@ -1,0 +1,82 @@
+@import '../../../../../styles.scss';
+
+
+.card1{
+    background-color: #04195D;
+    color:white;
+
+}
+.card2{
+    &.full{
+        background-color: #87F2EA;
+    }
+    &.down{
+        background-color: #E7F0FD;
+    }
+    
+    color:#1F1F1F;
+}
+
+.card1,.card2{
+    
+    padding: 21px;
+    & .titulo,& .numero,& .nota{
+        display: block;
+        width: 100%;
+    }
+    & .titulo{
+        font-size: 12px;
+        font-family: map-get($fonts, semiBold );
+        text-transform: uppercase;
+    }
+    & .numero{
+        font-size: 80px;
+        font-family: map-get($fonts, semiBold );
+        text-align: center;
+        margin-top:  20px;
+           height: 90px;
+    padding: 50px;
+    }
+    & .nota{
+        font-size: 12px;
+        font-family: map-get($fonts, regular );
+        margin-top:  30px;
+        text-align: center;
+    }
+}
+
+.card-nota{
+    padding:17px;
+    margin-top: 20px;
+    border: 1px solid #D3D3D3;
+    & .titulo,& .nota{
+        display: block;
+    }
+    & .titulo{
+        text-transform: uppercase;
+        color: rgba(#1F1F1F,0.5);
+        font-size: 8px;
+        font-family: map-get($fonts, semiBold);
+    }
+    & .nota{
+        font-size: 14px;
+        font-family: map-get($fonts, regular);
+    }
+    & .card-box{
+        padding: 5px 0;
+        text-align: center;
+        color:white;
+        font-size: 18px;
+        font-family: map-get($fonts, semiBold );
+        width: 67px;
+        &.alta{
+            background-color: #10E0D0;
+        }
+        &.baja{
+            background-color: #F2143F;
+        }
+        &.mediac{
+            background-color: #FEB238;
+        }
+    }
+}

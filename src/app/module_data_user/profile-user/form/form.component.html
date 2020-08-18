@@ -1,0 +1,95 @@
+<div class="container">
+    <div class="row m-t-30  m-b-40">
+        <div class="col-12 titulos m-b-30">
+            Usuarios
+        </div>
+        
+        <div class="col-3 text-work">
+            <div class="row">
+                <div class="col-12 m-t-50 tit-card-img">
+                    Cargar Imagen Principal <span class="text-red-t-danger">*</span>
+                </div>
+                <div class="card card-logo">
+                    <img [src]="logitomarca" (click)="logo.click()" alt="">
+                    <input (change)="preview(logo.files)" accept="image/gif, image/jpeg, image/png" type="file" class="d-none" #logo>
+                </div>
+                <div class="col-12 text-muted instr-card p-0">
+                    <small>Tu imagen debe tener un tamaño minimo de 260px x 260px (1Mb).</small>
+                    <br>
+                    <small>Formatos permitidos JPEG, PNG y SVG.</small>
+                </div>
+
+
+            </div>
+        </div>
+        <div class="col-9 text-work">
+            <div class="row">
+                <div class="col-12 text-uppercase d-flex align-content-center">
+                    <div class="cuadro-bineta mr-3"></div>
+                    <span class="subtitle">Mis Datos</span>
+                
+                </div>
+            </div>
+            <form [formGroup]="form_data" (ngSubmit)='ngSelect()' >
+                <div class="row m-b-30">
+                    <div class="form-group col-12">
+                        <label for="razon_social">Nombres(S) del usuario <span class="text-red-t-danger">*</span></label>
+                        <input [ngClass]="{'is-invalid': submitted &&  form_data_get.Nombre.errors}" formControlName="Nombre" type="text" class="form-control " >
+                        <small *ngIf='submitted &&  form_data_get.Nombre.errors' class="text-red-t-danger">Este campo es necesario</small>
+                    </div>
+                    <div class="form-group col-6">
+                        <label for="razon_social">Apellidos <span class="text-red-t-danger">*</span></label>
+                        <input [ngClass]="{'is-invalid': submitted &&  form_data_get.Apellidos.errors}" formControlName="Apellidos" type="text" class="form-control " >
+                        <small *ngIf='submitted &&  form_data_get.Apellidos.errors' class="text-red-t-danger">Este campo es necesario</small>
+                    </div>
+                   
+                    <div class="form-group col-6">
+                        <label for="razon_social">Correo Electrónico <span class="text-red-t-danger">*</span></label>
+                        <input [ngClass]="{'is-invalid': submitted &&  form_data_get.Correo.errors}" formControlName="Correo" type="text" class="form-control " >
+                        <small *ngIf='submitted &&  form_data_get.Correo.errors' class="text-red-t-danger">Este campo es necesario</small>
+                    </div>
+                    <div class="form-group col-6">
+                        <label for="razon_social">Puesto <span class="text-red-t-danger">*</span></label>
+                        <input [ngClass]="{'is-invalid': submitted &&  form_data_get.Puesto.errors}" formControlName="Puesto" type="text" class="form-control " >
+                        <small *ngIf='submitted &&  form_data_get.Puesto.errors' class="text-red-t-danger">Este campo es necesario</small>
+                    
+                    </div>
+                    <div class="form-group col-6">
+                        <label for="razon_social">Visible <span class="text-red-t-danger">*</span></label>
+                        <select formControlName="Visible" class="form-control " >
+                            <option value="1">Visible</option>
+                            <option value="0">No Visible</option>
+                        </select>
+                    </div>
+
+
+                    <div class="col-12 text-left">
+                        <div class="btn-group">
+                            <button type="submit" class="btn btn-azulcielo mr-3">Guardar</button>
+                            <button type="reset" class="btn btn-outline-azulcielo">Cancelar</button>
+                        </div>
+
+                    </div>
+                    <div class="col-12  m-t-30 ">
+                        <div class="row p-l-10 p-r-10">
+                            <div class="col-12 btn " [ngClass]="{'btn-outline-azulcielo':form_cambio_contrasena,'btn-azulcielo':!form_cambio_contrasena}" (click)="form_cambio_contrasena=!form_cambio_contrasena">
+                                Cambiar Contraseña
+                            </div>
+                        </div>
+                       
+                    </div>
+                </div>
+            </form>
+            <div *ngIf="form_cambio_contrasena" class="row">
+                <div class="col-12 text-uppercase d-flex align-content-center">
+                    <div class="cuadro-bineta mr-3"></div>
+                    <span class="subtitle">Cambio de contraseña</span>
+                </div>
+                
+                <app-form-password></app-form-password>
+            </div>
+           
+        </div>
+    </div>
+</div>
+<app-list></app-list>

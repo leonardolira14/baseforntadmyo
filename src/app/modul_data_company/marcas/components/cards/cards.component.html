@@ -1,0 +1,59 @@
+<div class="container-fluid bg-white">
+    <div class="container">
+        <div class="row p-t-40 ">
+            <div class="col-12 text-uppercase d-flex align-content-center">
+                <div class="cuadro-bineta mr-3"></div>
+                <p class="subtitle">Consultar Marcas</p>
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="form-group col-12 barr-search">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend ">
+                        <span class="input-group-text text-muted left" id="basic-addon2">
+                            <span class="material-icons">
+                                search
+                            </span>
+                        </span>
+                    </div>
+                    <input (keyup)="buscar()" [(ngModel)]="palabra" placeholder="Buscar marcas registradas" type="text" class="form-control">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text text-azulcielo bg-white right" id="basic-addon1">Buscar
+                            <img src="/assets/icons/AMY_SearchArrow_Active_Blue.svg" class="m-l-20" alt="">
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <!-----inciop de cardd-->
+            
+            <div *ngFor="let item of listadomarcas" class="col-3 card-data">
+                <div class="card container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <img [src]="dameLogo(item.logo)" class="logo-marca" alt="">
+                        </div>
+                        <div class="col-12 m-t-20">
+                            <div class="titulo">{{item.Marca}}</div>
+                        </div>
+                        <div class="col-12 btn-rigth m-t-20">
+                            <span  (click)="ngEdit(item.IDMarca)" class="bt-rodn mr-2">
+                                <span class="material-icons">
+                                    edit
+                                </span>
+                            </span>
+                            <span class="bt-rodn">
+                                <span (click)="ngDelete(item.IDMarca)" class="material-icons">
+                                    delete
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!--fin de cards-->
+        </div>
+    </div>
+</div>

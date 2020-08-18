@@ -1,0 +1,12 @@
+
+
+.card-data{
+    & .card{
+        height: 450px;
+        & .btn-button{
+                position: absolute;
+    bottom: 5px;
+
+        }
+    }
+}

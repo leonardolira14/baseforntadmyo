@@ -1,0 +1,113 @@
+<nav class="bg-primary ">
+    <ul class="menu">
+        <li><a href="#"><img style="width: 100px;" class="img-fluid" src="/assets/img/logoblanco.png" alt=""></a></li>
+    <li>
+        <a (click)="entramenu('empresa')">Tu empresa</a>
+    </li>
+        <li >
+            <a (click)="entramenu('imagen')">Tu imagen</a>
+        </li>
+        <li><a (click)="entramenu('riesgo')">Tu riesgo</a></li>
+        <li><a href="#">Calificar</a></li>
+        <li><a routerLink='analisis-company'>Análisis de mercado</a></li>
+        <li><a href="#">Qval</a></li>
+        <li class="m-r-10">
+            <div ngbDropdown class=" nav-item d-inline-block">
+                <button class="btn btn-primary drop" id="dropdownBasic1" ngbDropdownToggle><span class="text-regular">Hola,  </span>  <span class="text-bold">Leonardo</span> </button>
+                <div ngbDropdownMenu aria-labelledby="dropdownConfig">
+                    <button routerLink="data-user" ngbDropdownItem>Mis Datos</button>
+                    <button ngbDropdownItem>Mi Plan</button>
+                    <button ngbDropdownItem>Configuración</button>
+                    <button ngbDropdownItem class="text-primary">
+                        <img src="/assets/icons/AMY_CloseSession_Active_Blue.svg" class="m-r-20" alt=""> Cerrar Sesión</button>
+                </div>
+            </div>
+            
+        </li>
+        <li>
+            <div class="link-notificaciones"  routerLink="notifications-company">
+                <span class="badge badge-light">9</span>
+                <span class="material-icons ">
+                    notifications_none
+                </span>
+            
+            </div>
+        </li>
+    </ul>
+</nav>
+<div *ngIf="iteempresa" class="container-fluid submenu-flotante">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <a routerLinkActive="active" routerLink='/profile-company'>
+                    Datos de mi empresa
+                </a>
+               
+            </div>
+            <div class="col">
+                <a routerLink='/certifications-company' routerLinkActive="active">Certificaciones</a>
+            </div>
+            <div class="col">
+                <a  routerLinkActive="active" routerLink="marcas-company">Marcas</a>
+            </div>
+            <div class="col">
+                <a  routerLinkActive="active" routerLink="giros-company">
+                    Giros
+                </a>
+            </div>
+            <div class="col">
+                <a routerLink='/associations-company' routerLinkActive="active">
+                    Asociaciones
+                </a>
+            </div>
+            <div class="col">
+                <a routerLinkActive="active" routerLink="products-company">
+                    Productos y servicios
+                </a>
+            </div>
+            <div class="col">
+                <a routerLinkActive="active">
+                    Estado de Visitas
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<div *ngIf="riesgo" class="container-fluid submenu-flotante">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <a routerLink='/profile-company'>
+                    Datos de mi empresa 2
+                </a>
+
+            </div>
+            <div class="col">
+                <a routerLink='/certifications-company'>Certificaciones</a>
+            </div>
+            <div class="col">
+                <a href="">Marcas</a>
+            </div>
+            <div class="col">
+                <a href="">
+                    Giros
+                </a>
+            </div>
+            <div class="col">
+                <a routerLink='/associations-company'>
+                    Sociaciones
+                </a>
+            </div>
+            <div class="col">
+                <a href="">
+                    Productos y servicios
+                </a>
+            </div>
+            <div class="col">
+                <a href="">
+                    Estado de Visitas
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,42 @@
+@import '../../../../../styles.scss';
+
+.btn-grande{
+    line-height: 2.2;
+}
+.periodo{
+    & strong{
+        font-size: 14px;
+        font-family: map-get($fonts, semiBold );
+    }
+    & span{
+          font-size: 14px;
+        font-family: map-get($fonts, regular );   
+    }
+}
+.card-num-visitas{
+    padding:25px 30px;
+    width: 329px;
+    height: 329px;
+    margin-top: 30px;
+    & .title{
+        color:white;
+        font-family: map-get($fonts, semiBold );
+        font-size: 12px;
+        text-transform: uppercase;
+    }
+    & .numero{
+        color:white;
+        font-family: map-get($fonts, semiBold );
+        font-size: 120px;
+        display: block;
+        text-align: center;
+        margin-top: 30px;
+    }
+    & .small{
+        color:white;
+        font-family: map-get($fonts, regular );
+        font-size: 12px;
+        display: block;
+        text-align: center;
+    }
+}

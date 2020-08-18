@@ -1,0 +1,108 @@
+<div class="container">
+    <div class="row">
+        <div class="col-3">
+            <div class="card card-numero">
+                <div class="card-body">
+                    <span class="titulo">Número de calificaciones</span>
+                    <span class="numero">{{numero_total_calificaciones}}</span>
+                    <span class="leyenda">Calificaciones totales a la fecha </span>
+                    <span class="leyenda">({{text_leyenda}})</span>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="col-9 cont-grafico">
+            <div class="container-grafico">
+                <label  class="subtitle">Evolucion de Calificaciones Recibidas (# de calificaciones)</label>
+                <canvas baseChart width="350" height="120" [datasets]="lineChartData" [labels]="lineChartLabels"
+                    [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType">
+                </canvas>
+            </div>
+           
+        </div>
+        <div class="col-3">
+            <div class="card card-media">
+                <div class="card-body">
+                    <span class="titulo">Calificación media</span>
+                    <span class="subtitulo">General</span>
+                    <span class="numero">{{calificacion_media_general}}</span>
+                    <span class="leyenda">Calificaciones media a la fecha </span>
+                    <span class="leyenda">({{text_leyenda}})</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-9 cont-grafico">
+            <div class="container-grafico">
+                <label class="subtitle">Evolucion de Calificaciones Recibidas - General (Media de calificaciones) </label>
+                <canvas baseChart width="350" height="120" [datasets]="lineChartDataGeneral" [labels]="lineChartLabels"
+                    [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend"
+                    [chartType]="lineChartType">
+                </canvas>
+            </div>
+        
+        </div>
+        <div class="col-3">
+            <div class="card card-general">
+                <div class="card-body">
+                    <span class="titulo">Calificación media</span>
+                    <span class="subtitulo">Calidad</span>
+                    <span class="numero">{{calificacion_media_calidad}}</span>
+                    <span class="leyenda">Calificaciones media a la fecha </span>
+                    <span class="leyenda">({{text_leyenda}})</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-9 cont-grafico">
+            <div class="container-grafico">
+                <label class="subtitle">Evolucion de Calificaciones Recibidas - Calidad (Media de calificaciones)</label>
+                <canvas baseChart width="350" height="120" [datasets]="lineChartDataCalidad" [labels]="lineChartLabels"
+                    [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend"
+                    [chartType]="lineChartType">
+                </canvas>
+            </div>
+        
+        </div>
+        <div class="col-3">
+            <div class="card card-general">
+                <div class="card-body">
+                    <span class="titulo">Calificación media</span>
+                    <span class="subtitulo">Cumplimiento</span>
+                    <span class="numero">{{calificacion_media_cumplimiento}}</span>
+                    <span class="leyenda">Calificaciones media a la fecha </span>
+                    <span class="leyenda">({{text_leyenda}})</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-9 cont-grafico">
+            <div class="container-grafico">
+                <label class="subtitle">Evolucion de Calificaciones Recibidas - Cumplimiento (Media de calificaciones)</label>
+                <canvas baseChart width="350" height="120" [datasets]="lineChartDataCumplimiento" [labels]="lineChartLabels"
+                    [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend"
+                    [chartType]="lineChartType">
+                </canvas>
+            </div>
+        
+        </div>
+        <div class="col-3" *ngIf="Como === 'proveedor'">
+            <div class="card card-general">
+                <div class="card-body">
+                    <span class="titulo">Calificación media</span>
+                    <span class="subtitulo">Oferta</span>
+                    <span class="numero">{{calificacion_media_oferta}}</span>
+                    <span class="leyenda">Calificaciones media a la fecha </span>
+                    <span class="leyenda">({{text_leyenda}})</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-9 cont-grafico" *ngIf="Como === 'proveedor'">
+            <div class="container-grafico">
+                <label class="subtitle">Evolucion de Calificaciones Recibidas - Oferta (Media de calificaciones)</label>
+                <canvas baseChart width="350" height="120" [datasets]="lineChartDataOferta" [labels]="lineChartLabels"
+                    [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend"
+                    [chartType]="lineChartType">
+                </canvas>
+            </div>
+        
+        </div>
+    </div>
+</div>

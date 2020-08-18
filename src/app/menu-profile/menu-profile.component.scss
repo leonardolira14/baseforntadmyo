@@ -1,0 +1,206 @@
+@import '../../../styles.scss';
+
+
+.link-notificaciones{
+    cursor: pointer;
+    border-radius: 50%;
+    background-color: white;
+    padding: 2px !important;
+    color: map-get($colors, primary ) !important; 
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+     line-height: 0 !important;
+     &:hover{
+         color: white !important;
+                background-color: map-get($colors, secondary ) !important;
+            }
+    & .badge{
+        position: absolute;
+        top: -8px;
+        right: -5px;
+        border-radius: 50%;
+        background:map-get($colors, secondary);
+        color: wheat;
+    }
+}
+
+.menu{
+    padding: 0;
+    list-style: none;
+    margin-bottom: 0 !important;
+    height: 100%;
+    align-items: center;
+    @media screen and (min-width:768px) {
+        display: flex;
+        li{
+            text-align: center;
+        }
+        a{
+            padding-left: 0;
+            
+        }
+    }
+    & li{
+        flex:auto;
+        position: relative;
+        &:last-child{
+            border-right: none;
+        }
+       
+        & a{
+            color:white;
+            text-decoration: none;
+            display: block;
+                line-height: 3rem;
+               
+                font-family: map-get($fonts, semiBold );
+                font-size: 14px;
+                  transition: 1s;
+            &.active-link{
+                 background-color: map-get($colors, azulcielo );
+            }
+            &:hover{
+                  transition: 1s;
+                background-color: map-get($colors, azulcielo );
+            }
+            
+        }
+    }
+}
+nav li ul{
+    position: absolute;
+    width: 258px;
+    padding: 0;
+    z-index: 10;
+    
+}
+ ul{
+     list-style: none;
+ }
+ ul>li>a{
+line-height: 4rem !important;
+ }
+ul li ul{
+    display: none;
+    transition: 1s;
+}
+ul li:hover > ul{
+    transition: 1s;
+    display: block;
+}
+ /* segundo nivel*/
+ nav li li {
+     background-color: map-get($colors, azulcielo);
+     text-align: left;
+     transition: all 1s;
+     &:hover{
+         
+         & .material-icons{
+             transition: 1s;
+             transform: rotate(180deg);
+         }
+     }
+     & .material-icons{
+             transition: 1s;
+         }
+ }
+ nav > ul > li > ul{
+    top:100%;
+    & a{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-weight: 400 !important;
+        line-height: 3rem !important;
+        &:hover{
+            background-color: map-get($colors, primary) !important;
+        }
+    }
+ }
+/* tercer nivel*/
+nav ul ul ul {
+    left: 100%;
+    top: 0;
+    border:2px solid map-get($colors, gris7N );
+    box-shadow: 10px 9px 24px -12px rgba(0,0,0,0.75);
+    & li{
+         
+        background: #fff;
+        &:hover{
+             
+            & a{
+                transition: 1s;
+            color:map-get($colorsN, negro1N );
+            background: map-get($colorsN, blancoF ) !important;
+        }
+        }
+        & a{
+            transition: 1s;
+            font-weight: 400;
+            color:map-get($colorsN, negro1N );
+        }
+        
+    }
+}
+
+.dropdown-menu{
+   min-width: 15rem !important; 
+   border-radius: 0 !important;
+   top:18% !important;
+   & .dropdown-item{
+       font-size: 14px;
+         font-family: map-get($fonts, medium );
+         display: flex;
+         align-items: center;
+         & .material-icons{
+             font-size: 20px;
+             margin-right: 20px;
+         }
+   }
+}
+
+nav{
+    margin-bottom: 0px;
+}
+.submenu-flotante{
+    position: flex;
+    width: 100%;
+    background-color: map-get($colors, azulcielo);
+    padding: 27px 0px;
+    
+    & .col{
+        border-right: 16px;
+        padding: 0 16px 0 0;
+        & a{
+           font-size: 12px;
+           font-family: map-get($fonts, base ); 
+           text-decoration: none;
+           color: white;
+           display: block;
+           line-height: 3;
+           background-color: rgba(250,250,250,.15);
+           text-align: center;
+           &:hover{
+            background-color: white;
+               color: map-get($colors, azulcielo); 
+           }
+            &.active{
+            background-color: white;
+               color: map-get($colors, azulcielo); 
+           }
+        }
+    }
+}
+.drop{
+    color:white !important;
+}
+.dropdown-toggle::after{
+    margin-left: 15px;
+   content: url('/assets/icons/AMY_DownArrow_Active_White.svg'); 
+       border-top: 0em transparent !important;
+    
+}

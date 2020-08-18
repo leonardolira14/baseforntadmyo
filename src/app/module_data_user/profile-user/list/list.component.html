@@ -1,0 +1,71 @@
+<div class="container-fluid bg-white">
+    <div class="container">
+        <div class="row p-t-40  mb-3">
+            <div class="col-12 text-uppercase d-flex align-content-center">
+                <div class="cuadro-bineta mr-3"></div>
+                <p class="subtitle">Consultar usuarios</p>
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="form-group col-12 barr-search">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend ">
+                        <span class="input-group-text text-muted left" id="basic-addon2">
+                            <span class="material-icons">
+                                search
+                            </span>
+                        </span>
+                    </div>
+                    <input [(ngModel)]="palabra" (keyup)="buscar()"  placeholder="Buscar usuarios registrados" type="text" class="form-control">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text text-azulcielo bg-white right" id="basic-addon1">Buscar
+                            <img src="/assets/icons/AMY_SearchArrow_Active_Blue.svg" class="m-l-20" alt="">
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <!-----inciop de cardd-->
+            <div class="col-3 card-data " *ngFor='let item of lista_usuarios'>
+                <div class="card container-fluid giro_principal">
+                    <div class="row">
+                        <div class="col-12">
+                            <img [src]="dameLogo(item.Imagen)" class="logo-marca" alt="">
+                        </div>
+                        <div class="col-12 m-t-20">
+                            <div class="titulo">{{item.Nombre}} {{item.Apellidos}}</div>
+                        </div>
+                        <div class="col-12 mt-3 m-b-25">
+                            <div class="small">Correo Electrónico</div>
+                            <div class="fecha text-bold">{{item.Correo}}</div>
+                        </div>
+                        <div class="col-12 m-b-25">
+                            <div class="small">Puesto</div>
+                            <div class="fecha">{{item.Puesto}}</div>
+                        </div>
+
+                        <div class="col-12 btn-rigth m-t-20">
+                            <span *ngIf="item.Tipo_Usuario===''" (click)='ngMaster(item.IDUsuario)' class="bt-rodn mr-2">
+                                <span class="material-icons">
+                                    start
+                                </span>
+                            </span>
+                            <span (click)='ngEdit(item.IDUsuario)' class="bt-rodn mr-2"><span class="material-icons">
+                                edit
+                            </span></span>
+                            <span (click)='ngDelete(item.IDUsuario,item.Status)'  class="bt-rodn">
+                                <span class="material-icons">
+                                    delete
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           
+
+
+            <!--fin de cards-->
+        </div>
+    </div>
+</div>

@@ -1,0 +1,31 @@
+@import '../../../../../styles.scss';
+
+.thead-primary th{
+    font-family: map-get($fonts, medium);
+    font-size: 14px;
+    color: #fff;
+    background-color: map-get($colors, primary ) !important;
+    border-color: map-get($colors, primary ) !important;
+    font-weight: 100;
+}
+
+.btng{
+    margin-top: 0px;
+    & .bt-rodn{
+    width: 25px;
+            height: 25px;
+            background-color: map-get($colors, azulcielo );
+            border-radius: 50%;
+            display: block;
+			cursor: pointer;
+			color:white;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			& span{
+				font-size: 1.2rem;
+            }
+	
+}
+}
+

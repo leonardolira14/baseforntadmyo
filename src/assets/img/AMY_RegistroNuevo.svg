@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="80" height="62.5" viewBox="0 0 80 62.5">
+  <g id="Group_1344" data-name="Group 1344" transform="translate(-644 -256.5)">
+    <path id="Path_254" data-name="Path 254" d="M19.958.017,61,0a4,4,0,0,1,4,4V46H0L0,20.02C-.027,20.016,19.958.017,19.958.017Z" transform="translate(644 273)" fill="#feb238"/>
+    <rect id="Rectangle_245" data-name="Rectangle 245" width="31" height="4" transform="translate(661 287)" fill="#fff"/>
+    <rect id="Rectangle_443" data-name="Rectangle 443" width="31" height="4" transform="translate(661 298)" fill="#fff"/>
+    <rect id="Rectangle_444" data-name="Rectangle 444" width="23" height="4" transform="translate(661 309)" fill="#fff"/>
+    <line id="Line_261" data-name="Line 261" y2="10" transform="translate(705.5 256.5)" fill="none" stroke="#1476fc" stroke-width="4"/>
+    <line id="Line_263" data-name="Line 263" x1="9.5" transform="translate(714.5 276)" fill="none" stroke="#1476fc" stroke-width="4"/>
+    <line id="Line_262" data-name="Line 262" x1="6.889" y2="7.389" transform="translate(712.5 262.111)" fill="none" stroke="#1476fc" stroke-width="4"/>
+    <path id="Path_255" data-name="Path 255" d="M20,0V16a4,4,0,0,1-4,4H0Z" transform="translate(644 273)" fill="#0732b9"/>
+  </g>
+</svg>

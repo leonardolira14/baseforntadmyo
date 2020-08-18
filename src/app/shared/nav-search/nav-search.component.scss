@@ -1,0 +1,38 @@
+@import '../../../styles.scss';
+
+.bg{
+   
+    & .input-group{
+         border-radius: 2px;
+    
+    border: none !important;
+    font-family:map-get($fonts,regular);
+
+    font-size: 14px;
+        & input{
+             border-color: rgba(map-get($colorsN,gris2N),0.2) !important;
+            background: rgba(map-get($colorsN,gris2N),0.2) 0% 0% no-repeat padding-box;
+        border-right: 0px !important;
+		border-left: 0px !important;
+        }
+        & .input-group-append{
+            margin-left: 0px !important;
+            & .input-group-text{
+                background: rgba(map-get($colorsN,gris2N),0.2) 0% 0% no-repeat padding-box;
+                border: none;
+                &.left{
+					border-radius: 0px !important;
+					border-right: 0px !important;
+					
+				}
+				&.right{
+					color:map-get($colors, azulcielo );
+					border-left: 0px !important;
+				}
+            }
+        }
+         
+    }
+   
+    
+}

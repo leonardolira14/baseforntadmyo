@@ -1,0 +1,36 @@
+@import '../../../../../styles.scss';
+svg{
+    max-width: 100%;
+    height: auto;
+    & .estado{
+            transform: scale(.8);
+            &:hover{
+                cursor: pointer;
+                fill:map-get($colors, primary )
+            }
+    }
+}
+
+.titulos2{
+     font-weight: 700;
+   font-size: 24px;
+}
+
+.subtitlel{
+   font-weight: 100;
+    font-size: 16px;
+    letter-spacing: 1.2px;
+}
+
+.leyen1,.leyen2{
+    position: absolute;
+    right: 0;
+    width: 300px;
+}
+.leyen1{
+    top:0;
+    
+}
+.leyen2{
+    top:70px;
+}

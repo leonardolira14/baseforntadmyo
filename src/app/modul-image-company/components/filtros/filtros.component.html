@@ -1,0 +1,65 @@
+<div class="container bg-white">
+    <div class="row p-20">
+        <div class="col-12 subtitle text-uppercase">
+            Filtros disponibles
+        </div>
+        <div class="form-group col-4">
+            <label for="">Fecha inicio</label>
+            <div class="input-group">
+                <input (dateChange)="addEvent('inicio', $event)" [ngModel]="data_filtros.FechaInicio" type="text" [matDatepicker]="picker" placeholder="AAAA-MM-DD" class="form-control" >
+                <div class="input-group-append"(click)="picker.open()">
+                    <span class="input-group-text" id="basic-addon2"><span class="material-icons">event</span></span>
+                </div>
+            </div>
+            
+            
+            
+            <mat-datepicker #picker></mat-datepicker>
+        </div>
+        <div class="form-group col-4">
+            <label for="">Fecha fin</label>
+            <div class="input-group">
+                <input (dateChange)="addEvent('fin', $event)" [ngModel]="data_filtros.FechaFin" type="text" [matDatepicker]="picker2" placeholder="AAAA-MM-DD" class="form-control">
+                <div class="input-group-append" (click)="picker2.open()">
+                    <span class="input-group-text" id="basic-addon2"><span class="material-icons">event</span></span>
+                </div>
+            </div>
+            
+            
+            
+            <mat-datepicker #picker2></mat-datepicker>
+        </div>
+        <div class="form-group col-4">
+            <label for="">Tipo de calificación</label>
+            <select [(ngModel)]="data_filtros.Tipo" class="form-control">
+                <option value="">Todas</option>
+                <option value="baja">Menor a 6</option>
+                <option value="media">Mayor 6 y Menor a 8</option>
+                <option value="alta">Mayor a 6</option>
+            </select>
+        </div>
+        <div class="form-group col-8">
+            <label for="exampleInputEmail1">Clientes</label>
+            <select [(ngModel)]="data_filtros.cliente" class="form-control">
+                <option value="td">Todos</option>
+                <option *ngFor="let item of lis_clientes" value="{{item.num}}">{{item.Razon_Social}}</option>
+            </select>
+        </div>
+        <div class="form-group col-4">
+            <label for="exampleInputEmail1">Estado</label>
+            <select [(ngModel)]="data_filtros.Estado" class="form-control">
+                <option value="">Todas</option>
+                <option value="ACTIVA">Activas</option>
+                <option value="Pendiente">Pendientes de Resolución</option>
+                <option value="PendienteA">Pendientes de Anulación</option>
+            </select>
+        </div>
+        <div class="col-12">
+            <div class="btn-group" role="group" aria-label="Basic example">
+                <button type="button" (click)="ngFiltrar()" class="btn btn-azulcielo mr-3">Aplicar filtros</button>
+                <button type="button" (click)="ngClearFiltros()" class="btn btn-outline-azulcielo">Limpiar filtros</button>
+            </div>
+        </div>
+        
+    </div>
+</div>

@@ -1,0 +1,590 @@
+/* You can add global styles to this file, and also import other style files */
+@font-face {
+  font-family: "w-b";
+  src: url("/assets/fonts/WorkSans-Black.otf");
+}
+@font-face {
+  font-family: "w-bold";
+  src: url("/assets/fonts/WorkSans-Bold.otf");
+}
+@font-face {
+  font-family: "w-e-b";
+  src: url("/assets/fonts/WorkSans-ExtraBold.otf");
+}
+@font-face {
+  font-family: "w-e-l";
+  src: url("/assets/fonts/WorkSans-ExtraLight.otf");
+}
+@font-face {
+  font-family: "w-l";
+  src: url("/assets/fonts/WorkSans-Light.otf");
+}
+@font-face {
+  font-family: "w-m";
+  src: url("/assets/fonts/WorkSans-Medium.otf");
+}
+@font-face {
+  font-family: "w-r";
+  src: url("/assets/fonts/WorkSans-Regular.otf");
+}
+@font-face {
+  font-family: "w-s-b";
+  src: url("/assets/fonts/WorkSans-SemiBold.otf");
+}
+
+$fonts:(
+		  base:'Work Sans',
+		  regular:'w-r',
+		  semiBold:'w-s-b',
+		  medium:'w-m',
+		  extraLight:'w-e-l',
+		  light:'w-l',
+		  extrabold:'w-e-b',
+		  bold:'w-bold',
+		  black:'w-b'
+    );
+$colorsN:(
+	blancoF: #F2F3F5,
+	blanco2: #FFFFFF,
+	gris1N: #000026,
+	gris2N: #C1C6D1,
+	gris3N: #000029,
+	gris4N: #707070,
+	gris6N: #7782AD5A,
+	gris7N: #2932554D,
+	negro1N: #1F1F1F,
+	negro2N: #000000
+);
+$colors: (
+  card_riesgo:#87F2EA,
+  menu:#FEB238,
+  blanco:#fff,
+  azulcielo2:#E7F0FD,
+  azulprimary:#00204a,
+  primary:#0732B9,
+  azulcielo:#1476FC,
+  azulcielo3:#1476FC26,
+  azuladmyo:    #005d8f,
+  succes: #00a65a,
+  orange:#f7ac43,
+  naranja:  #fdb44b,
+  danger:#F2143F,
+  danger1:     #f53d3d,
+  dark:       #222,
+  gary-lte:  #d2d6de,
+  aqua: #87F2EA,
+  aqua2:#10E0D0,
+  yellow: #f39c12,
+  blue: #0073b7,
+  navy: #001F3F,
+  teal: #39CCCC,
+  olive: #3D9970,
+  lime: #01FF70,
+  secondary: #FF851B,
+  fuchsia: #F012BE,
+  purple: #605ca8,
+  maroon: #D81B60,
+  blackk: #000,
+  dark-2: #222d32,
+  light-gray: #444,
+  alight-gray:#d3d3d3d3,
+  red-danger:#F8E1E5,
+  red-t-danger:#F2143F
+);
+$gamagrises:(
+gris1:#f4f3f3,
+gris2:#dfdfdf,
+gris3:#393e46,
+girsmenu:#555,
+gris4:#eaeaea,
+gris5:#dae1e7,
+gris6:#6c757d,
+girs7:#A0A0A0,
+grismenuopaco:rgba(#555,0.6)
+	);
+
+.is-invalid{
+	border-color:map-get($colors, red-t-danger ) !important;
+}
+.ng-invalid{
+	border-color:#eee ;
+}
+$spaceamounts: (1,2,3,4,5, 10, 15, 20, 25, 30, 35, 40, 45, 50,55,60,65,70, 75,80,85,90,95,100,110,120,130,140);
+$sides: (top, bottom, left, right);
+
+@each $space in $spaceamounts {
+  .p-#{"" +$space} {
+    padding: #{"" +$space}px !important;
+   }
+   .wpx-#{"" +$space} {
+    width: #{"" +$space}px !important;
+   }
+   .hpx-#{"" +$space} {
+    height: #{"" +$space}px !important;
+   }
+	@each $side in $sides {
+		.m-#{str-slice($side, 0, 1)}-#{$space} {
+			margin-#{$side}: #{$space}px !important;
+		}
+		.p-#{str-slice($side, 0, 1)}-#{$space} {
+			padding-#{$side}: #{$space}px !important;
+		}
+	}
+}
+@each $profile, $font in $fonts {
+	.text-#{"" +$profile}{
+		font-family: $font !important;
+	}
+}
+@each $profile, $bgcolor in $colorsN {
+	.text-#{"" +$profile}{
+		color: $bgcolor !important;
+	}
+	.bg-#{"" +$profile}{
+		background:$bgcolor  !important;
+		border-color:$bgcolor !important;
+		color:map-get( $colors, blanco);
+		
+  }
+}
+@each $profile, $bgcolor in $gamagrises {
+	.text-#{"" +$profile}{
+		color: $bgcolor !important;
+	}
+	.bg-#{"" +$profile}{
+		background:$bgcolor  !important;
+		border-color:$bgcolor !important;
+		color:map-get( $colors, blanco);
+		
+  }
+  .btn-#{"" +$profile}{
+		background:$bgcolor  !important;
+		border-color:$bgcolor !important;
+		color:map-get( $colors, blanco);
+		font-family: map-get($fonts, medium );
+		font-size: 14px;
+		border-radius: 2px;
+		width: 134px;
+		height: 45px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		
+  }
+  .btn-outline-#{"" +$profile}{
+	  color:$bgcolor;
+	  background: transparent !important;
+	  border-color: $bgcolor !important;
+	  border-radius: 0px !important;
+	  transition: all 0.5s;
+	  font-family: map-get($fonts, medium );
+	  font-size: 14px;
+	  border-radius: 2px;
+	  width: 134px;
+	  height: 45px;
+	  display: flex;
+		justify-content: center;
+		align-items: center;
+	  &:hover{
+	  	 color:map-get($colors,blanco);
+	  	transition: all 0.5s;
+		  background:rgba($bgcolor,1)!important ;
+	  	border-color: $bgcolor !important;
+	  }
+	}
+}
+@each $profile, $bgcolor in $colors {
+	.bg-#{"" +$profile}{
+		background:$bgcolor  !important;
+		border-color:$bgcolor !important;
+		color:map-get( $colors, blanco);
+	}
+	.border-#{"" +$profile}{
+		border-color:$bgcolor !important;
+	}
+	.text-#{"" +$profile}{
+		color:$bgcolor !important;
+	}
+	.btn-outline-#{"" +$profile}{
+	  color:$bgcolor;
+	  background: transparent !important;
+	  border-color: $bgcolor !important;
+	  transition: all 0.5s;
+	  font-size:14px;
+	  border-radius: 2px ;
+	  width: 134px;
+	  height: 45px;
+	  display: flex;
+    justify-content: center;
+    align-items: center;
+	  &:hover{
+	  	color:map-get($colors,blanco);
+	  	transition: all 0.5s;
+		background:rgba($bgcolor,1) !important ;
+	  	border-color: $bgcolor !important;
+	  }
+	}
+	
+	.btn-#{"" +$profile}{
+	  color:map-get($colors,blanco);
+	  background: $bgcolor !important;
+	  border-color: $bgcolor !important;
+	  font-size:14px;
+	  transition: all 0.5s;
+	   border-radius: 2px;
+	  width: 134px;
+	  height: 45px;
+	  display: flex;
+    justify-content: center;
+    align-items: center;
+	  &:hover{
+		  transition: all 0.5s;
+		  color:$bgcolor ;
+		  background:transparent !important ;
+	  	border-color: $bgcolor !important;
+	  }
+	}
+
+
+}
+.bg-transparent{
+	background: transparent !important;
+	border-color: transparent !important;
+}
+body{
+	margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;
+	background-color: map-get($colorsN, blancoF );
+}
+.titulos,.subtitle,.subtitulo{
+	color: map-get($colorsN, negro1N );
+}
+.titulos{
+	font-family: map-get($fonts, medium );
+	font-size: 34px;
+}
+.subtitle{
+	font-family: map-get($fonts,semiBold );
+	font-size: 12px;
+	letter-spacing: 1.2px;
+}
+
+.subtitulo{
+	font-family: map-get($fonts, medium );
+	font-size: 18px;
+	
+}
+
+.cuadro-bineta{
+	width: 15px;
+	height: 15px;
+	background-color: map-get($colors, azulcielo);
+}
+.form-group{
+	margin-top: 30px;
+    label{
+        margin-bottom: 0 !important;
+		font-family: map-get($fonts, medium );
+		font-size: 14px;
+    }
+    & .form-control{
+        color: black;
+		border-color: #ced4da ;
+	
+	}
+	& input,& select,& textarea{
+		font-family: map-get($fonts, regular );
+		background-color: map-get($colors, white );
+		font-size: 14px;
+		border-radius: 2px;
+	}
+	& select{
+		appearance: none;
+		background-image: url('/assets/icons/AMY_DownArrow_Active_Blue.svg');
+		background-repeat: no-repeat, repeat;
+		background-position: right .7em top 50%, 0 0;
+		background-size: .8rem auto, 100%;
+		
+	}
+	& .input-group{
+		& select, & input{
+			border-right: 0px !important;
+		}
+	}
+	& .input-group-text{
+		&.validate{
+			border-left: 0px !important;
+		}
+	}
+}
+.card{
+	border-radius: 0;
+}
+.barr-search{
+	& input{
+		border-right: 0px !important;
+		border-left: 0px !important;
+	}
+	& .input-group{
+		& .input-group-prepend{
+			background-color: white;
+			& .input-group-text{
+				background-color: white;
+				&.left{
+					border-radius: 0px !important;
+					border-right: 0px !important;
+					
+				}
+				&.right{
+					font-size: 14px;
+					color:map-get($colors, azulcielo );
+					border-left: 0px !important;
+				}
+				
+			}
+		}
+	}
+}
+.barr-search2{
+	& input{
+		border-right: 0px !important;
+	}
+	& .input-group{
+		& .input-group-prepend{
+			background-color: white;
+			& .input-group-text{
+				&.right{
+					font-size: 14px;
+					color:map-get($colors, azulcielo );
+					border-left: 0px !important;
+				}
+				
+			}
+		}
+	}
+}
+.card-data{
+    & .card{
+        margin-top: 30px;
+        padding: 36px 10px;
+        width: 100%;
+        background-color: map-get($colors,azulcielo2);
+        border-color: map-get($colors,azulcielo2); 
+		font-family: map-get($fonts,base);
+		&:hover{
+			background-color: map-get($colors,azulcielo);
+			border-color: map-get($colors,azulcielo); 
+			& .titulo, & .numero, & .small, & .fecha{
+             	color: white;
+			}
+			& .bt-rodn{
+				color: map-get($colors,azulcielo);
+				background-color:white;
+			}
+		}
+        & .titulo, & .small, & .fecha{
+            display: block;
+        }
+        & .numero, & .small, & .fecha{
+            display: block;
+             color:map-get($colorsN, negro1N);
+        }
+        & .titulo{
+            color:map-get($colors, primary);
+            font-size: 18px;
+            font-weight: bold;
+        }
+        & .small{
+            font-size: 7.5px;
+            text-transform: uppercase;
+        }
+        & .numero{
+            font-size: 42px;
+            font-weight: 700;
+        }
+        & .fecha{
+            font-size: 14px;
+        }
+        & .btn-rigth{
+            display: flex;
+            justify-content: flex-end;
+        }
+        & .bt-rodn{
+            width: 25px;
+            height: 25px;
+            background-color: map-get($colors, azulcielo );
+            border-radius: 50%;
+            display: block;
+			cursor: pointer;
+			color:white;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			& span{
+				font-size: 1.2rem;
+			}
+		}
+		
+		& .logo-marca{
+			width: 45px;
+			height: 45px;
+			object-fit: cover;
+			background-color: white;
+		}
+        
+    }
+}
+.tit-card-img{
+	font-size: 14px;
+	font-family: map-get($fonts, medium );
+}
+.input-group-text .material-icons{
+    font-size: 20px;
+}
+.btn-group{
+	margin-top:30px
+}
+
+.card-logo{
+    position: relative;
+    width: 250px;
+    height: 250px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2px;
+    & img{
+        width: 250px;
+    	height: 250px;
+        object-fit: cover;
+       
+    }
+}
+
+.instr-card{
+	& small{
+		display: block;
+    font-size: 12px;
+    font-family: map-get($fonts, medium);
+	color: rgba(map-get($colorsN, negro1N),.5);
+	width: 260px;
+	text-align: justify;
+	margin:0 auto;
+	}
+	
+}
+.cont-switch{
+	display: flex;
+	align-items: center;
+	margin-top: 32px;
+	& .text{
+		font-size: 14px;
+		font-family: map-get($fonts, regular);
+		margin-left: 16px;
+	}
+}
+
+.alert-card{
+	border:1px solid  map-get($colors, red-t-danger);
+	background-color: map-get($colors, red-danger);
+	color: map-get($colors , red-t-danger );
+	font-size:14px;
+	font-family: map-get($fonts, w-m );
+}
+.btn-desactivado{
+    background: transparent;
+    border: 1px solid rgba(map-get($colorsN,gris1N),0.26);
+    color:map-get($colorsN,negro1N);
+	font-family: map-get($fonts, medium );
+	font-size: 14px;
+	border-radius: 2px !important;
+	  width: 134px;
+	  height: 45px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+}
+.preeload-fondo{
+	position: fixed;
+	background-color: #FFFFFF;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	top:0;
+	left: 0;
+	
+
+}
+.preload-modal{
+  position: fixed;
+  top: 0;
+  z-index: 998;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0,0,0,0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  & .btn-close-modal{
+	  right: 0px;
+    position: absolute;
+    top: 0;
+  }
+}
+html, body { height: 100%; }
+
+.containerbtn{
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    height: 40px;
+    cursor: pointer;
+	font-size: 14px;
+	font-family: map-get($fonts, regular);
+    user-select: none;
+    & input{
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        &:checked ~ .checkmark{
+			border:1px solid #2196f3;
+            background: #fff;
+            &:after{
+                display: block;
+            }
+        }
+    }
+    & .checkmark{
+        position: absolute;
+        top:0;
+        left:0;
+        height: 25px;
+        width: 25px;
+        background: #eee;
+		border-radius: 50%;
+		border:1px solid map-get($colorsN, gris4N );
+        &:after{
+            content: '';
+            position: absolute;
+            display: none;
+            top: 49%;
+			left: 49%;
+			
+			transform: translate(-47%, -50%);
+            width: 18px;
+            height: 18px;
+			border-radius: 50%;
+            background: #2196f3;
+        }
+    }
+    &:hover{
+        & input ~ .checkmark{
+            background: #ccc;
+        }
+    }
+}

@@ -1,0 +1,56 @@
+<div class="container">
+    <div class="row m-t-30  mb-3">
+        <div class="col-12 titulos m-b-30">
+            Estado de visitas
+        </div>
+        <div class="col-6 m-auto">
+            <div class="row">
+                <div [ngClass]="{'btn-outline-azulcielo':activo_mes,'btn-azulcielo':!activo_mes}" (click)="getAll('M')" class="col-6 btn  btn-grande">
+                    Mes Actual
+                </div>
+                <div [ngClass]="{'btn-outline-azulcielo':activo_mes_anio,'btn-azulcielo':!activo_mes_anio}" (click)="getAll('A')" class="col-6 btn  btn-grande">
+                    Acumulado
+                </div>
+               
+            </div>
+        </div>
+        <div class="col-12 text-center periodo m-b-40">
+            <strong>Periodo: </strong> <span>{{text}}</span>
+        </div>
+        <div class="col-4">
+                <div class="card bg-primary card-num-visitas">
+                    <span class="title m-t-30">número de visitas</span>
+                    <span class="numero m-t-90">{{totales}}</span>
+                    <span class="small m-t-30">Visitas Totales</span>
+                    <span class="small">({{text}})</span>
+                </div>
+        </div>
+        <div id="chart" class="col-8 bg-white">
+            <apx-chart 
+            [series]="chartOptions.series" 
+            [chart]="chartOptions.chart" 
+            [dataLabels]="chartOptions.dataLabels"
+            [plotOptions]="chartOptions.plotOptions" 
+            [xaxis]="chartOptions.xaxis" 
+            [stroke]="chartOptions.stroke"
+            [fill]="chartOptions.fill"
+            [yaxis]="chartOptions.yaxis" 
+            [title]="chartOptions.title"
+            [tooltip]="chartOptions.tooltip" 
+            [legend]="chartOptions.legend">
+        </apx-chart>
+        </div>
+
+        <div id="chartu" style="background-color: #04195D;" class="col-12 m-t-30 p-30 text-dark" >
+            <label class="text-medium text-white m-b-30">EVOLUCIÓN    DE VISITAS</label>
+            <div class="p-l-40 p-r-40 w-100">
+                <canvas baseChart width="300" height="100" [datasets]="lineChartData" [labels]="lineChartLabels"
+                    [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType">
+                </canvas>
+            </div>
+            
+        </div>
+
+        
+    </div>
+</div>

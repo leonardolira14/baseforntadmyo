@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="67" height="67" viewBox="0 0 67 67">
+  <g id="Group_1175" data-name="Group 1175" transform="translate(0.315 0.315)">
+    <circle id="Ellipse_100" data-name="Ellipse 100" cx="33.5" cy="33.5" r="33.5" transform="translate(-0.315 -0.315)" fill="#0732b9"/>
+    <circle id="Ellipse_101" data-name="Ellipse 101" cx="25.5" cy="25.5" r="25.5" transform="translate(7.685 7.685)" fill="#fff"/>
+    <g id="Group_1174" data-name="Group 1174" transform="translate(11.602 11.667)">
+      <path id="Path_205" data-name="Path 205" d="M240.5,392v3.889h3.889V392H240.5Z" transform="translate(-220.926 -352.854)" fill="#feb238"/>
+      <rect id="Rectangle_249" data-name="Rectangle 249" width="3.889" height="3.889" transform="matrix(0.866, -0.5, 0.5, 0.866, 28.648, 37.757)" fill="#feb238"/>
+      <rect id="Rectangle_250" data-name="Rectangle 250" width="3.889" height="3.889" transform="matrix(0.5, -0.866, 0.866, 0.5, 35.812, 32.018)" fill="#feb238"/>
+      <path id="Path_206" data-name="Path 206" d="M244.389,109.575V90H240.5v23.463h23.463v-3.889Z" transform="translate(-220.926 -90.001)" fill="#1476fc"/>
+      <rect id="Rectangle_251" data-name="Rectangle 251" width="3.889" height="3.889" transform="matrix(0.866, -0.5, 0.5, 0.866, 9.076, 3.856)" fill="#feb238"/>
+      <rect id="Rectangle_252" data-name="Rectangle 252" width="3.889" height="3.889" transform="matrix(0.5, -0.866, 0.866, 0.5, 1.911, 12.442)" fill="#feb238"/>
+      <rect id="Rectangle_253" data-name="Rectangle 253" width="3.889" height="3.889" transform="translate(0 19.574)" fill="#feb238"/>
+      <rect id="Rectangle_254" data-name="Rectangle 254" width="3.889" height="3.889" transform="matrix(0.866, -0.5, 0.5, 0.866, 1.912, 30.593)" fill="#feb238"/>
+      <rect id="Rectangle_255" data-name="Rectangle 255" width="3.889" height="3.889" transform="matrix(0.5, -0.866, 0.866, 0.5, 9.075, 39.18)" fill="#feb238"/>
+    </g>
+  </g>
+</svg>

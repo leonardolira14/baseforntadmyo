@@ -1,0 +1,76 @@
+<div class="container">
+    <div class="row m-t-30  m-b-40">
+        <div class="col-12 titulos m-b-30">
+            Productos y Servicios
+        </div>
+        <div class="col-12 text-uppercase d-flex align-content-center">
+            <div class="cuadro-bineta mr-3"></div>
+            <span class="subtitle">Registrar producto o servicio</span>
+
+        </div>
+        <div class=" col-12 " *ngIf="ivalid">
+            <div class="card  p-15 m-t-30 d-flex justify-content-center  alert-card">
+                <div class="row">
+                    <div class="col-1 text-center ">
+                        <span class="material-icons ">
+                            error
+                        </span>
+                    </div>
+                    <div class="col-10 ">
+                        {{text_alert}}
+                    </div>
+                </div>
+            </div>
+        
+        </div>
+        <div class="col-3 text-work">
+            <div class="row">
+                <div class="col-12 m-t-30 tit-card-img">
+                    Cargar Logo <span class="text-danger">*</span>
+                </div>
+                <div class="card card-logo">
+                <img [src]='logitomarca' (click)="logo.click()">
+                <input (change)="preview(logo.files)" accept="image/gif, image/jpeg, image/png" type="file" class="d-none" #logo>
+                </div>
+                <div class="col-12 text-muted instr-card p-0">
+                    <small>Tu imagen debe tener un tamaño minimo de 260px x 260px (1Mb).</small>
+                    <br>
+                    <small>Formatos permitidos JPEG, PNG y SVG.</small>
+                </div>
+
+
+            </div>
+        </div>
+        <div class="col-9 text-work">
+            <form [formGroup]='form_producto' (ngSubmit)='ngSelect()'>
+                <div class="row ">
+                    <div class="form-group col-9">
+                        <label for="razon_social">Producto o servicio <span class="text-danger">*</span></label>
+                        <input [ngClass]="{'is-invalid': submitted &&  get_form.Producto.errors}" formControlName='Producto' type="text" class="form-control ">
+                        <small *ngIf=' submitted &&  get_form.Producto.errors' class="text-danger">Este campo es necesario</small>
+                    </div>
+
+                    <div class="form-group col-3">
+                        <label for="razon_social">Clave </label>
+                        <input formControlName='Clave' type="text"
+                            class="form-control " >
+                        
+                    </div>
+                    <div class="form-group col-12">
+                        <label for="razon_social">Descripción <span class="text-danger">*</span></label>
+                        <textarea [ngClass]="{'is-invalid': submitted &&  get_form.Descripcion.errors}" formControlName='Descripcion'  rows="5" class="form-control " ></textarea>
+                        <small *ngIf=' submitted &&  get_form.Descripcion.errors' class="text-danger">Este campo es necesario</small>
+                    </div> 
+                    <div class="col-12 text-left">
+                        <div class="btn-group">
+                            <button type="submit" class="btn btn-azulcielo mr-3">Guardar</button>
+                            <button type="reset" class="btn btn-outline-azulcielo">Cancelar</button>
+                        </div>
+
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<app-cards></app-cards>

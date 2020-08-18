@@ -1,0 +1,104 @@
+<div class="container">
+    <div class="row m-t-30 ">
+        <div class="col-12 titulos m-b-30">
+           Certificaciones
+        </div>
+        <div class="col-12 text-uppercase d-flex align-content-center">
+            <div class="cuadro-bineta mr-3"></div>
+            <p class="subtitle">Registar Certificación</p>
+        </div>
+        </div>
+    <div class="row m-t-10 mb-3">
+        <div class=" col-12 " *ngIf="ivalid">
+            <div class="card  p-15 m-t-30 d-flex justify-content-center  alert-card">
+                <div class="row">
+                    <div class="col-1 text-center ">
+                        <span class="material-icons ">
+                            error
+                        </span>
+                    </div>
+                    <div class="col-10 ">
+                        Algunos de los campos parecen incompletos. Error al cargar los datos.
+                    </div>
+                </div>
+            </div>
+    
+        </div>
+    </div>
+        <form [formGroup]='form_certification' (submit)='ngAddCertificacion()' class="row m-b-60">
+            <div class="form-group col-6">
+                <label for="razon_social">Nombre de certificación <span class="text-danger">*</span></label>            
+                <input [ngClass]="{'is-invalid': subttmited && from_get_data.Norma.errors}" formControlName='Norma' type="text" class="form-control ">
+                <small *ngIf='subttmited &&  from_get_data.Norma.errors' class="text-red-t-danger">Este campo es
+                    necesario</small>
+            </div>
+            <div class="form-group col-3">
+                <label for="razon_social">Fecha de certificación <span class="text-danger">*</span></label>
+                <input [ngClass]="{'is-invalid': subttmited &&  from_get_data.Fecha.errors}" formControlName='Fecha' class="form-control" (click)="d.toggle()" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker #d="ngbDatepicker">
+                <small *ngIf='subttmited &&  from_get_data.Fecha.errors' class="text-red-t-danger">Este campo es
+                    necesario</small>
+            </div>
+            <div class="form-group col-3">
+                <label for="razon_social">Tipo de certificación <span class="text-danger">*</span></label>
+                <select (change)='ngChangeCertificaciones($event.target.value)' class="form-control" formControlName='Tipo'
+                    [ngClass]="{'is-invalid': subttmited &&  from_get_data.Tipo.errors}">
+                    <option class="Calidad">Calidad</option>
+                    <option class="Fiscal">Fiscal</option>
+            
+                </select>
+                <small *ngIf='subttmited &&  from_get_data.Tipo.errors' class="text-red-t-danger">Este campo es
+                    necesario</small>
+            </div>
+            <div class="form-group" [ngClass]="{'col-6': !desaparece,'col-3': desaparece}" >
+                <label for="razon_social">Fecha de vencimiento <span class="text-danger">*</span></label>
+                <input  [ngClass]="{'is-invalid': subttmited &&  from_get_data.FechaVencimiento.errors}" formControlName='FechaVencimiento' class="form-control" (click)="v.toggle()" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker #v="ngbDatepicker">
+                <small *ngIf='subttmited &&  from_get_data.FechaVencimiento.errors' class="text-red-t-danger">Este campo es
+                    necesario</small>
+            </div>
+            <div class="form-group col-3" *ngIf="desaparece">
+                <label for="razon_social">Calificación <span class="text-danger">*</span></label>
+                <input [ngClass]="{'is-invalid': subttmited &&  from_get_data.Calificacion.errors}" formControlName='Calificacion' type="text" class="form-control">
+                <small *ngIf='subttmited &&  from_get_data.Calificacion.errors' class="text-red-t-danger">Este campo es
+                    necesario</small>
+            </div>
+            
+            <div class="form-group col-3" *ngIf="desaparece">
+                <label for="razon_social">Clase de certificación <span class="text-danger">*</span></label>
+                <select  class="form-control" formControlName='Clase'
+                    [ngClass]="{'is-invalid': subttmited &&  from_get_data.Clase.errors}">
+                  
+                    <option *ngFor='let i of tem_certifi' value="{{i}}">{{i}}</option>
+                    
+                </select>
+                <small *ngIf='subttmited &&  from_get_data.Tipo.errors' class="text-red-t-danger">Este campo es
+                    necesario</small>
+            </div>
+            <div class="form-group" [ngClass]="{'col-6': !desaparece,'col-3': desaparece}">
+                <label for="razon_social">Empresa certificadora <span class="text-danger">*</span></label>
+                <input [ngClass]="{'is-invalid': subttmited &&  from_get_data.EmpresaCertificadora.errors}" formControlName='EmpresaCertificadora' type="text" class="form-control" >
+                <small *ngIf='subttmited &&  from_get_data.EmpresaCertificadora.errors' class="text-red-t-danger">Este campo es
+                necesario</small>
+            </div>
+            <div class="form-group col-12 barr-search2">
+                <label for="razon_social">Adjuntar archivo <span class="text-danger">*</span></label>
+                <div class="input-group">
+                    <input formControlName='Archivo' placeholder="..." type="text" class="form-control">
+                    <div class="input-group-prepend" (click)='fileInput.click()'>
+                        <span class="input-group-text text-azulcielo bg-white right" id="basic-addon1">Seleccionar
+                            <img src="/assets/icons/AMY_SearchArrow_Active_Blue.svg" class="m-l-20" alt="">
+                            <input (change)="preview(fileInput.files)" type="file" class="d-none" #fileInput>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="btn-group">
+                    <button type='submit' class="btn btn-azulcielo mr-3">Guardar</button>
+                    <button type="reset" class="btn btn-outline-azulcielo">Cancelar</button>
+                </div>
+            </div>
+        </form>
+       
+    
+</div>
+<app-cards></app-cards>

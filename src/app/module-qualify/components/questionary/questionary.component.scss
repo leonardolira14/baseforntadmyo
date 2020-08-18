@@ -1,0 +1,26 @@
+@import '../../../../styles.scss';
+
+.head-cu{
+    height: 40px;
+    display: flex;
+    align-items: center;
+    font-family: map-get($fonts, medium);
+    font-size: 14px;
+    background-color: map-get($colors, primary );
+    color:white;
+}
+.tbody-cu{
+     padding: 20px 100px 20px 20px;
+    font-family: map-get($fonts, medium);
+    font-size: 14px;
+}
+
+.numero{
+    font-size: 90px;
+    color:#d3d3d3;
+    font-family: map-get($fonts, semiBold );
+}
+.subtitulos{
+    font-size: 18px;
+    font-family: map-get($fonts, medium );
+}

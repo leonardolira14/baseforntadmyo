@@ -1,0 +1,252 @@
+<div class="container-fluid">
+    <div class="container">
+        <div class="row m-t-30  m-b-40">
+            <div class="col-12 titulos m-b-30">
+                    Mi Plan
+            </div>
+            <div class="col-12 text-uppercase d-flex align-content-center">
+                <div class="cuadro-bineta mr-3"></div>
+                <p class="subtitle">Datos del Plan contratado</p>
+            </div>
+            <div class="col-4 m-t-30">
+                <p class="text">Nombre del plan</p>
+                <p class="text m-t-30">Datos del Plan contratado</p>
+            </div>
+            <div class="col-4 m-t-30">
+                <p class="text">Costo del Plan</p>
+                <p class="text m-t-30">$ 650.00 MXP</p>
+            </div>
+            <div class="col-3 m-t-30">
+                <p class="text">Proximo cargo</p>
+                <p class="text m-t-30">N/A</p>
+            </div>
+        </div>
+       
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="row">
+         <div class="columna-caracteristicas">
+            <ul>
+                <li class="head">Caracteristicas</li>
+                <li >Desarrollo de Perfil Empresarial</li>
+                <li>Calificar Empresas</li>
+                <li>1 Usuario</li>
+                <li>2 Usuarios</li>
+                <li>Usuarios Ilimitados</li>
+                <li>Api Web</li>
+                <li>Plataforma Móvil</li>
+                <li>Certificaciones de calidad Ilimitados</li>
+                <li>Asociaciones Ilimitadas</li>
+                <li>Resumen general de empresas buscadas</li>
+                <li>Detalle de Empresas y Seguidas</li>
+                <li>Seguimiento de empresas ilimitadas</li>
+                <li>Alerta de calificaciones recibidas</li>
+                <li>Alerta de desempeño de clientes y proveedores</li>
+                <li>Alerta de visitas a tu perfil</li>
+                <li>Alerta de desempeño de empresas seguidas</li>
+                <li>2 productos y servicios</li>
+                <li>Productos y servicios ilimitados</li>
+                <li>2 Marcas</li>
+                <li>Marcas Ilimitadas</li>
+                <li>Seguimiento de 3 empresas</li>
+                <li>Seguimeinto de empresas Ilimitadas</li>
+                <li class="pago container">
+                    <div class="row">
+                        <div class="col-12">
+                            Pago Mensual
+                        </div>
+                        
+                    </div>
+                </li>
+                <li class="pago container">
+                    <div class="row">
+                        <div class="col-12">
+                           Pago Anual
+                        </div>
+                        
+                    </div>
+                </li>
+                <li class="pago container">
+                    <div class="row">
+                        <div class="col-12">
+                           Pago Total
+                        </div>
+                        <div class="col-12">
+                            <small>(Nuestros precios no incluyen I.V.A)</small>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+         </div>
+        <div class="columna-sino" [ngClass]="{'active':gratis_Bolean}">
+            <ul>
+                <li class="head">Gratis</li>
+                <li><span class="material-icons">check_circle</span></li>
+                <li><span class="material-icons">check_circle</span></li>
+                <li><span class="material-icons">check_circle</span></li>
+                <li><span class="material-icons">check_circle</span></li>
+                <li></li>
+                <li><span class="material-icons">check_circle</span></li>
+                <li><span class="material-icons">check_circle</span></li>
+                <li><span class="material-icons">check_circle</span></li>
+                <li><span class="material-icons">check_circle</span></li>
+                <li><span class="material-icons">check_circle</span></li>
+                <li> </li>
+                <li> </li>
+                <li><span class="material-icons">check_circle</span></li>
+                <li><span class="material-icons">check_circle</span></li>
+                <li><span class="material-icons">check_circle</span></li>
+                <li></li>
+                <li><span class="material-icons">check_circle</span></li>
+                <li></li>
+                <li><span class="material-icons">check_circle</span></li>
+                <li></li>
+                <li><span class="material-icons">check_circle</span></li>
+                <li></li>
+                <li class="pago">N/A</li>
+                <li class="pago">N/A</li>
+                <li class="pago">
+                    $ 0.00 MXP
+                </li>
+                <li class="btns">
+                    <div [ngClass]="{'btn-alight-gray':gratis_Bolean===true,'btn-azulcielo':!gratis_Bolean}" (click)="cambio_plan('G')" class="btn">Seleccionar</div>
+                </li>
+            </ul>
+        </div>
+        <div class="columna-sino" [ngClass]="{'active':micro_Bolean}">
+            <ul>
+                <li class="head">Micro Empresas</li>
+                <li><span class="material-icons">check_circle</span></li>
+                <li><span class="material-icons">check_circle</span></li>
+                <li></li>
+                <li><span class="material-icons">check_circle</span></li>
+                <li></li>
+                <li><span class="material-icons">check_circle</span></li>
+                <li><span class="material-icons">check_circle</span></li>
+                <li><span class="material-icons">check_circle</span></li>
+                <li><span class="material-icons">check_circle</span></li>
+                <li><span class="material-icons">check_circle</span></li>
+                <li><span class="material-icons">check_circle</span></li>
+                <li></li>
+                <li><span class="material-icons">check_circle</span></li>
+                <li><span class="material-icons">check_circle</span></li>
+                <li><span class="material-icons">check_circle</span></li>
+                <li><span class="material-icons">check_circle</span></li>
+                <li><span class="material-icons">check_circle</span></li>
+                <li></li>
+                <li><span class="material-icons">check_circle</span></li>
+                <li></li>
+                <li><span class="material-icons">check_circle</span></li>
+                <li></li>
+                <form action="">
+                <li class="pago container">
+                    <div class="row">
+                        <div class="col-12">
+                            $ 200.00 MXP
+                        </div>
+                        <div class="col-12 d-flex justify-content-center">
+                            <label class="containerbtn">
+                                <input type="radio" value="200" [(ngModel)]="micro_radio" name="micro">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                </li>
+                <li class="pago container">
+                    <div class="row">
+                        <div class="col-12">
+                            $ 166.66 MXP
+                        </div>
+                        <div class="col-12 d-flex justify-content-center">
+                            <label class="containerbtn">
+                                <input type="radio" value="166.66" [(ngModel)]="micro_radio" name="radio">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                </li>
+                </form>
+                <li class="pago container">
+                    <div class="row">
+                        <div class="col-12">
+                            $ {{ micro_radio }} MXP
+                        </div>
+                    </div>
+                </li>
+                <li class="btns">
+                    <div [ngClass]="{'btn-alight-gray':micro_Bolean,'btn-azulcielo':!micro_Bolean}"  (click)="cambio_plan('M')" class="btn">Seleccionar</div>
+                </li>
+
+            </ul>
+        </div>
+        <div class="columna-sino" [ngClass]="{'active':empresa_Bolean}">
+            <ul>
+                <li class="head">Empresarial</li>
+                <li><span class="material-icons">check_circle</span></li>
+                <li><span class="material-icons">check_circle</span></li>
+                <li></li>
+                <li></li>
+                <li><span class="material-icons">check_circle</span></li>
+                <li><span class="material-icons">check_circle</span></li>
+                <li><span class="material-icons">check_circle</span></li>
+                <li><span class="material-icons">check_circle</span></li>
+                <li><span class="material-icons">check_circle</span></li>
+                <li><span class="material-icons">check_circle</span></li>
+                <li><span class="material-icons">check_circle</span></li>
+                <li><span class="material-icons">check_circle</span></li>
+                <li><span class="material-icons">check_circle</span></li>
+                <li><span class="material-icons">check_circle</span></li>
+                <li><span class="material-icons">check_circle</span></li>
+                <li><span class="material-icons">check_circle</span></li>
+                <li></li>
+                <li><span class="material-icons">check_circle</span></li>
+                <li></li>
+                <li><span class="material-icons">check_circle</span></li>
+                <li></li>
+                <li><span class="material-icons">check_circle</span></li>
+                <form action="">
+                <li class="pago container">
+                    <div class="row">
+                        <div class="col-12">
+                            $ 1000.00 MXP
+                        </div>
+                        <div class="col-12 d-flex justify-content-center">
+                            <label class="containerbtn">
+                                <input [(ngModel)]="empresa_radio" value="1000" type="radio" name="radio">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                </li>
+                <li class="pago container">
+                    <div class="row">
+                        <div class="col-12">
+                            $ 833.33 MXP
+                        </div>
+                        <div class="col-12 d-flex justify-content-center">
+                            <label class="containerbtn">
+                                <input [(ngModel)]="empresa_radio" value="833.33" type="radio" name="radio">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                </li>
+                </form>
+                <li class="pago container">
+                    <div class="row">
+                        <div class="col-12">
+                            $ {{empresa_radio}} MXP
+                        </div>
+                        
+                    </div>
+                </li>
+                <li class="btns">
+                    <div [ngClass]="{'btn-alight-gray':empresa_Bolean,'btn-azulcielo':!empresa_Bolean}" (click)="cambio_plan('E')" class="btn">Seleccionar</div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

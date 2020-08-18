@@ -1,0 +1,94 @@
+@import '../../../../../styles.scss';
+
+.card-follow{
+    border: 1px solid #E7F0FD;
+    background-color: #E7F0FD;
+    padding: 36px  20px;
+    & .logo_img{
+        width: 64px;
+        height: 64px;
+        object-fit: cover;
+        margin-right: 20px;
+    }
+    & .razonsocial{
+        font-family: map-get($fonts, medium );
+        font-size: 18px;
+        display: block;
+        color: #0732B9;
+    }
+    & .nombre_comercial{
+        font-family: map-get($fonts, semiBold );
+        font-size: 12px;
+        display: block;
+    }
+    & .rfc{
+        font-family: map-get($fonts, regular );
+        font-size: 12px;
+        display: block;
+    }
+    & .descripcion{
+        font-family: map-get($fonts, regular );
+        font-size: 12px;
+        text-align: justify;
+    }
+    & .minisub{
+        font-size: 8px;
+        font-family: map-get($fonts, semiBold );
+        color: rgba(#1F1F1F,0.5);
+        text-transform: uppercase;
+    }
+    & .cont-box{
+        padding: 15px 20px;
+         background: #87F2EA;
+         & .tipocalif{
+            font-family: map-get($fonts, regular );
+            font-size: 14px;
+            display: block;
+        }
+         & .box{
+            width: 67px;
+            height: 32px;
+            background: #FFFFFF;
+            font-family: map-get($fonts, semiBold );
+            font-size: 18px;
+            padding: 20px;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+                align-items: center;
+        
+        }
+    }
+    & .fecha_califi{
+          font-family: map-get($fonts, regular );
+        font-size: 12px;
+    }
+    
+    & .list_cert{
+        list-style: none;
+            padding: 0;
+        & li{
+            width: 100%;
+            display: flex;
+            margin-top: 11px;
+            & .boxt{
+                width: 33px;
+                height: 16px;
+                font-family: map-get($fonts, semiBold );
+                font-size: 8px;
+                color: white;
+                background-color: #FEB238;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            & .lvl{
+                margin-left:10px ;
+                font-family: map-get($fonts, regular );
+                font-size: 12px;
+            }
+        }
+    }
+    
+    
+}
