@@ -1,0 +1,141 @@
+
+   [ {
+      "texto": "Desarrollo de perfil empresarial",
+      "a": true,
+      "b": true,
+      "c": true
+    },
+    {
+      "texto": "Calificar empresas",
+      "a": true,
+      "b": true,
+      "c": true
+
+    },
+    {
+      "texto": "2 Usuarios",
+      "a": true,
+      "b": true,
+      "c": false
+
+    },
+    {
+      "texto": "Usuarios Ilimitados",
+      "a": false,
+      "b": false,
+      "c": true
+
+    },
+    {
+      "texto": "API Web",
+      "a": true,
+      "b": true,
+      "c": true
+
+    },
+    {
+      "texto": "Plataforma Móvil",
+      "a": true,
+      "b": true,
+      "c": true
+
+    },
+    {
+      "texto": "Certificaciones de calidad ilimitados",
+      "a": false,
+      "b": false,
+      "c": true
+
+    },
+    {
+      "texto": "Resumen general de empresas buscadas",
+      "a": true,
+      "b": true,
+      "c": true
+
+    },
+    {
+      "texto": "Detalle de Empresas y Seguidas",
+      "a": false,
+      "b": true,
+      "c": true
+
+    },
+    {
+      "texto": "Seguimiento de empresas Ilimitadas",
+      "a": false,
+      "b": false,
+      "c": true
+
+    },
+    {
+      "texto": "Alerta de calificaciones recibidas",
+      "a": true,
+      "b": true,
+      "c": true
+
+    },
+    {
+      "texto": "Alerta de desempeño de clientes y proveedores",
+      "a": false,
+      "b": true,
+      "c": true
+
+    },
+    {
+      "texto": "Alerta de desempeño de empresas seguidas",
+      "a": false,
+      "b": true,
+      "c": true
+
+    },
+    {
+      "texto": "Alerta de visitas a tu perfil",
+      "a": true,
+      "b": true,
+      "c": true
+
+    },
+    {
+      "texto": "2 Productos y Servicios",
+      "a": true,
+      "b": true,
+      "c": false
+    },
+    {
+      "texto": "Productos y Servicios Ilimitados",
+      "a": false,
+      "b": false,
+      "c": true
+
+    },
+    {
+      "texto": "2 Marcas",
+      "a": true,
+      "b": true,
+      "c": false
+
+    },
+    {
+      "texto": "Marcas Ilimitadas",
+      "a": false,
+      "b": false,
+      "c": true
+
+    },
+    {
+      "texto": "Seguimiento de 3 empresas",
+      "a": true,
+      "b": true,
+      "c": false
+
+    },
+    {
+      "texto": "Seguimiento de empresas Ilimitadas",
+      "a": false,
+      "b": false,
+      "c": true
+
+    }
+]
+  

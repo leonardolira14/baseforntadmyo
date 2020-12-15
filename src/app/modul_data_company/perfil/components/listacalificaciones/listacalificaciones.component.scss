@@ -1,0 +1,73 @@
+@import '../../../../../styles.scss';
+
+.head{
+    padding: 20px 15px;
+    align-items: center;
+    & .row{
+        font-family: map-get($fonts, medium);
+        font-size: 14px;
+        
+    }
+}
+
+.titulo_razon{
+    font-size: 14px;
+    font-family: map-get($fonts, medium);
+        text-decoration: underline;
+}
+.media{
+            color:white;
+            text-align: center;
+    display: block;
+            &.media-baja{
+                background-color: map-get($colors, red-t-danger );
+                
+            }
+            &.media-media{
+                background-color: map-get($colors, naranja );
+            }
+            &.media-alta{
+                background-color: map-get($colors, aqua2 );
+            }
+    };
+.bnts{
+    & .btn-group{
+        margin-top: 0px;
+    }
+    & .btn{
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        margin-right:10px ;
+        & .material-icons{
+            font-size: 18px;
+        }
+        
+    }
+}
+
+.modal-detalle{
+    & .card-body{
+        padding-left: 26px;
+        padding-right: 26px;
+    }
+    & .numero{
+        margin-top: 51px;
+        margin-bottom: 30px;
+        color:#d3d3d3;
+        font-size: 54px;
+        font-family: map-get($fonts, semiBold);
+    }
+    
+    & .body,& .body-firs{
+        height: 40px;
+        font-family: map-get($fonts, medium);
+        font-size: 18px;
+        border-bottom:1px solid #C1C6D1;
+        display: flex;
+        align-items: center;  
+        border-right:1px solid #C1C6D1;
+        border-left:1px solid #C1C6D1;
+       
+    }
+}

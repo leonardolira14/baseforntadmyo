@@ -29,6 +29,15 @@ const routes: Routes = [
     }
   },
   {
+    path: 'busqueda',
+    // tslint:disable-next-line: max-line-length
+    loadChildren: () => import('./module-search/module-search.module').then(m => m.ModuleSearchModule),
+
+    data: {
+      preload: false
+    }
+  },
+  {
     path: 'marcas-company',
     // tslint:disable-next-line: max-line-length
     loadChildren: () => import('./modul_data_company/marcas/marcas.module').then(m => m.MarcasModule),
@@ -61,7 +70,6 @@ const routes: Routes = [
   {
     path: 'image-company',
     loadChildren: () => import('./modul-image-company/modul-image-company.module').then(m => m.ModulImageCompanyModule),
-  
     data: {
       preload: true
     }
@@ -74,7 +82,6 @@ const routes: Routes = [
       preload: true
     }
   },
- 
   {
     path: 'analisis-company',
     // tslint:disable-next-line: max-line-length

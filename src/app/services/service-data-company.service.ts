@@ -47,4 +47,21 @@ export class ServiceDataCompanyService {
     return this.http.post(this.url_serve + 'updatelogoempresa', empresa)
       .pipe(map(data => data));
   }
+
+  // funcion para registar una empresa
+  register(datos) {
+    return this.http.post(this.url_serve + 'saveregister', datos)
+      .pipe(map(data => data));
+  }
+
+  // activar cuenta
+  activecuenta(datos) {
+    return this.http.post(this.url_serve + 'activecuenta', datos)
+      .pipe(map(data => data));
+  }
+
+  obtenerprecios() {
+    return this.http.get('assets/json/precios.json')
+      .pipe(map(data => data));
+  }
 }

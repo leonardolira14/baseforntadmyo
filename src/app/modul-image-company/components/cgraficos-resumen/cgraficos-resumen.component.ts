@@ -83,6 +83,28 @@ export class CgraficosResumenComponent implements OnInit {
     }
 
   ];
+  lineChartDataSanidad: Array<any> = [
+    {
+      data: [5, 38, 20, 30, 14],
+      label: ''
+    },
+    {
+      data: [5, 38, 20, 30, 14],
+      label: ''
+    }
+
+  ];
+  lineChartDataSocioambiental: Array<any> = [
+    {
+      data: [5, 38, 20, 30, 14],
+      label: ''
+    },
+    {
+      data: [5, 38, 20, 30, 14],
+      label: ''
+    }
+
+  ];
   lineChartDataOferta: Array<any> = [
     {
       data: [5, 38, 20, 30, 14],
@@ -154,6 +176,8 @@ export class CgraficosResumenComponent implements OnInit {
   calificacion_media_general = 0;
   calificacion_media_calidad = 0;
   calificacion_media_cumplimiento = 0;
+  calificacion_media_sanidad = 0;
+  calificacion_media_socioambiental = 0;
   calificacion_media_oferta = 0;
   text_leyenda = '';
   constructor(
@@ -188,6 +212,19 @@ export class CgraficosResumenComponent implements OnInit {
 
         this.lineChartDataCumplimiento[1]['label'] = data['response']['result']['imagen']['PeriodoG2'][0];
         this.lineChartDataCumplimiento[0]['label'] = data['response']['result']['imagen']['PeriodoG2'][1];
+
+        this.lineChartDataSanidad [1]['data'] = data['response']['result']['imagen']['evolucion_sanidad']['data']['data_actual'];
+        this.lineChartDataSanidad[0]['data'] = data['response']['result']['imagen']['evolucion_sanidad']['data']['data_pasado'];
+
+        this.lineChartDataSanidad[1]['label'] = data['response']['result']['imagen']['PeriodoG2'][0];
+        this.lineChartDataSanidad[0]['label'] = data['response']['result']['imagen']['PeriodoG2'][1];
+
+        this.lineChartDataSocioambiental[1]['label'] = data['response']['result']['imagen']['PeriodoG2'][0];
+        this.lineChartDataSocioambiental[0]['label'] = data['response']['result']['imagen']['PeriodoG2'][1];
+       
+
+        this.lineChartDataSocioambiental[1]['data'] = data['response']['result']['imagen']['evolucion_socioambiental']['data']['data_actual'];
+        this.lineChartDataSocioambiental[0]['data'] = data['response']['result']['imagen']['evolucion_socioambiental']['data']['data_pasado'];
 
        
 

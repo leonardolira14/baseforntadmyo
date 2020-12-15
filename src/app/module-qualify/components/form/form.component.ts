@@ -63,7 +63,6 @@ export class FormComponent implements OnInit {
         this.http_services.preloadEvent$.emit(false);
         this.Giros = data['allgiros'];
         this.Empresas = data['empresas'];
-        
       }, error => {
         this.http_services.preloadEvent$.emit(false);
         console.log(error);
@@ -95,7 +94,6 @@ export class FormComponent implements OnInit {
   }
   ngValora() {
     console.log(this.tipo);
-    
   }
   select_empresa(IDEmpresa) {
     this.http_services.preloadEvent$.emit(true);
@@ -137,7 +135,6 @@ export class FormComponent implements OnInit {
       .subscribe(data => {
         this.http_services.preloadEvent$.emit(false);
         this.SubSectores = data['response']['result'];
-        
       });
   }
   ngGetRamas() {

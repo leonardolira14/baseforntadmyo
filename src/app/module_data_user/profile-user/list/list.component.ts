@@ -21,14 +21,14 @@ export class ListComponent implements OnInit {
   constructor(
     private http_services: EventsServiceService,
     public http: UserServiceService,
-    public serviceCookie: Serviecokie
+    private serviceCoooki: Serviecokie,
   ) {
-    this.data_user = JSON.parse(this.serviceCookie.getCokie('data_user'));
+    this.data_user = this.serviceCoooki.getCokie('data_user');
     this.http.NewMarca$.subscribe(data => {
       this.ngGetall();
     })
-    this.data_company = this.serviceCookie.getCokie('data_company');
-    this.token = this.serviceCookie.getCokie('token');
+    this.data_company = this.serviceCoooki.getCokie('data_company');
+    this.token = this.serviceCoooki.getCokie('token');
    }
 
   ngOnInit(): void {

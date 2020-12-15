@@ -19,11 +19,15 @@ export class GraficosdetailsComponent implements OnInit {
   private data_user = [];
   private data_company = [];
   list_Calidad = new ListCategoria();
+  list_Sanidad = new ListCategoria();
+  list_Sociambiental = new ListCategoria();
   list_Complimineto = new ListCategoria();
   list_Oferta = new ListCategoria();
   text = '';
   ListCalidad: any[] = [];
   ListCumplimiento: Categoria[] = [];
+  ListSanidad: Categoria[] = [];
+  ListSociambiental: Categoria[] = [];
   ListOferta: Categoria[] = [];
   token = '';
   submitted = false;
@@ -33,7 +37,9 @@ export class GraficosdetailsComponent implements OnInit {
   Categorias = {
     Calidad: true,
     Cumplimiento: true,
-    Oferta: true
+    Oferta: true,
+    Sanidad: true,
+    Sociambiental: true
   };
   MediaGeneral = 0;
   filtro = {
@@ -124,6 +130,13 @@ export class GraficosdetailsComponent implements OnInit {
 
       this.como = data['como'];
       this.tiempo = data['tiempo'];
+      if (data['quality']=== undefined) {
+        this.filtro.Categoria = 'all';
+      } else {
+        this.filtro.Categoria = data['quality'];
+      
+      }
+      console.log(data['quality']);
       this.ngOnInit();
     });
    }
@@ -139,9 +152,12 @@ export class GraficosdetailsComponent implements OnInit {
     this.htt_service.preloadEvent$.emit(true);
     this.http.ngDetalles(array)
       .subscribe(data => {
+        console.log(data);
         this.list_Calidad.limpiarlista();
         this.list_Complimineto.limpiarlista();
         this.list_Oferta.limpiarlista();
+        this.list_Sanidad.limpiarlista();
+        this.list_Sociambiental.limpiarlista();
         this.text = data['response']['result']['imagen']['Periodo'];
         this.MediaGeneral = data['response']['result']['imagen']['MediaGenral'];
         data['response']['result']['imagen']['listCalidad'].forEach(item => {
@@ -150,6 +166,13 @@ export class GraficosdetailsComponent implements OnInit {
         data['response']['result']['imagen']['listCumplimiento'].forEach(item => {
           this.list_Complimineto.add_medicamento(item);
         });
+        data['response']['result']['imagen']['listSanidad'].forEach(item => {
+          this.list_Sanidad.add_medicamento(item);
+        });
+        data['response']['result']['imagen']['listSociambiental'].forEach(item => {
+          this.list_Sociambiental.add_medicamento(item);
+        });
+
         if (this.como === 'proveedor') {
           data['response']['result']['imagen']['listOferta'].forEach(item => {
             this.list_Oferta.add_medicamento(item);
@@ -158,7 +181,9 @@ export class GraficosdetailsComponent implements OnInit {
         }
         this.ListCalidad = this.list_Calidad.getlista();
         this.ListCumplimiento = this.list_Complimineto.getlista();
-        console.log(this.ListCalidad[0].GraphisRs);
+        this.ListSanidad = this.list_Sociambiental.getlista();
+        this.ListSociambiental = this.list_Sociambiental.getlista();
+        this.filter();
       }, error => {
           this.htt_service.preloadEvent$.emit(false);
           console.log(error);
@@ -167,25 +192,47 @@ export class GraficosdetailsComponent implements OnInit {
       });
   }
   filter() {
-    
+    console.log(this.filtro);
     if (this.filtro.Categoria !== '' ) {
       switch (this.filtro.Categoria) {
         case 'all':
           this.Categorias.Calidad = true;
           this.Categorias.Cumplimiento = true;
           this.Categorias.Oferta = true;
+          this.Categorias.Sociambiental = true;
+          this.Categorias.Sanidad = true;
           break;
         case 'Cumplimiento':
           this.Categorias.Calidad = false;
           this.Categorias.Cumplimiento = true;
           this.Categorias.Oferta = false;
+          this.Categorias.Sociambiental = false;
+          this.Categorias.Sanidad = false;
           break;
         case 'Calidad':
           this.Categorias.Calidad = true;
           this.Categorias.Cumplimiento = false;
           this.Categorias.Oferta = false;
+          this.Categorias.Sociambiental = false;
+          this.Categorias.Sanidad = false;
           break;
-        case 'Calidad':
+        case 'Sanidad':
+          this.Categorias.Calidad = false;
+          this.Categorias.Cumplimiento = false;
+          this.Categorias.Oferta = false;
+          this.Categorias.Sociambiental = false;
+          this.Categorias.Sanidad = true;
+          break;
+        case 'Sociambiental':
+          this.Categorias.Calidad = false;
+          this.Categorias.Cumplimiento = false;
+          this.Categorias.Oferta = false;
+          this.Categorias.Sociambiental = true;
+          this.Categorias.Sanidad = false;
+          break;
+        case 'Oferta':
+          this.Categorias.Sanidad = false;
+          this.Categorias.Sociambiental = false;
           this.Categorias.Calidad = false;
           this.Categorias.Cumplimiento = false;
           this.Categorias.Oferta = true;
@@ -197,19 +244,28 @@ export class GraficosdetailsComponent implements OnInit {
       case '':
         this.ListCalidad = this.list_Calidad.getlista();
         this.ListCumplimiento = this.list_Complimineto.getlista();
+        this.ListSanidad = this.list_Sociambiental.getlista();
+        this.ListSociambiental = this.list_Sociambiental.getlista();
         this.ListOferta = this.list_Oferta.getlista();
         break;
       case 'menor':
         this.ListCalidad = this.list_Calidad.filtro('baja');
         this.ListCumplimiento = this.list_Complimineto.filtro('baja');
+        this.ListSanidad = this.list_Sociambiental.filtro('baja');
+        this.ListSociambiental = this.list_Sociambiental.filtro('baja');
+
         this.ListOferta = this.list_Calidad.filtro('baja');
         break;
       case 'medio':
+        this.ListSanidad = this.list_Sociambiental.filtro('media');
+        this.ListSociambiental = this.list_Sociambiental.filtro('media');
         this.ListCalidad = this.list_Calidad.filtro('media');
         this.ListCumplimiento = this.list_Complimineto.filtro('media');
         this.ListOferta = this.list_Calidad.filtro('media');
         break;
       case 'alto':
+        this.ListSanidad = this.list_Sociambiental.filtro('mayor');
+        this.ListSociambiental = this.list_Sociambiental.filtro('mayor');
         this.ListCalidad = this.list_Calidad.filtro('mayor');
         this.ListCumplimiento = this.list_Complimineto.filtro('mayor');
         this.ListOferta = this.list_Calidad.filtro('mayor');

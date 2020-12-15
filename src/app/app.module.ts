@@ -22,6 +22,9 @@ import {
   MAT_MOMENT_DATE_ADAPTER_OPTIONS,
 } from '@angular/material-moment-adapter';
 import { MAT_DATE_LOCALE, MAT_DATE_FORMATS, DateAdapter } from '@angular/material/core';
+import { AlertasComponent } from './shared/alertas/alertas.component';
+
+
 
 
 
@@ -44,6 +47,9 @@ export const DateFormats = {
     FooterComponent,
     NavSearchComponent,
     PreloadComponent,
+    AlertasComponent,
+    
+
   ],
   imports: [
     BrowserModule,
@@ -79,7 +85,7 @@ export const DateFormats = {
     BrowserAnimationsModule,
     HttpClientModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
   ]
 })
 export class AppModule { }

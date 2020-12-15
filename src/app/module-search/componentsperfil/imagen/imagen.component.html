@@ -1,0 +1,261 @@
+
+<div class="container m-b-40">
+
+    <div class="row">
+        <div class="col-12 text-center periodo m-b-40 m-t-10">
+            <strong>Periodo: </strong> <span>{{text}}</span>
+        </div>
+        <div class="col-6">
+            <div class="card-media">
+                <div class="row">
+                    <div class="col-12 titulo">
+                        calificación Media
+                    </div>
+                    <div class="col-12 subtitulo">
+                        General
+                    </div>
+                    <span class="col-12 numero">{{MediaGeneral}}</span>
+                    <span class="col-12 leyenda">Calificaciones totales a la fecha </span>
+                    <span class="col-12 leyenda text-right m-t-10">{{text_fecha}}</span>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-6">
+            <div class="card-filtro">
+                <div class="row">
+                    <div class="col-12 titulo">
+                        Filtros disponibles
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-12">
+                            <label for="razon_social">Características evaluada <span
+                                    class="text-danger">*</span></label>
+                            <select [(ngModel)]='filtro.Categoria' class="form-control ">
+                                <option value="all">Todas</option>
+                                <option value="Cumplimiento">Cumplimiento</option>
+                                <option value="Calidad">Calidad</option>
+                                <option value="Oferta">Oferta</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-12">
+                            <label for="razon_social">Tipo de calificación <span class="text-danger">*</span></label>
+                            <select [(ngModel)]='filtro.Tipo' class="form-control ">
+                                <option value="all">Todas</option>
+                                <option value="menor">Menor a 6.0</option>
+                                <option value="medio">Mayor a 6.0 y Menor a 8.0</option>
+                                <option value="alto">Mayor a 8.0</option>
+                            </select>
+                        </div>
+
+
+                        <div class="col-12 text-left">
+                            <div class="btn-group">
+                                <button (click)="filter()" class="btn btn-azulcielo mr-3">Aplicar filtros</button>
+                                <button type="reset" class="btn btn-outline-azulcielo">Limpiar Filtros</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="container m-b-40" *ngIf='Categorias.Cumplimiento'>
+    <div class="row">
+        <div class="col-12 text-uppercase d-flex align-content-center m-t-40 m-b-30">
+            <div class="cuadro-bineta mr-3"></div>
+            <span class="subtitle">evaluaciones de cumplimiento</span>
+        </div>
+    </div>
+    <mat-accordion class="row" multi>
+        <mat-expansion-panel class="col-12"
+            [ngClass]="{'baja-calif':item.Media<6.0,'media-calif':item.Media>=6.0 && item.Media<=8.0,'alta-calif':item.Media>8.0}"
+            *ngFor='let item of ListCumplimiento'>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    {{item.Pregunta}}
+                </mat-panel-title>
+                <span class="caja">{{item.Media}}</span>
+                <span class="material-icons" *ngIf='item.Media<6.0'>
+                    sentiment_dissatisfied
+                </span>
+                <span class="material-icons" *ngIf='item.Media>=6.0 && item.Media<=8.0 '>
+                    face
+                </span>
+                <span class="material-icons" *ngIf='item.Media>8.0'>
+                    sentiment_satisfied_alt
+                </span>
+            </mat-expansion-panel-header>
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <span class="subtitle">Tipo de Respuesta</span>
+                    </div>
+                    <div class="col-12 m-b-20" *ngIf="item.Forma==='DIAS' || item.Forma==='NUM'">
+                        <canvas baseChart width="350" height="190"
+                            [datasets]="[{ data:item.GraphisRs.data,label:'Total Obtenido' }]"
+                            [labels]="item.evolucion.label" [options]="lineChartOptions" [colors]="lineChartColors"
+                            [legend]="lineChartLegend" [chartType]="lineChartType">
+                        </canvas>
+                    </div>
+                    <div class="col-12 m-b-20" *ngIf="item.Forma!=='DIAS' && item.Forma!=='NUM'">
+                        <canvas baseChart width="350" [labels]="item.evolucion.label" height="190"
+                            [datasets]="item.GraphisRs" [options]="barChartOption" [legend]="lineChartLegend"
+                            [chartType]="barChartType">
+                        </canvas>
+                    </div>
+                    <div class="col-12">
+                        <span class="subtitle">Evolución de respuestas recibidas</span>
+                    </div>
+                    <div class="col-12">
+                        <canvas baseChart width="350" height="190"
+                            [datasets]="[{ data:item.evolucion.DataGrap.data,label:item.evolucion.DataGrap.label }]"
+                            [labels]="item.evolucion.label" [options]="lineChartOptions" [colors]="lineChartColors"
+                            [legend]="lineChartLegend" [chartType]="lineChartType">
+                        </canvas>
+                    </div>
+
+                </div>
+            </div>
+
+        </mat-expansion-panel>
+
+
+    </mat-accordion>
+</div>
+<div class="container m-b-40 " *ngIf='Categorias.Calidad'>
+    <div class="row">
+        <div class="col-12 text-uppercase d-flex align-content-center m-t-40 m-b-30">
+            <div class="cuadro-bineta mr-3 "></div>
+            <span class="subtitle">evaluaciones de calidad</span>
+        </div>
+    </div>
+    <mat-accordion class="row" multi>
+        <mat-expansion-panel class="col-12"
+            [ngClass]="{'baja-calif':item.Media<6.0,'media-calif':item.Media>=6.0 && item.Media<=8.0,'alta-calif':item.Media>8.0}"
+            *ngFor='let item of ListCalidad'>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    {{item.Pregunta}}
+                </mat-panel-title>
+                <span class="caja">{{item.Media}}</span>
+                <span class="material-icons" *ngIf='item.Media<6.0'>
+                    sentiment_dissatisfied
+                </span>
+                <span class="material-icons" *ngIf='item.Media>=6.0 && item.Media<=8.0 '>
+                    face
+                </span>
+                <span class="material-icons" *ngIf='item.Media>8.0'>
+                    sentiment_satisfied_alt
+                </span>
+            </mat-expansion-panel-header>
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <span class="subtitle">Tipo de Respuesta</span>
+                    </div>
+                    <div class="col-12 m-b-20" *ngIf="item.Forma==='DIAS' || item.Forma==='NUM'">
+                        <canvas baseChart width="350" height="190"
+                            [datasets]="[{ data:item.GraphisRs.data,label:'Total Obtenido' }]"
+                            [labels]="item.evolucion.label" [options]="lineChartOptions" [colors]="lineChartColors"
+                            [legend]="lineChartLegend" [chartType]="lineChartType">
+                        </canvas>
+                    </div>
+                    <div class="col-12 m-b-20" *ngIf="item.Forma!=='DIAS' && item.Forma!=='NUM'">
+                        <canvas baseChart width="350" height="190" [datasets]="item.GraphisRs"
+                            [options]="barChartOption" [legend]="lineChartLegend" [labels]="item.evolucion.label"
+                            [chartType]="barChartType">
+                        </canvas>
+                    </div>
+                    <div class="col-12">
+                        <span class="subtitle">Evolución de respuestas recibidas</span>
+                    </div>
+                    <div class="col-12">
+                        <canvas baseChart width="350" height="190"
+                            [datasets]="[{ data:item.evolucion.DataGrap.data,label:item.evolucion.DataGrap.label }]"
+                            [labels]="item.evolucion.label" [options]="lineChartOptions" [colors]="lineChartColors"
+                            [legend]="lineChartLegend" [chartType]="lineChartType">
+                        </canvas>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+        </mat-expansion-panel>
+
+    </mat-accordion>
+</div>
+<div *ngIf="como === 'proveedor'">
+    <div class="container m-b-40 " *ngIf='Categorias.Oferta'>
+        <div class="row">
+            <div class="col-12 text-uppercase d-flex align-content-center m-t-40 m-b-30">
+                <div class="cuadro-bineta mr-3  "></div>
+                <span class="subtitle">evaluaciones de oferta</span>
+            </div>
+        </div>
+        <mat-accordion class="row" multi>
+            <mat-expansion-panel class="col-12"
+                [ngClass]="{'baja-calif':item.Media<6.0,'media-calif':item.Media>=6.0 && item.Media<=8.0,'alta-calif':item.Media>8.0}"
+                *ngFor='let item of ListOferta'>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        {{item.Pregunta}}
+                    </mat-panel-title>
+                    <span class="caja">{{item.Media}}</span>
+                    <span class="material-icons" *ngIf='item.Media<6.0'>
+                        sentiment_dissatisfied
+                    </span>
+                    <span class="material-icons" *ngIf='item.Media>=6.0 && item.Media<=8.0 '>
+                        face
+                    </span>
+                    <span class="material-icons" *ngIf='item.Media>8.0'>
+                        sentiment_satisfied_alt
+                    </span>
+                </mat-expansion-panel-header>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <span class="subtitle">Tipo de Respuesta</span>
+                        </div>
+                        <div class="col-12 m-b-20" *ngIf="item.Forma==='DIAS' || item.Forma==='NUM'">
+                            <canvas baseChart width="350" height="190"
+                                [datasets]="[{ data:item.GraphisRs.data,label:'Total Obtenido' }]"
+                                [labels]="item.evolucion.label" [options]="lineChartOptions" [colors]="lineChartColors"
+                                [legend]="lineChartLegend" [chartType]="lineChartType">
+                            </canvas>
+                        </div>
+                        <div class="col-12 m-b-20" *ngIf="item.Forma!=='DIAS' && item.Forma!=='NUM'">
+                            <canvas baseChart width="350" height="190" [datasets]="item.GraphisRs"
+                                [options]="barChartOption" [legend]="lineChartLegend" [labels]="item.evolucion.label"
+                                [chartType]="barChartType">
+                            </canvas>
+                        </div>
+                        <div class="col-12">
+                            <span class="subtitle">Evolución de respuestas recibidas</span>
+                        </div>
+                        <div class="col-12">
+
+                            <canvas baseChart width="350" height="190"
+                                [datasets]="[{ data:item.evolucion.DataGrap.data,label:item.evolucion.DataGrap.label }]"
+                                [labels]="item.evolucion.label" [options]="lineChartOptions" [colors]="lineChartColors"
+                                [legend]="lineChartLegend" [chartType]="lineChartType">
+                            </canvas>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+            </mat-expansion-panel>
+
+        </mat-accordion>
+    </div>
+</div>

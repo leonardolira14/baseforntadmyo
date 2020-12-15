@@ -30,7 +30,7 @@ export type ChartOptions = {
 };
 
 import { VisitasServiceService } from '../../../../services/data_company/visitas-service.service';
-import { CookieService } from 'ngx-cookie-service';
+import { Serviecokie } from '../../../../library/servercokie';
 
 
 @Component({
@@ -140,11 +140,11 @@ export class GraphicsComponent implements OnInit {
   constructor(
     private http: VisitasServiceService,
     private http_services: EventsServiceService,
-    private cookieservices: CookieService
+    private cookieservices: Serviecokie
   ) {
     this.http_services.preloadEvent$.emit(true);
-    this.token = this.cookieservices.get('token');
-    this.data_empresa = JSON.parse(this.cookieservices.get('data_company'));
+    this.token = this.cookieservices.getCokie('token');
+    this.data_empresa = this.cookieservices.getCokie('data_company');
    }
   ngOnInit(): void {
 

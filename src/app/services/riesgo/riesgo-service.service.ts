@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { map } from 'rxjs/operators';
@@ -10,6 +10,7 @@ export class RiesgoServiceService {
   public url_serve = environment.url_serve;
   public datos_usuario: any = [];
   public headers: any;
+  TipoCliente$ = new EventEmitter<any>();
   constructor(
     private http: HttpClient,
     private cookie_service: Serviecokie
@@ -26,6 +27,12 @@ export class RiesgoServiceService {
   // funcion para obtener la imagen de una empresa
   ngGetRiesgo(datos) {
     return this.http.post(this.url_serve + 'getriesgo', datos)
+      .pipe(map(data => data));
+  }
+
+  // funcion para obtener la imagen de una empresa
+  ngGetDetalleRiesgo(datos) {
+    return this.http.post(this.url_serve + 'getdetalleriesgo', datos)
       .pipe(map(data => data));
   }
 

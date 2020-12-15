@@ -1,0 +1,22 @@
+<div class="container bg-white">
+    <div class="row p-20">
+        <div class="col-12 subtitle text-uppercase">
+            {{numero}} {{text}}
+        </div>
+    </div>
+    <div class="row d-flex align-items-center" >
+        <div class="col-7">
+            <div class="form-group">
+                <label for="exampleInputEmail1">Razón Social</label>
+                <input [(ngModel)]="palabra" type="text" class="form-control">
+            </div>
+            
+        </div>
+        <div class="col-5 text-center">
+            <div class="btn-group">
+                <button (click)="ngfiltrar()" class="btn btn-primary mr-3">Buscar</button>
+               <!-- <button class="btn btn-primary">Agregar</button>-->
+            </div>
+        </div>
+    </div>
+</div>

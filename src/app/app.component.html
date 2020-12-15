@@ -1,8 +1,9 @@
 
-
-<app-menu-profile></app-menu-profile>
+<app-menu-profile *ngIf="logueado"></app-menu-profile>
+<app-menu-home *ngIf="!logueado"></app-menu-home>
 <app-nav-search></app-nav-search>
 
 <router-outlet></router-outlet>
 
 <app-preload></app-preload>
+<app-footer></app-footer>

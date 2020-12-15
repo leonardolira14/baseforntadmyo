@@ -1,21 +1,94 @@
+<div class="header">
+    <div class="fondo1">
+    </div>
+    <div class="fondo2">
+    </div>
+    <div class="texto">
+        Sé parte del portal online de reputacón empresarial
+        <div class="boton m-t-30">
+            Únete a Admyo
+        </div>
+    </div>
+</div>
+
 <div class="container">
     <div class="row">
-        <form [formGroup]="form_login"  >
-            <div class="form-group">
-                <label for="exampleInputEmail1">Email address</label>
-                <input formControlName="user" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        <div class="col-12 titulos text-azuladmyo text-center m-t-40 srayas">
+            ¿Qué aportamos?
+        </div>
+        <div class="col-6 div-text text-center m-t-30 m-auto">
+            Capacidad para medir la reputación dentro de tu empresa, la de tus clientes y proveedores actuales  en tiempo real.
+        </div>
+        <div class="col-12"></div>
+        <div class="col-3 m-t-40" *ngFor="let item of tarjetas">
+            <div class="card card-home">
+                <div class="box">
+                    <span class="material-icons">
+                        {{item.icono}}
+                    </span>
+                </div>
+                <span class="tit m-t-30">{{item.titulo}}</span>
+                <span class="descrip m-t-30">Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis consequatur numquam provident vero est. Magni veritatis in atque dolorem at repellendus </span>
             </div>
-            <div class="form-group">
-                <label for="exampleInputPassword1">Password</label>
-                <input formControlName="password" type="password" class="form-control" id="exampleInputPassword1">
-            </div>
-            <div class="form-group form-check">
-                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                <label class="form-check-label" for="exampleCheck1">Check me out</label>
-            </div>
-            <button (click)="login()" class="btn btn-primary">Submit</button>
-        </form>
-        
+            
+        </div>
     </div>
+</div>
+<div class="container-fluid p-0 m-t-30 m-b-30">
+    <img src="assets/img/rayamedia.svg" class="img-fluid" alt="">
+</div>
+
+<app-precios></app-precios>
+
+<div class="container-fluid caontacto p-b-40 ">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 titulos text-center text-bold text-azuladmyo m-t-30 srayas" style="font-size: 30px;">
+                Contáctanos
+            </div>
+            <div class="col-12 div-text text-center m-t-30 m-auto">
+               ¿Aún tíenes dudas o te gustaria que te acompañemos en el proceso? 
+            </div>
+            <div class="col-12 div-text text-center m-t-30 m-auto m-b-30">
+                Comparte tus datos y con gusto nos pondremos en contacto contigo
+            </div>
+            <div class="col-5 p-0" >
+                <img style="width: 100%;" src="assets/img/image1.svg" class="img-fluid" alt="">
+            </div>
+            <div class="col-7 bg-white" style="padding: 15px; border-radius: 0px 11px 11px 0px">
+                <span class="text-regular text-azuladmyo" style="color:#04195D;font-size: 18px;">Ponte en contacto</span>
+                <h1 class="text-regular text-azuladmyo m-t-20" style="color:#0732B9;font-size: 36px;">Envíanos un mensaje</h1>
+                <form action="" class="container">
+                    <div class="row">
+                        <div class="form-group col-6">
+                            <label for="exampleInputEmail1">Tu Nombre</label>
+                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        
+                        </div>
+                        <div class="form-group col-6">
+                            <label for="exampleInputEmail1">Tu Apellidos</label>
+                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                           
+                        </div>
+                        <div class="form-group col-6">
+                            <label for="exampleInputEmail1">Tu Correo</label>
+                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                            
+                        </div>
+                        <div class="form-group col-6">
+                            <label for="exampleInputEmail1">Tu Celular</label>
+                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                           
+                        </div>
+                        <div class="form-group col-12">
+                            <label for="exampleInputEmail1">Tu Mensaje</label>
+                            <textarea  cols="30" rows="10" class="form-control"></textarea>                            
+                        </div>
+                        <button class="btn btn-secondary m-t-30">Enviar tu mensaje</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
 </div>

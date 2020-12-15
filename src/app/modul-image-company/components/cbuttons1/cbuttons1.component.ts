@@ -10,7 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 export class Cbuttons1Component implements OnInit {
   como = '';
   contrario = '';
-  tiempo = '';
+  tiempo = 'MA';
   constructor(
     private http_services: EventsServiceService,
     private rutaActiva: ActivatedRoute,
@@ -30,6 +30,10 @@ export class Cbuttons1Component implements OnInit {
    }
 
   ngOnInit(): void {
+    
+    if (this.tiempo === undefined || this.tiempo === '') {
+      this.tiempo = 'MA';
+    }
   }
 
 }

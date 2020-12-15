@@ -1,0 +1,35 @@
+@import '../../../../styles.scss';
+
+.card-user{
+    padding: 37px 20px ;
+    background-color: #E7F0FD;
+    border-radius: 2px;
+    border-color: transparent;
+    & img{
+        width: 49px;
+        height: 49px;
+        object-fit: cover;
+    }
+    & .nombre, & .minitulo, & .texto{
+         display: block;
+    }
+    & .texto{
+        font-size: 12px;
+        font-family: map-get($fonts, regular );
+         color:rgba(#1F1F1F,1);
+    }
+    & .minitulo{
+        margin-top: 17px;
+        font-size: 8px;
+        text-transform: uppercase;
+        color:rgba(#1F1F1F,0.5);
+         font-family: map-get($fonts, semiBold );
+    }
+    & .nombre{
+        margin-top: 17px;
+        font-size: 18px;
+        font-family: map-get($fonts, medium );
+        color:#0732B9;
+       
+    }
+}

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1440" height="298" viewBox="0 0 1440 298">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#0732b9"/>
+      <stop offset="1" stop-color="#04195d"/>
+    </linearGradient>
+  </defs>
+  <g id="Grupo_1055" data-name="Grupo 1055" transform="translate(0 -2160)">
+    <rect id="Rectángulo_15" data-name="Rectángulo 15" width="1440" height="298" transform="translate(0 2160)" fill="url(#linear-gradient)"/>
+    <text id="_Dónde_estamos_" data-name="¿Dónde estamos?" transform="translate(197 2316)" fill="#fff" font-size="28" font-family="WorkSans-SemiBold, Work Sans" font-weight="600"><tspan x="0" y="0">¿Dónde estamos?</tspan></text>
+    <text id="_150_empresas_participando" data-name="+ 150 
+empresas participando" transform="translate(742 2297)" fill="#fff" font-size="29" font-family="WorkSans-SemiBold, Work Sans" font-weight="600"><tspan x="-42.222" y="0">+ 150</tspan><tspan y="0" font-size="36"> </tspan><tspan font-size="19" font-family="WorkSans-Light, Work Sans" font-weight="300"><tspan x="-101.954" y="27">empresas participando</tspan></tspan></text>
+    <text id="_300_consultas_mensuales" data-name="+ 300 
+consultas mensuales" transform="translate(1028 2297)" fill="#fff" font-size="29" font-family="WorkSans-SemiBold, Work Sans" font-weight="600"><tspan x="-45.688" y="0">+ 300</tspan><tspan y="0" font-size="36"> </tspan><tspan font-size="19" font-family="WorkSans-Light, Work Sans" font-weight="300"><tspan x="-94.126" y="27">consultas mensuales</tspan></tspan></text>
+    <text id="_8_000_empresas_calificadas" data-name="+ 8,000 
+empresas calificadas" transform="translate(1285 2301)" fill="#fff" font-size="29" font-family="WorkSans-SemiBold, Work Sans" font-weight="600"><tspan x="-58.189" y="0">+ 8,000 </tspan><tspan font-size="18" font-family="WorkSans-Light, Work Sans" font-weight="300"><tspan x="-88.371" y="24">empresas calificadas</tspan></tspan></text>
+  </g>
+</svg>

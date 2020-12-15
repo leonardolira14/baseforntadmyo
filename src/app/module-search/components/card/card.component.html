@@ -1,0 +1,71 @@
+<div class="container">
+    <div class="row">
+        <a class="col-6" href="/busqueda/perfil/{{item.IDEmpresa}}/M" *ngFor="let item of registros">
+            <div class="card list" [ngClass]="{'siguiendo': item.Follow}">
+                <div class="card-body row">
+                    <div class="col-3">
+                        <img [src]="damelogo(item.Logo)" class="img-fluid" alt="">
+                    </div>
+                    <div class="col-9">
+                        <span class="titulo">{{item.Razon_Social}}</span>
+                        <span class="nombrecomercial">{{item.Nombre_Comer}}</span>
+                        <span class="rfc">{{item.RFC}}</span>
+                    </div>
+                    <div class="col-12 text">
+                        {{item.Perfil}}
+                    </div>
+                    <div class="col-6">
+                        <span class="titulomin">Imagen</span>
+                    </div>
+                    <div class="col-6 ">
+                        <span class="titulomin">Certificaciones actuales</span>
+                    </div>
+                    <div class="col-6">
+                        <div class="card img clie">
+                            <div class="card-body row">
+                                <div class="col-8">
+                                    <span class="titulomin">Calificación Media</span>
+                                    <span class="comoque">Como Cliente</span>
+                                </div>
+                                <div class="col-4">
+                                    <span class="box">{{item.ImagenCliente}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card img prove mt-3">
+                            <div class="card-body row">
+                                <div class="col-8">
+                                    <span class="titulomin">Calificación Media</span>
+                                    <span class="comoque">Como Proveedor</span>
+                                </div>
+                                <div class="col-4">
+                                    <span class="box">{{item.ImagenProveedor}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 listCertificaciones">
+                        <ul>
+                            <li *ngFor="let certificacion of item.Normas">
+                                <span *ngIf="certificacion.Clase==='ISO'" class="tipo mr-2">ISO</span>
+                                <span class="nombre_certificaciones">{{certificacion.Norma}}</span>
+                            </li>
+                           
+                        </ul>
+                    </div>
+                    <div class="col-12 bntg" *ngIf="!item.Follow">
+                        <span  class="seguir mr-2">Seguir</span>
+                        <span (click)="seguir(item.IDEmpresa)" class="btn-rendond">+</span>
+                    </div>
+                    <div class="col-12 bntg" *ngIf="item.Follow">
+                        <span class="seguir mr-2">Siguiendo</span>
+                        <span class="btn-rendond"><span class="material-icons">
+                                done
+                            </span></span>
+                    </div>
+                </div>
+            </div>
+        </a>
+        
+    </div>
+</div>

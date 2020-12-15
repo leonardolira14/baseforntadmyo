@@ -10,16 +10,13 @@
             </div>
             <div class="col-4 m-t-30">
                 <p class="text">Nombre del plan</p>
-                <p class="text m-t-30">Datos del Plan contratado</p>
+                <p class="text m-t-30">{{nombre_plan}}</p>
             </div>
             <div class="col-4 m-t-30">
                 <p class="text">Costo del Plan</p>
-                <p class="text m-t-30">$ 650.00 MXP</p>
+                <p class="text m-t-30">{{costo_plan | currency:'USD':'symbol':'2.2'}} MXP</p>
             </div>
-            <div class="col-3 m-t-30">
-                <p class="text">Proximo cargo</p>
-                <p class="text m-t-30">N/A</p>
-            </div>
+            
         </div>
        
     </div>
@@ -66,19 +63,13 @@
                         <div class="col-12">
                            Pago Anual
                         </div>
-                        
-                    </div>
-                </li>
-                <li class="pago container">
-                    <div class="row">
-                        <div class="col-12">
-                           Pago Total
-                        </div>
                         <div class="col-12">
                             <small>(Nuestros precios no incluyen I.V.A)</small>
                         </div>
+                        
                     </div>
                 </li>
+                
             </ul>
          </div>
         <div class="columna-sino" [ngClass]="{'active':gratis_Bolean}">
@@ -108,9 +99,7 @@
                 <li></li>
                 <li class="pago">N/A</li>
                 <li class="pago">N/A</li>
-                <li class="pago">
-                    $ 0.00 MXP
-                </li>
+               
                 <li class="btns">
                     <div [ngClass]="{'btn-alight-gray':gratis_Bolean===true,'btn-azulcielo':!gratis_Bolean}" (click)="cambio_plan('G')" class="btn">Seleccionar</div>
                 </li>
@@ -149,7 +138,7 @@
                         </div>
                         <div class="col-12 d-flex justify-content-center">
                             <label class="containerbtn">
-                                <input type="radio" value="200" [(ngModel)]="micro_radio" name="micro">
+                                <input type="radio" value="200|m|planmicromensual" (change)="ngchange()"  [(ngModel)]="micro_radio" name="micro">
                                 <span class="checkmark"></span>
                             </label>
                         </div>
@@ -158,24 +147,18 @@
                 <li class="pago container">
                     <div class="row">
                         <div class="col-12">
-                            $ 166.66 MXP
+                            $ 2,000.00 MXP
                         </div>
                         <div class="col-12 d-flex justify-content-center">
                             <label class="containerbtn">
-                                <input type="radio" value="166.66" [(ngModel)]="micro_radio" name="radio">
+                                <input type="radio" value="2000|a|PlanAnualMicro"  (change)="ngchange()" [(ngModel)]="micro_radio" name="radio">
                                 <span class="checkmark"></span>
                             </label>
                         </div>
                     </div>
                 </li>
                 </form>
-                <li class="pago container">
-                    <div class="row">
-                        <div class="col-12">
-                            $ {{ micro_radio }} MXP
-                        </div>
-                    </div>
-                </li>
+                
                 <li class="btns">
                     <div [ngClass]="{'btn-alight-gray':micro_Bolean,'btn-azulcielo':!micro_Bolean}"  (click)="cambio_plan('M')" class="btn">Seleccionar</div>
                 </li>
@@ -215,7 +198,7 @@
                         </div>
                         <div class="col-12 d-flex justify-content-center">
                             <label class="containerbtn">
-                                <input [(ngModel)]="empresa_radio" value="1000" type="radio" name="radio">
+                                <input [(ngModel)]="empresa_radio"  (change)="ngchange()" value="1000|m|planempresarialmensual" type="radio" name="radio">
                                 <span class="checkmark"></span>
                             </label>
                         </div>
@@ -224,29 +207,25 @@
                 <li class="pago container">
                     <div class="row">
                         <div class="col-12">
-                            $ 833.33 MXP
+                            $ 10,000.00 MXP
                         </div>
                         <div class="col-12 d-flex justify-content-center">
                             <label class="containerbtn">
-                                <input [(ngModel)]="empresa_radio" value="833.33" type="radio" name="radio">
+                                <input [(ngModel)]="empresa_radio" (change)="ngchange()" value="10000|a|planempresarialanual" type="radio" name="radio">
                                 <span class="checkmark"></span>
                             </label>
                         </div>
                     </div>
                 </li>
                 </form>
-                <li class="pago container">
-                    <div class="row">
-                        <div class="col-12">
-                            $ {{empresa_radio}} MXP
-                        </div>
-                        
-                    </div>
-                </li>
+            
                 <li class="btns">
                     <div [ngClass]="{'btn-alight-gray':empresa_Bolean,'btn-azulcielo':!empresa_Bolean}" (click)="cambio_plan('E')" class="btn">Seleccionar</div>
                 </li>
             </ul>
+        </div>
+        <div class="col-12 text-right m-t-50">
+            <div class="btn btn-azulcielo float-right" (click)="next()">Siguiente</div>
         </div>
     </div>
 </div>

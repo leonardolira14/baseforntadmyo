@@ -1,0 +1,308 @@
+<div class="container">
+    <div class="row">
+        <div class="col-4">
+            <div class="card riesgo blue">
+                <span class="titulo">tu riesgo de clientes</span>
+                <br>
+            
+            
+                <span class="numero">
+                    0%
+                </span>
+                <span class="nota">
+                    Nivel de riesgo a la fecha
+                    <br>
+                  
+                </span>
+            </div>
+        </div>
+        <div class="col-8">
+            <div class="row">
+                <div class="col-12 subtitulo text-uppercase">
+                    Filtros disponibles
+                </div>
+                <div class="col-12 form-group">
+                    <label>Sector</label>
+                    <select #myselect (change)="ngGetSubSector(myselect.value)" [(ngModel)]='filtro.sector'  class="form-control">
+                        <option value="">Selecciona</option>
+                        <option *ngFor='let item of sector' value="{{item.IDNivel1}}">{{item.Giro}}</option>
+                        
+        
+                    </select>
+                </div>
+                <div class="col-12 form-group">
+                    <label>SubSector</label>
+                    <select [(ngModel)]='filtro.subsector'  class="form-control">
+                        <option value="">Selecciona</option>
+                        <option *ngFor='let item of  list_subsector' value="{{item.IDNivel2}}">{{item.Giro}}</option>
+                        
+                    </select>
+                </div>
+                <div class="col-12 form-group">
+                    <label>Caracteristicas evaluadas</label>
+                    <select [(ngModel)]='filtro.Categoria' class="form-control ">
+                        <option value="all">Todas</option>
+                        <option value="Cumplimiento">Cumplimiento</option>
+                        <option value="Calidad">Calidad</option>
+                        <option value="Socioambiental">Socioambiental</option>
+                        <option value="Sanidad">Sanidad</option>
+                        <option value="Oferta">Oferta</option>
+                    </select>
+                </div>
+                
+        
+                <div class="col-12">
+                    <div class="btn-group">
+                        <button (click)="filter()" class="btn btn-azulcielo mr-3">Aplicar filtros</button>
+                        <button (click)="clrarfilter()" class="btn btn-outline-azulcielo">Limpiar filtros</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container m-t-40" *ngIf='Categorias.Calidad'>
+    <div class="row">
+        <div class="col-12 text-uppercase d-flex align-content-center">
+            <div class="cuadro-bineta mr-3"></div>
+            <span class="subtitle">Evaluación de Calidad</span>
+        </div>
+    </div>
+    <mat-accordion class="row" multi>
+        <mat-expansion-panel class="col-12" *ngFor='let item of datos_calidad["datospregunta"]'>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    {{item.Pregunta}}
+                </mat-panel-title>
+                <span class="caja"></span>
+                
+            </mat-expansion-panel-header>
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <span class="subtitle">Calificaciobes Recibidas</span>
+                    </div>
+                    <div class="col-12 m-b-20" >
+                        <canvas baseChart width="350" height="120" [datasets]="item.dataTotal" [labels]="item.labels"
+                            [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType">
+                        </canvas>
+                    </div>
+                    
+                   
+                    <div class="col-12">
+                        <span class="subtitle">Tipo de Respuesta</span>
+                    </div>
+                    <div class="col-12 m-b-20">
+                        <canvas baseChart width="350" [labels]="item.labels" height="90" [datasets]="item.data"
+                            [options]="barChartOption" [legend]="lineChartLegend" [chartType]="barChartType">
+                        </canvas>
+                    </div>
+                  
+                    
+    
+                </div>
+            </div>
+    
+        </mat-expansion-panel>
+    
+    
+    </mat-accordion>
+</div>
+
+<div class="container m-t-40" *ngIf='Categorias.Cumplimiento'>
+    <div class="row">
+        <div class="col-12 text-uppercase d-flex align-content-center">
+            <div class="cuadro-bineta mr-3"></div>
+            <span class="subtitle">Evaluación de Cumplimiento</span>
+        </div>
+    </div>
+    <mat-accordion class="row" multi>
+        <mat-expansion-panel class="col-12" *ngFor='let item of datos_cumplimiento["datospregunta"]'>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    {{item.Pregunta}}
+                </mat-panel-title>
+                <span class="caja"></span>
+    
+            </mat-expansion-panel-header>
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <span class="subtitle">Calificaciobes Recibidas</span>
+                    </div>
+                    <div class="col-12 m-b-20" >
+                        <canvas baseChart width="350" height="120" [datasets]="item.dataTotal" [labels]="item.labels"
+                            [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend"
+                            [chartType]="lineChartType">
+                        </canvas>
+                    </div>
+                
+                
+                    <div class="col-12">
+                        <span class="subtitle">Tipo de Respuesta</span>
+                    </div>
+                    <div class="col-12 m-b-20">
+                        <canvas baseChart width="350" [labels]="item.labels" height="90" [datasets]="item.data"
+                            [options]="barChartOption" [legend]="lineChartLegend" [chartType]="barChartType">
+                        </canvas>
+                    </div>
+                
+                
+                
+                </div>
+            </div>
+    
+        </mat-expansion-panel>
+    
+    
+    </mat-accordion>
+</div>
+<div class="container m-t-40" *ngIf='Categorias.Socioambiental'>
+    <div class="row">
+        <div class="col-12 text-uppercase d-flex align-content-center">
+            <div class="cuadro-bineta mr-3"></div>
+            <span class="subtitle">Evaluación de Socioambiental</span>
+        </div>
+    </div>
+    <mat-accordion class="row" multi>
+        <mat-expansion-panel class="col-12" *ngFor='let item of datos_socioambiental["datospregunta"]'>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    {{item.Pregunta}}
+                </mat-panel-title>
+                <span class="caja"></span>
+
+            </mat-expansion-panel-header>
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <span class="subtitle">Calificaciobes Recibidas</span>
+                    </div>
+                    <div class="col-12 m-b-20">
+                        <canvas baseChart width="350" height="120" [datasets]="item.dataTotal" [labels]="item.labels"
+                            [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend"
+                            [chartType]="lineChartType">
+                        </canvas>
+                    </div>
+
+
+                    <div class="col-12">
+                        <span class="subtitle">Tipo de Respuesta</span>
+                    </div>
+                    <div class="col-12 m-b-20">
+                        <canvas baseChart width="350" [labels]="item.labels" height="90" [datasets]="item.data"
+                            [options]="barChartOption" [legend]="lineChartLegend" [chartType]="barChartType">
+                        </canvas>
+                    </div>
+
+
+
+                </div>
+            </div>
+
+        </mat-expansion-panel>
+
+
+    </mat-accordion>
+</div>
+<div class="container m-t-40" *ngIf='Categorias.Sanidad'>
+    <div class="row">
+        <div class="col-12 text-uppercase d-flex align-content-center">
+            <div class="cuadro-bineta mr-3"></div>
+            <span class="subtitle">Evaluación de Sanidad</span>
+        </div>
+    </div>
+    <mat-accordion class="row" multi>
+        <mat-expansion-panel class="col-12" *ngFor='let item of datos_sanidad["datospregunta"]'>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    {{item.Pregunta}}
+                </mat-panel-title>
+                <span class="caja"></span>
+
+            </mat-expansion-panel-header>
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <span class="subtitle">Calificaciobes Recibidas</span>
+                    </div>
+                    <div class="col-12 m-b-20">
+                        <canvas baseChart width="350" height="120" [datasets]="item.dataTotal" [labels]="item.labels"
+                            [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend"
+                            [chartType]="lineChartType">
+                        </canvas>
+                    </div>
+
+
+                    <div class="col-12">
+                        <span class="subtitle">Tipo de Respuesta</span>
+                    </div>
+                    <div class="col-12 m-b-20">
+                        <canvas baseChart width="350" [labels]="item.labels" height="90" [datasets]="item.data"
+                            [options]="barChartOption" [legend]="lineChartLegend" [chartType]="barChartType">
+                        </canvas>
+                    </div>
+
+
+
+                </div>
+            </div>
+
+        </mat-expansion-panel>
+
+
+    </mat-accordion>
+</div>
+<div *ngIf="comoQue === 'proveedor'">
+<div class="container m-t-40" *ngIf='Categorias.Oferta'>
+    <div class="row">
+        <div class="col-12 text-uppercase d-flex align-content-center">
+            <div class="cuadro-bineta mr-3"></div>
+            <span class="subtitle">Evaluación de Oferta</span>
+        </div>
+    </div>
+    <mat-accordion class="row" multi>
+        <mat-expansion-panel class="col-12" *ngFor='let item of datos_oferta["datospregunta"]'>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    {{item.Pregunta}}
+                </mat-panel-title>
+                <span class="caja"></span>
+    
+            </mat-expansion-panel-header>
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <span class="subtitle">Calificaciobes Recibidas</span>
+                    </div>
+                    <div class="col-12 m-b-20" >
+                        <canvas baseChart width="350" height="120" [datasets]="item.dataTotal" [labels]="item.labels"
+                            [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend"
+                            [chartType]="lineChartType">
+                        </canvas>
+                    </div>
+                
+                
+                    <div class="col-12">
+                        <span class="subtitle">Tipo de Respuesta</span>
+                    </div>
+                    <div class="col-12 m-b-20">
+                        <canvas baseChart width="350" [labels]="item.labels" height="90" [datasets]="item.data"
+                            [options]="barChartOption" [legend]="lineChartLegend" [chartType]="barChartType">
+                        </canvas>
+                    </div>
+                
+                
+                
+                </div>
+            </div>
+    
+        </mat-expansion-panel>
+    
+    
+    </mat-accordion>
+</div>
+</div>
+

@@ -1,0 +1,57 @@
+
+<section *ngIf="succes === 'ok'">
+<div class="container">
+    <div class="row m-t-30">
+        <div class="col-12 titulos text-center">
+            Validación con Exito.
+        </div>
+        <div class="col-12 subtitulo m-t-30 text-center">
+            Gracias por confiar en admyo ahora su cuenta esta activada ya puedes disfrutar de la experiencia que ofrece
+            admyo.
+        </div>
+        <div class="col-12 subtitulo m-t-30  text-center">
+            Actualmente cuentas con un plan básico, te presentamos nuestros planes si lo deseas puedes cambiarlo dentro de tu cuenta.
+        </div>
+
+    </div>
+    
+</div>
+<app-precios></app-precios>
+</section>
+<section *ngIf="succes === 'process'">
+    <div class="container">
+        <div class="row m-t-30  ">
+            <div class="col-12 titulos m-b-30 text-center">
+                Estamos procesado tu petición
+            </div>
+            <div class="col-12 subtitulo m-b-30 text-center" >
+                Estamos activando tu cuenta, en cuanto este listo te avisaremos esto solo toma unos minutos.
+            </div>
+            <div class="col-12 subtitulo m-b-30 text-center">
+                Mientras esperas te contamos lo que es admyo a continuación.
+            </div>
+        </div>
+    </div>
+    
+</section>
+<section *ngIf="succes === 'fail'">
+    <div class="container">
+        <div class="row">
+            <div class="row m-t-30  ">
+                <div class="col-12 titulos m-b-30 text-center">
+                    Error en la validacíon
+                </div>
+                <div class="col-12 subtitulo m-b-30 text-center">
+                    Lo sentimos encontramos una inconsistencia en tu URL de validación, si es la primera vez que te mostramos este
+                    mensaje por favor da clic en el siguiente botón para que te vuelvamos a enviar la invitación de validación.
+                </div>
+                <div class="col-12 text-center m-b-30">
+                    <button class="btn btn-primary m-auto">Volver a enviar invitación</button>
+                </div>
+                <div class="col-12 subtitulo m-b-30 text-center">
+                    Si gustas puedes ponerte en contacto con nuestro equipo de admyo para que validemos tu información.
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

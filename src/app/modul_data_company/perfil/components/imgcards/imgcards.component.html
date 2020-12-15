@@ -11,10 +11,7 @@
                     número de calificaciones
                 </div>
                 <div class="numero">
-                    30
-                </div>
-                <div class="nota">
-                    Calificaciones totales a las fecha (20 MAY 2020)
+                   {{data_perfil_imagen?.cliente?.numcalif}}
                 </div>
             </div>
             <div class="card card-nota">
@@ -25,12 +22,24 @@
                     </div>
                     <div class="col-4">
                         <div class="card card-box baja">
-                            6.5
+                            {{data_perfil_imagen?.cliente?.mediacalidad}}
                         </div>
                     </div>
                 </div>
             </div>
-           
+            <div class="card card-nota">
+                <div class="row">
+                    <div class="col-8">
+                        <span class="titulo">Calificacion Media</span>
+                        <span class="nota">Social-ambiental</span>
+                    </div>
+                    <div class="col-4">
+                        <div class="card card-box baja">
+                            {{data_perfil_imagen?.cliente?.mediasocialambiental}}
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="col-6">
             <div class="card2 full">
@@ -38,11 +47,9 @@
                     Calificacion Media - General
                 </div>
                 <div class="numero">
-                    8.0
+                 {{data_perfil_imagen?.cliente?.mediageneral}}
                 </div>
-                <div class="nota">
-                    Calificación general a la fecha (20 MAY 2020)
-                </div>
+               
             </div>
             <div class="card card-nota">
                 <div class="row">
@@ -52,7 +59,33 @@
                     </div>
                     <div class="col-4">
                         <div class="card card-box alta">
-                            8.5
+                        {{data_perfil_imagen?.cliente?.mediacumplimiento}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card card-nota">
+                <div class="row">
+                    <div class="col-8">
+                        <span class="titulo">Calificacion Media</span>
+                        <span class="nota">Sanidad</span>
+                    </div>
+                    <div class="col-4">
+                        <div class="card card-box alta">
+                            {{data_perfil_imagen?.cliente?.mediasanidad}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card card-nota">
+                <div class="row">
+                    <div class="col-8">
+                        <span class="titulo">Calificacion Media</span>
+                        <span class="nota">Recomendacion</span>
+                    </div>
+                    <div class="col-4">
+                        <div class="card card-box alta">
+                            {{data_perfil_imagen?.cliente?.mediarecomendacion}}
                         </div>
                     </div>
                 </div>
@@ -71,11 +104,9 @@
                     número de calificaciones
                 </div>
                 <div class="numero">
-                    30
+                    {{data_perfil_imagen?.proveedor?.numcalif}}
                 </div>
-                <div class="nota">
-                    Calificaciones totales a las fecha (20 MAY 2020)
-                </div>
+               
             </div>
             <div class="card card-nota">
                 <div class="row">
@@ -85,7 +116,33 @@
                     </div>
                     <div class="col-4">
                         <div class="card card-box alta">
-                            8.5
+                        {{data_perfil_imagen?.proveedor?.mediacalidad}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card card-nota">
+                <div class="row">
+                    <div class="col-8">
+                        <span class="titulo">Calificacion Media</span>
+                        <span class="nota">Social-ambiental</span>
+                    </div>
+                    <div class="col-4">
+                        <div class="card card-box alta">
+                            {{data_perfil_imagen?.proveedor?.mediasocialambiental}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card card-nota">
+                <div class="row">
+                    <div class="col-8">
+                        <span class="titulo">Calificacion Media</span>
+                        <span class="nota">Oferta</span>
+                    </div>
+                    <div class="col-4">
+                        <div class="card card-box alta">
+                            {{data_perfil_imagen?.proveedor?.mediaoferta}}
                         </div>
                     </div>
                 </div>
@@ -98,11 +155,9 @@
                     Calificacion Media - General
                 </div>
                 <div class="numero">
-                    9.0
+                    {{data_perfil_imagen?.proveedor?.mediageneral}}
                 </div>
-                <div class="nota">
-                    Calificación general a la fecha (20 MAY 2020)
-                </div>
+                
             </div>
             <div class="card card-nota">
                 <div class="row">
@@ -112,14 +167,11 @@
                     </div>
                     <div class="col-4">
                         <div class="card card-box baja">
-                            5.5
+                            {{data_perfil_imagen?.proveedor?.mediageneral}}
                         </div>
                     </div>
                 </div>
             </div>
-        
-        </div>
-        <div class="col-6">
             <div class="card card-nota">
                 <div class="row">
                     <div class="col-8">
@@ -127,12 +179,161 @@
                         <span class="nota">Oferta</span>
                     </div>
                     <div class="col-4">
-                        <div class="card card-box mediac">
-                            8.5
+                        <div class="card card-box baja">
+                            {{data_perfil_imagen?.proveedor?.mediaoferta}}
                         </div>
                     </div>
                 </div>
             </div>
+            <div class="card card-nota">
+                <div class="row">
+                    <div class="col-8">
+                        <span class="titulo">Calificacion Media</span>
+                        <span class="nota">Sanidad</span>
+                    </div>
+                    <div class="col-4">
+                        <div class="card card-box baja">
+                            {{data_perfil_imagen?.proveedor?.mediasanidad}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card card-nota">
+                <div class="row">
+                    <div class="col-8">
+                        <span class="titulo">Calificacion Media</span>
+                        <span class="nota">Recomendación</span>
+                    </div>
+                    <div class="col-4">
+                        <div class="card card-box baja">
+                            {{data_perfil_imagen?.proveedor?.mediarecomendacion}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container m-t-30">
+    <div class="row">
+        <div class="col-12 text-uppercase d-flex align-content-center m-b-40">
+            <div class="cuadro-bineta mr-3"></div>
+            <span class="subtitle">RIESGO DE CLIENTES</span>
+
+        </div>
+        <div class="col-6">
+            <div class="card card-riesgo">
+                <div class="titulo1">
+                    <span class="p1">riesgo</span>
+                    <span class="p2"> - como clientes</span>
+                </div>
+                <div class="numero ">
+                    {{data_perfil_riesgo?.cliente?.cliente?.porcentajes?.General}}%
+                </div>
+                <div class="nota">
+                    Estable
+                </div>
+            </div>
+            <div class="minicard red">
+                <div class="numero">{{data_perfil_riesgo?.cliente?.cliente?.NumEmpeorados}}</div>
+                <div class="label">¿Quíenes han empeorado?</div>
+            </div>
+            <div class="minicard medium">
+                <div class="numero">{{data_perfil_riesgo?.cliente?.cliente?.NumMejorados}}</div>
+                <div class="label">¿Quíenes han mejorado?</div>
+            </div>
+            <div class="minicard greey">
+                <div class="numero">{{data_perfil_riesgo?.cliente?.cliente?.NumSD}}</div>
+                <div class="label">Sin Datos</div>
+            </div>
+
+        </div>
+        <div class="col-6">
+            <div class="card card-riesgo">
+                <div class="titulo1">
+                    <span class="p1">riesgo</span>
+                    <span class="p2"> - como proveedores</span>
+                </div>
+                <div class="numero">
+                    {{data_perfil_riesgo?.cliente?.proveedor?.porcentajes?.General}}%
+                </div>
+                <div class="nota">
+                    Estable
+                </div>
+            </div>
+            <div class="minicard red">
+                <div class="numero">{{data_perfil_riesgo?.cliente?.proveedor?.NumEmpeorados}}</div>
+                <div class="label">¿Quíenes han empeorado?</div>
+            </div>
+            <div class="minicard medium">
+                <div class="numero">{{data_perfil_riesgo?.cliente?.proveedor?.NumMejorados}}</div>
+                <div class="label">¿Quíenes han mejorado?</div>
+            </div>
+            <div class="minicard greey">
+                <div class="numero">{{data_perfil_riesgo?.cliente?.proveedor?.NumSD}}</div>
+                <div class="label">Sin Datos</div>
+            </div>
+
+        </div>
+        <div class="col-12 text-uppercase d-flex align-content-center m-t-40 m-b-40">
+            <div class="cuadro-bineta mr-3"></div>
+            <span class="subtitle">RIESGO DE proveedores</span>
+
+        </div>
+        <div class="col-6">
+            <div class="card card-riesgo">
+                <div class="titulo1">
+                    <span class="p1">riesgo</span>
+                    <span class="p2"> - como clientes</span>
+                </div>
+                <div class="numero ">
+                    {{data_perfil_riesgo?.proveedor?.cliente?.porcentajes?.General}}%
+                </div>
+                <div class="nota">
+                    Estable
+                </div>
+            </div>
+            <div class="minicard red">
+                <div class="numero">{{data_perfil_riesgo?.proveedor?.cliente?.NumEmpeorados}}</div>
+                <div class="label">¿Quíenes han empeorado?</div>
+            </div>
+            <div class="minicard medium">
+                <div class="numero">{{data_perfil_riesgo?.proveedor?.cliente?.NumMejorados}}</div>
+                <div class="label">¿Quíenes han mejorado?</div>
+            </div>
+            <div class="minicard greey">
+                <div class="numero">{{data_perfil_riesgo?.proveedor?.cliente?.NumSD}}</div>
+                <div class="label">Sin Datos</div>
+            </div>
+
+        </div>
+        <div class="col-6">
+            <div class="card card-riesgo">
+                <div class="titulo1">
+                    <span class="p1">riesgo</span>
+                    <span class="p2"> - como proveedores</span>
+                </div>
+                <div class="numero">
+                    {{data_perfil_riesgo?.proveedor?.proveedor?.porcentajes?.General}}%
+                </div>
+                <div class="nota">
+                    Estable
+                </div>
+            </div>
+            <div class="minicard red">
+                <div class="numero">{{data_perfil_riesgo?.proveedor?.proveedor?.NumEmpeorados}}</div>
+                <div class="label">¿Quíenes han empeorado?</div>
+            </div>
+            <div class="minicard medium">
+                <div class="numero">{{data_perfil_riesgo?.proveedor?.proveedor?.NumMejorados}}</div>
+                <div class="label">¿Quíenes han mejorado?</div>
+            </div>
+            <div class="minicard greey">
+                <div class="numero">{{data_perfil_riesgo?.proveedor?.proveedor?.NumSD}}</div>
+                <div class="label">Sin Datos</div>
+            </div>
+
         </div>
     </div>
 </div>

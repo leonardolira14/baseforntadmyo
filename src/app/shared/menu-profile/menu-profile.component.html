@@ -9,13 +9,13 @@
         </li>
         <li><a (click)="entramenu('riesgo')">Tu riesgo</a></li>
         <li><a class="calificar" (click)="entramenu('califica')">Calificar</a></li>
-        <li><a routerLink='analisis-company'>Análisis de mercado</a></li>
+        <li ><a (click)="entramenu('analisi')">Análisis de mercado</a></li>
         <li><a href="#">Qval</a></li>
         <li class="m-r-10">
             <div ngbDropdown class=" nav-item d-inline-block">
-                <button class="btn btn-primary drop" id="dropdownBasic1" ngbDropdownToggle><span class="text-regular">Hola,  </span>  <span class="text-bold">Leonardo</span> </button>
+                <button class="btn btn-primary drop" id="dropdownBasic1" ngbDropdownToggle><span class="text-regular mr-3">Hola,  </span>  <span class="text-bold">{{data_user['Nombre']}}</span> </button>
                 <div ngbDropdownMenu aria-labelledby="dropdownConfig">
-                    <button routerLink="data-user" ngbDropdownItem>Mis Datos</button>
+                    <button routerLink="/data-user" ngbDropdownItem>Mis Datos</button>
                     <button routerLink='miplan' ngbDropdownItem>Mi Plan</button>
                     <button ngbDropdownItem>Configuración</button>
                     <button (click)="inac = !inac" ngbDropdownItem class="text-primary">
@@ -130,7 +130,24 @@
         </div>
     </div>
 </div>
-
+<div *ngIf="analisi" class="container-fluid submenu-flotante">
+    <div class="container">
+        <div class="row">
+            <div class="col bt-menu" *ngIf='busquedallena'>
+                <a (click)="close_menu()" routerLinkActive="active" routerLink='/busqueda/perfil/{{data_seacrch["IDEmpresa"]}}/M'>
+                    Perfil Buscado
+                </a>
+    
+            </div>
+           
+            <div class="col bt-menu">
+                <a (click)="close_menu()" routerLink='/busqueda/perfil/certificaciones/{{data_seacrch["IDEmpresa"]}}' routerLinkActive="active">Analisis Geografico</a>
+            </div>
+           
+           
+        </div>
+    </div>
+</div>
 
 
 <!--========================================
@@ -161,4 +178,3 @@
     </div>
     <!--========================================
         ===========fin modal de salida=====---->
-    

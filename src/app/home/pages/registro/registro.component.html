@@ -1,0 +1,140 @@
+<div class="container">
+    <div class="row m-t-30  ">
+        <div class="col-12 titulos m-b-30">
+            Datos de mi empresa
+        </div>
+
+
+        <div class="col-9 text-work">
+            <div class="row">
+                <div class="col-12 text-uppercase d-flex align-content-center">
+                    <div class="cuadro-bineta mr-3"></div>
+                    <span class="subtitle">Datos Generales</span>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <form class="m-b-30" [formGroup]="form_company" (ngSubmit)="send()">
+        <div class="row">
+            <div class="form-group col-12">
+                <label for="razon_social">Razón Social / Nombre <span class="text-red-t-danger">*</span></label>
+                <input type="text" formControlName="razon_social"
+                    [ngClass]="{'is-invalid':subttmited && form_validator.razon_social.errors}" class="form-control ">
+                <small *ngIf="subttmited && form_validator.razon_social.errors" class="text-red-t-danger">Este campo es
+                    necesario</small>
+            </div>
+            <div class="form-group col-6">
+                <label for="nombre_comercial">Nombre Comercial <span class="text-red-t-danger">*</span></label>
+                <input [ngClass]="{'is-invalid':subttmited && form_validator.nombre_comercial.errors}"
+                    formControlName="nombre_comercial" type="text" class="form-control ">
+                <small *ngIf="subttmited && form_validator.nombre_comercial.errors" class="text-red-t-danger">Este campo es
+                    necesario</small>
+            </div>
+            <div class="form-group col-6">
+                <label for="razon_social">RFC(Registro Federal de Contribuyentes) <span
+                        class="text-red-t-danger">*</span></label>
+                <input [ngClass]="{'is-invalid':subttmited && form_validator.rfc.errors}" formControlName="rfc"
+                    type="text" class="form-control ">
+                <small *ngIf="subttmited && form_validator.rfc.errors" class="text-red-t-danger">Este campo es necesario</small>
+            </div>
+            <div class="form-group col-6">
+                <label for="razon_social">Tipo de Persona <span class="text-red-t-danger">*</span></label>
+                <select [ngClass]="{'is-invalid':subttmited && form_validator.tipopersona.errors}"
+                    formControlName="tipopersona" class="form-control ">
+                    <option value="PM">Persona Moral</option>
+                    <option value="PFA">Persona Fisica con actividad empresarial</option>
+                </select>
+                
+                <small *ngIf="subttmited && form_validator.rfc.errors" class="text-red-t-danger">Este campo es necesario</small>
+            </div>
+            <div class="form-group col-6">
+                <label for="razon_social">Sector <span class="text-red-t-danger">*</span></label>
+                <select
+                (change)="ngsubgiro(form_validator.sector.value)"
+                 [ngClass]="{'is-invalid':subttmited && form_validator.sector.errors}" formControlName="sector"
+                     class="form-control ">
+                    <option *ngFor="let item of giros_list" value="{{item.IDNivel1}}">{{item.Giro}}</option>
+                    
+                </select>
+                
+                <small *ngIf="subttmited && form_validator.sector.errors" class="text-red-t-danger">Este campo es necesario</small>
+            </div>
+            <div class="form-group col-6">
+                <label for="razon_social">SubSector <span class="text-red-t-danger">*</span></label>
+                <select (change)="ngrama(form_validator.subsector.value)" [ngClass]="{'is-invalid':subttmited && form_validator.subsector.errors}"
+                    formControlName="subsector"  class="form-control ">
+                <option *ngFor="let item of subgiro_list" value="{{item.IDNivel2}}">{{item.Giro}}</option>
+                </select>
+                <small *ngIf="subttmited && form_validator.subsector.errors" class="text-red-t-danger">Este campo es necesario</small>
+            </div>
+            <div class="form-group col-6">
+                <label for="razon_social">Rama <span class="text-red-t-danger">*</span></label>
+                <select  [ngClass]="{'is-invalid':subttmited && form_validator.rama.errors}" formControlName="rama"
+                     class="form-control ">
+                    <option *ngFor="let item of ramas_list" value="{{item.IDNivel3}}">{{item.Giro}}</option>
+                </select>
+                <small *ngIf="subttmited && form_validator.rama.errors" class="text-red-t-danger">Este campo es necesario</small>
+            </div>
+            <div class="col-9 text-work mt-5">
+                <div class="row">
+                    <div class="col-12 text-uppercase d-flex align-content-center">
+                        <div class="cuadro-bineta mr-3"></div>
+                        <span class="subtitle">Datos del usuario principal</span>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" formGroupName="usuario">
+            <div class="form-group col-6">
+                <label for="razon_social">Nombre(S) <span class="text-red-t-danger">*</span></label>
+                <input [ngClass]="{'is-invalid':subttmited && form_company.get('usuario.nombre').errors}"
+                    formControlName="nombre" type="text" class="form-control ">
+                <small *ngIf="subttmited && form_company.get('usuario.nombre').errors" class="text-red-t-danger">Este campo es
+                    necesario</small>
+            </div>
+            <div class="form-group col-6">
+                <label for="razon_social">Apellidos <span class="text-red-t-danger">*</span></label>
+                <input [ngClass]="{'is-invalid':subttmited && form_company.get('usuario.apellidos').errors}"
+                    formControlName="apellidos" type="text" class="form-control ">
+                <small *ngIf="subttmited && form_company.get('usuario.apellidos').errors" class="text-red-t-danger">Este campo es
+                    necesario</small>
+            </div>
+            <div class="form-group col-6">
+                <label for="razon_social">Correo Electrónico <span class="text-red-t-danger">*</span></label>
+                <input [ngClass]="{'is-invalid':subttmited && form_company.get('usuario.correo').errors}"
+                    formControlName="correo" type="text" class="form-control ">
+                <small *ngIf="subttmited && form_company.get('usuario.correo').errors" class="text-red-t-danger">Este campo es
+                    necesario</small>
+            </div>
+            <div class="form-group col-6">
+                <label for="razon_social">Confirmar Correo Electrónico <span class="text-red-t-danger">*</span></label>
+                <input [ngClass]="{'is-invalid':subttmited && form_company.get('usuario.correo2').errors}"
+                    formControlName="correo2" type="text" class="form-control ">
+                <small *ngIf="subttmited && form_company.get('usuario.correo2').errors" class="text-red-t-danger">Este campo es
+                    necesario</small>
+            </div>
+            <div class="form-group col-6">
+                <label for="razon_social">Contraseña <span class="text-red-t-danger">*</span></label>
+                <input [ngClass]="{'is-invalid':subttmited && form_company.get('usuario.password').errors}"
+                    formControlName="password" type="password" class="form-control ">
+                <small *ngIf="subttmited && form_company.get('usuario.password').errors" class="text-red-t-danger">Este campo es
+                    necesario</small>
+            </div>
+            <div class="form-group col-6">
+                <label for="razon_social">Confirmar Contraseña <span class="text-red-t-danger">*</span></label>
+                <input 
+                 [ngClass]="{'is-invalid':subttmited && form_company.get('usuario.password2').errors}"
+                    formControlName="password2"
+                type="password" class="form-control ">
+                <small *ngIf="subttmited && form_company.get('usuario.password2').errors" class="text-red-t-danger">Este campo es
+                    necesario</small>
+            </div>
+            <div class="col-3 offset-9 btn-group">
+                <button type="reset" class="btn btn-outline-danger mr-3">Limpiar</button>
+                <button  class="btn btn-primary">Enviar</button>
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,8 +1,13 @@
 
 @import '../../../../styles.scss';
+
 .card-numero,.card-media,.card-general,.container-grafico{
     margin-top: 15px;
     border-color: transparent;
+}
+
+a{
+    text-decoration: none;
 }
 .card-numero,.card-media,.card-general{
     position: relative;
@@ -38,6 +43,8 @@
          font-family: map-get($fonts, regular );
     }
 }
+    
+
 
 .card-numero{
     background-color: map-get($colors, primary );
@@ -49,10 +56,10 @@
 .card-media{
     background-color:#87F2EA;
       & .titulo,& .subtitulo,& .leyenda{
-        color:map-get($colors, gris1N );
+        color:map-get($colorsN, gris1N ) !important;
     }
     & .numero{
-       color:#04195D;
+       color:#04195D !important;
     }
     
 }
@@ -60,10 +67,10 @@
 .card-general{
     background-color: map-get($colors, blanco );
     & .titulo,& .subtitulo,& .leyenda{
-        color:map-get($colors, gris1N );
+        color:map-get($colorsN, gris1N ) !important;
     }
     & .numero{
-        color:map-get($colors,  alight-gray );
+        color:map-get($colors,  alight-gray ) !important;
     }
 }
 

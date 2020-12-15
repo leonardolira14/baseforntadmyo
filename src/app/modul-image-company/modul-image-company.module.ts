@@ -19,9 +19,7 @@ import { RecibidasComponent } from './pages/recibidas/recibidas.component';
 import { FiltrosComponent } from './components/filtros/filtros.component';
 import { TableComponent } from './components/table/table.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { FormatLinksPipe } from '../pipes/formatdate.pipe';
-import { FormatImageUrlPipe } from '../pipes/ImageLink.pipe';
-import { FormatStatusPipe  } from '../pipes/formatstatus.pipe';
+import { ModulepipeModule } from '../pipes/modulepipe/modulepipe.module';
 @NgModule({
  
   declarations: [
@@ -35,9 +33,7 @@ import { FormatStatusPipe  } from '../pipes/formatstatus.pipe';
     RecibidasComponent,
     FiltrosComponent,
     TableComponent,
-    FormatLinksPipe,
-    FormatImageUrlPipe,
-    FormatStatusPipe
+   
   ]
     ,
   imports: [
@@ -50,9 +46,10 @@ import { FormatStatusPipe  } from '../pipes/formatstatus.pipe';
     FormsModule,
     MatExpansionModule,
     MatDatepickerModule,
+    ModulepipeModule
   ],
    providers: [
     MatDatepickerModule
-  ],
+  ]
 })
 export class ModulImageCompanyModule { }

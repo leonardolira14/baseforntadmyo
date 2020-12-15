@@ -1,0 +1,46 @@
+<div class="container-fluid bg-white">
+    <div class="row">
+        <div class="col-12"  *ngFor="let item of listaClientes">
+            <div class="card card-clie" [ngClass]="{'bg-gris1':item.status_relacion==='0'}">
+                <div class="container-fluid">
+                    <div class="row cont">
+                        <div class="col-2">
+                            <img class="avatar" [src]="ngLogo(item.Logo)" alt="">
+                        </div>
+                        <div class="col-8">
+                            <span class="razon_social">{{item.Razon_Social}}</span>
+                            <span class="nombre_comercial" *ngIf='item.Nombre_Comer'>{{item.Nombre_Comer}}</span>
+                            <span class="numero_clientes" *ngIf='item.RFC'>{{item.RFC}}</span>
+                            <span class="numero_clientes"  *ngIf='item.numeroCertificacos'>Número de Certificaciones: {{item.numeroCertificacos}}</span>
+                            <span class="numero_clientes" *ngIf='item.ultimarealizada'>Última Calificación Realizada: {{item.ultimarealizada | formatDate}}</span>
+                            <span class="numero_clientes" *ngIf='item.ultimarecibida'>Última Calificación Recibida: {{item.ultimarecibida | formatDate}}</span>
+                        </div>
+                        <div class="col-2  bnts text-center">
+                            <div class="btn-group">
+                                <button matTooltip="Visitar perfil" class="btn btn-azulcielo" >
+                                    <span class="material-icons">
+                                        visibility
+                                    </span>
+                                </button>
+                                <button matTooltip="Calificar" class="btn btn-azulcielo">
+                                    <span class="material-icons">
+                                        grade
+                                    </span>
+                                   
+                                </button>
+                                <!--<button matTooltip="Dar de baja Cliente" class="btn btn-azulcielo">
+                                    <span class="material-icons">
+                                        remove_circle
+                                    </span>
+                                </button>-->
+                            
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ray"></div>
+        </div>
+        
+    </div>
+</div>

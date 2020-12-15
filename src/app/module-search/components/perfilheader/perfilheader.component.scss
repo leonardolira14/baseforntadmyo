@@ -1,0 +1,39 @@
+@import '../../../../styles.scss';
+
+.frgdatalog{
+    background-color: map-get($colors, aqua2 );
+    height: 191px;
+    padding: 22px 0px;
+    & .titulo,.subtitle1,.rfc,.miembro,.fmiembro{
+    color: map-get($colorsN, negro1N );
+    display: block;
+    width: 100%;
+    }
+    & .titulo{
+        font-family: map-get($fonts, regular );
+        font-size: 24px;
+    }
+    & .subtitle1{
+        font-family: map-get($fonts, semiBold );
+        font-size: 14px;
+    }
+    & .rfc{
+        font-family: map-get($fonts, regular );
+        font-size: 14px;
+    }
+    & .miembro{
+        font-family: map-get($fonts, semiBold );
+        font-size: 8px;
+        margin-top: 36px;
+        text-transform: uppercase;
+    }
+    & .fmiembro{
+        font-family: map-get($fonts, regular );
+        font-size: 12px;
+    }
+    & .img-fluidlog{
+        height: 147px;
+        width: 147px;
+        object-fit: cover;
+    }
+}

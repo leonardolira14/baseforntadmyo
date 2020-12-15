@@ -1,0 +1,25 @@
+@import '../../../../styles.scss';
+
+ul{
+    list-style: none;
+    & li{
+        display: block;
+        width: 100%;
+        & a{
+            padding-left:14px ;
+            line-height: 3;
+            text-decoration: none;
+        display: block;
+        width: 100%;
+        font-family: map-get($fonts, semiBold );
+        font-size: 12px;
+        color:rgba(#1F1F1F,0.5);
+        text-transform: uppercase;
+        letter-spacing: 1.2px;
+            &.active,&:hover{
+                background-color: #FEB238;
+                color:white;
+            }
+        }
+    }
+}

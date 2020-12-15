@@ -32,10 +32,10 @@ export class Serviecokie{
     }
 
     deleteCokie(name) {
-        this.cokieServe.delete(name);
+        this.cokieServe.delete(name, '/');
     }
     deleteAllCookie() {
-        this.cokieServe.deleteAll();
+        this.cokieServe.deleteAll( '/');
     }
 
 }

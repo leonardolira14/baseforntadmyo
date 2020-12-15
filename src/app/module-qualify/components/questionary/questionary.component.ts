@@ -18,6 +18,8 @@ export class QuestionaryComponent implements OnInit {
   public model_calificar: any = {};
   public cuestionario_calidad: any[] = [];
   public cuestionario_cumplimiento: any[] = [];
+  public cuestionario_sanidad: any[] = [];
+  public cuestionario_socioambiental: any[] = [];
   public cuestionario_oferta: any[] = [];
   public cuestionario_recomendacion: any[] = [];
   public listas_dependencias: any[] = [];
@@ -47,6 +49,8 @@ export class QuestionaryComponent implements OnInit {
         this.cuestionario_cumplimiento = data['response']['result']['Preguntas']['Cumplimiento'];
         this.cuestionario_oferta = data['response']['result']['Preguntas']['Oferta'];
         this.cuestionario_recomendacion = data['response']['result']['Preguntas']['Recomendacion'];
+        this.cuestionario_sanidad = data['response']['result']['Preguntas']['Sanidad'];
+        this.cuestionario_socioambiental = data['response']['result']['Preguntas']['Socioambiental'];
         this.listas_dependencias = data['response']['result']['listas_dependencias'];
         console.log(data);
       }, error => {
@@ -62,6 +66,12 @@ export class QuestionaryComponent implements OnInit {
     if (dedonde === 'cumplimiento') {
       lista = this.cuestionario_cumplimiento;
     }
+    if (dedonde === 'sanidad') {
+      lista = this.cuestionario_sanidad;
+    }
+    if (dedonde === 'socioambiental') {
+      lista = this.cuestionario_socioambiental;
+    }
     if (dedonde === 'oferta') {
       lista = this.cuestionario_oferta;
     }
@@ -73,7 +83,6 @@ export class QuestionaryComponent implements OnInit {
       lista.forEach(pag => {
         if (pag.Nump === element.ID_Pregunta) {
           const elementi = document.getElementById(element.S_ID_Pregunta);
-         
           if (pag.Respuesta_usuario === element.Respuesta) {
             elementi.classList.remove('d-none');
           } else {
@@ -88,8 +97,9 @@ export class QuestionaryComponent implements OnInit {
       calidad: this.cuestionario_calidad,
       cumplimiento: this.cuestionario_cumplimiento,
       oferta: this.cuestionario_oferta,
+      sanidad: this.cuestionario_sanidad,
+      socioambiental: this.cuestionario_socioambiental,
       recomendacion: this.cuestionario_recomendacion,
-      
     };
     const datosEmisor = {
       Correo: this.data_user['Correo'],
@@ -115,6 +125,6 @@ export class QuestionaryComponent implements OnInit {
     this.Route.navigateByUrl('' + ir);
   }
   reacatuliza() {
-    window.location.reload()
+    window.location.reload();
   }
 }

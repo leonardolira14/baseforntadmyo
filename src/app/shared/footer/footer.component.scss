@@ -1,0 +1,14 @@
+.separacion{
+    height: 50px;
+    width: 100%;
+    position: relative;
+}
+
+.futter{
+    background: url('/assets/img/fondorecazul.svg');
+    & .row {
+        padding: 30px 0px;
+        justify-content: center;
+        align-items: center;
+    }
+}

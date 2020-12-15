@@ -1,0 +1,15 @@
+<div class="container">
+    <div class="row "  >
+        
+            <div class="col-4"  *ngFor="let item of usuarios_list">
+                <div class="card card-user" >
+                    <img [src]="dameLogo(item.Imagen)" alt="">
+                    <span class="nombre">{{item.Nombre}} {{item.Apellidos}} </span>
+                    <span class="minitulo">Correo Electrónico</span>
+                    <span class="texto">{{item.Correo}}</span>
+                    <span class="minitulo">Puesto</span>
+                    <span class="textto">{{item.Puesto}}</span>
+                </div>
+            </div>
+    </div>
+</div>

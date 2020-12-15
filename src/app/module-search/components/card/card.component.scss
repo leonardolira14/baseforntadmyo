@@ -1,0 +1,189 @@
+
+@import '../../../../styles.scss';
+.card.list{
+    margin-top: 20px;
+    min-height: 506px;
+    &.siguiendo{
+        background-color: #1476FC;
+        color: #fff;
+         & .titulo{
+            display: block;
+            
+            font-family: map-get($fonts, medium );
+            font-size: 18px;
+        }
+         & .titulomin{
+            display: block;
+            font-family: map-get($fonts, semiBold );
+            font-size: 8px;
+           
+        }
+        & .bntg{
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        & .seguir{
+            font-size: 14px;
+            font-family: map-get($fonts, medum );
+        }
+        & .btn-rendond{
+            background-color: #fff;
+            color: map-get($colors, azulcielo );
+            font-size: 23px;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+        }
+        & .listCertificaciones{
+        & ul{
+            padding: 0;
+            & li{ 
+                list-style: none;
+                
+                & .tipo{
+                    width: 33px;
+                    height: 16px;
+                
+                    background: #FEB238 0% 0% no-repeat padding-box;
+                    border-radius: 2px;
+                    opacity: 1;
+                    color:#fff;
+                    font-family: map-get($fonts, semiBold );
+                font-size: 9px;
+                padding: 4px;
+                }
+                & .nombre_certificaciones{
+                    
+                    text-align: left;
+                    font-family: map-get($fonts, normal );
+                    font-size: 12px;
+                    letter-spacing: 0.12px;
+                    color: #fff;
+                }
+            }
+        }
+        
+}
+    }
+    & .card-body{
+        & .titulo{
+            display: block;
+            color:map-get($colors, primary );
+            font-family: map-get($fonts, medium );
+            font-size: 18px;
+        }
+        & .nombrecomercial{
+            display: block;
+            font-family: map-get($fonts, semiBold );
+            font-size: 12px;
+        }
+        & .rfc{
+             display: block;
+            font-family: map-get($fonts, regular );
+            font-size: 12px;
+        }
+        & .text{
+            text-align: justify;
+            font-family: map-get($fonts, regular );
+            font-size: 12px;
+            padding: 15px;
+        }
+        & .card.img{
+            padding: 1px 0px;
+            &.clie{
+                background-color: #87F2EA;
+            }
+             &.prove{
+                background-color: #E7F0FD;
+            }
+            & .card-body{
+                padding: 17px 5px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            & .comoque{
+            display: block;
+            font-family: map-get($fonts, regular );
+            font-size: 14px;
+            color:#1F1F1F
+           
+            }
+            & .box{
+                display: block;
+                font-family: map-get($fonts, semiBold );
+                font-size: 18px;
+                letter-spacing: 0.18px;
+                background-color: #FFFFFF;
+                padding: 6px;
+                text-align: center;
+                color:#1F1F1F
+            }
+        }
+        & .titulomin{
+            display: block;
+            font-family: map-get($fonts, semiBold );
+            font-size: 8px;
+            color:rgba(#1F1F1F,0.5)
+        }
+        
+    }
+}
+.listCertificaciones{
+    & ul{
+        padding: 0;
+        & li{ 
+            list-style: none;
+            
+            & .tipo{
+                width: 33px;
+                height: 16px;
+               
+                background: #FEB238 0% 0% no-repeat padding-box;
+                border-radius: 2px;
+                opacity: 1;
+                color:#fff;
+                font-family: map-get($fonts, semiBold );
+            font-size: 9px;
+            padding: 4px;
+            }
+            & .nombre_certificaciones{
+                
+                text-align: left;
+                font-family: map-get($fonts, normal );
+                font-size: 12px;
+                letter-spacing: 0.12px;
+                color: #1F1F1F;
+            }
+        }
+    }
+}
+.bntg{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    & .seguir{
+        font-size: 14px;
+        font-family: map-get($fonts, medum );
+    }
+    & .btn-rendond{
+        background-color: map-get($colors, azulcielo );
+        color:#ffff;
+        color: #ffff;
+        font-size: 23px;
+        border-radius: 50%;
+        width: 25px;
+        height: 25px;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+    }
+}

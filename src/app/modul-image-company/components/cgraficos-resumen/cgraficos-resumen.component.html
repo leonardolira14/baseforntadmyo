@@ -1,6 +1,7 @@
 <div class="container">
     <div class="row">
         <div class="col-3">
+            <a routerLink='/image-company/detail/{{Como}}/{{Tiempo}}'>
             <div class="card card-numero">
                 <div class="card-body">
                     <span class="titulo">Número de calificaciones</span>
@@ -10,18 +11,21 @@
                     
                 </div>
             </div>
+            </a>
         </div>
         <div class="col-9 cont-grafico">
-            <div class="container-grafico">
-                <label  class="subtitle">Evolucion de Calificaciones Recibidas (# de calificaciones)</label>
+            <a routerLink='/image-company/detail/{{Como}}/{{Tiempo}}'>
+            <div class="container-grafico" routerLink='/image-company/detail/cliente/{{Tiempo}}'>
+                <label  class="subtitle">Evolución de Calificaciones Recibidas (# de calificaciones)</label>
                 <canvas baseChart width="350" height="120" [datasets]="lineChartData" [labels]="lineChartLabels"
                     [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType">
                 </canvas>
             </div>
-           
+        </a>
         </div>
         <div class="col-3">
-            <div class="card card-media">
+            <a routerLink='/image-company/detail/{{Como}}/{{Tiempo}}'>
+            <div class="card card-media" >
                 <div class="card-body">
                     <span class="titulo">Calificación media</span>
                     <span class="subtitulo">General</span>
@@ -30,18 +34,21 @@
                     <span class="leyenda">({{text_leyenda}})</span>
                 </div>
             </div>
+            </a>
         </div>
         <div class="col-9 cont-grafico">
-            <div class="container-grafico">
-                <label class="subtitle">Evolucion de Calificaciones Recibidas - General (Media de calificaciones) </label>
-                <canvas baseChart width="350" height="120" [datasets]="lineChartDataGeneral" [labels]="lineChartLabels"
-                    [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend"
-                    [chartType]="lineChartType">
-                </canvas>
-            </div>
-        
+            <a routerLink='/image-company/detail/{{Como}}/{{Tiempo}}'>
+                <div class="container-grafico">
+                    <label class="subtitle">Evolucion de Calificaciones Recibidas - General (Media de calificaciones) </label>
+                    <canvas baseChart width="350" height="120" [datasets]="lineChartDataGeneral" [labels]="lineChartLabels"
+                        [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend"
+                        [chartType]="lineChartType">
+                    </canvas>
+                </div>
+            </a>
         </div>
         <div class="col-3">
+            <a routerLink='/image-company/detail/{{Como}}/{{Tiempo}}/Calidad'>
             <div class="card card-general">
                 <div class="card-body">
                     <span class="titulo">Calificación media</span>
@@ -51,39 +58,97 @@
                     <span class="leyenda">({{text_leyenda}})</span>
                 </div>
             </div>
+            </a>
         </div>
         <div class="col-9 cont-grafico">
-            <div class="container-grafico">
-                <label class="subtitle">Evolucion de Calificaciones Recibidas - Calidad (Media de calificaciones)</label>
-                <canvas baseChart width="350" height="120" [datasets]="lineChartDataCalidad" [labels]="lineChartLabels"
-                    [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend"
-                    [chartType]="lineChartType">
-                </canvas>
-            </div>
-        
+            <a routerLink='/image-company/detail/{{Como}}/{{Tiempo}}/Calidad'>
+                <div class="container-grafico">
+                    <label class="subtitle">Evolucion de Calificaciones Recibidas - Calidad (Media de calificaciones)</label>
+                    <canvas baseChart width="350" height="120" [datasets]="lineChartDataCalidad" [labels]="lineChartLabels"
+                        [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend"
+                        [chartType]="lineChartType">
+                    </canvas>
+                </div>
+            </a>
         </div>
         <div class="col-3">
-            <div class="card card-general">
-                <div class="card-body">
-                    <span class="titulo">Calificación media</span>
-                    <span class="subtitulo">Cumplimiento</span>
-                    <span class="numero">{{calificacion_media_cumplimiento}}</span>
-                    <span class="leyenda">Calificaciones media a la fecha </span>
-                    <span class="leyenda">({{text_leyenda}})</span>
+            <a routerLink='/image-company/detail/{{Como}}/{{Tiempo}}/Cumplimiento'>
+                <div class="card card-general">
+                    <div class="card-body">
+                        <span class="titulo">Calificación media</span>
+                        <span class="subtitulo">Cumplimiento</span>
+                        <span class="numero">{{calificacion_media_cumplimiento}}</span>
+                        <span class="leyenda">Calificaciones media a la fecha </span>
+                        <span class="leyenda">({{text_leyenda}})</span>
+                    </div>
                 </div>
-            </div>
+            </a>
         </div>
         <div class="col-9 cont-grafico">
-            <div class="container-grafico">
-                <label class="subtitle">Evolucion de Calificaciones Recibidas - Cumplimiento (Media de calificaciones)</label>
-                <canvas baseChart width="350" height="120" [datasets]="lineChartDataCumplimiento" [labels]="lineChartLabels"
-                    [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend"
-                    [chartType]="lineChartType">
-                </canvas>
-            </div>
-        
+            <a routerLink='/image-company/detail/{{Como}}/{{Tiempo}}/Cumplimiento'>
+                <div class="container-grafico">
+                    <label class="subtitle">Evolucion de Calificaciones Recibidas - Cumplimiento (Media de calificaciones)</label>
+                    <canvas baseChart width="350" height="120" [datasets]="lineChartDataCumplimiento" [labels]="lineChartLabels"
+                        [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend"
+                        [chartType]="lineChartType">
+                    </canvas>
+                </div>
+            </a>
         </div>
+        <div class="col-3">
+            <a routerLink='/image-company/detail/{{Como}}/{{Tiempo}}/Sanidad'>
+                <div class="card card-general">
+                    <div class="card-body">
+                        <span class="titulo">Calificación media</span>
+                        <span class="subtitulo">Sanidad</span>
+                        <span class="numero">{{calificacion_media_cumplimiento}}</span>
+                        <span class="leyenda">Calificaciones media a la fecha </span>
+                        <span class="leyenda">({{text_leyenda}})</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-9 cont-grafico">
+            <a routerLink='/image-company/detail/{{Como}}/{{Tiempo}}/Sanidad'>
+                <div class="container-grafico">
+                    <label class="subtitle">Evolución de Calificaciones Recibidas - Sanidad (Media de
+                        calificaciones)</label>
+                    <canvas baseChart width="350" height="120" [datasets]="lineChartDataSanidad" [labels]="lineChartLabels"
+                        [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend"
+                        [chartType]="lineChartType">
+                    </canvas>
+                </div>
+            </a>
+        </div>
+        <div class="col-3">
+            <a routerLink='/image-company/detail/{{Como}}/{{Tiempo}}/Socioambiental'>
+                <div class="card card-general">
+                    <div class="card-body">
+                        <span class="titulo">Calificación media</span>
+                        <span class="subtitulo">Socio-ambiental</span>
+                        <span class="numero">{{calificacion_media_cumplimiento}}</span>
+                        <span class="leyenda">Calificaciones media a la fecha </span>
+                        <span class="leyenda">({{text_leyenda}})</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-9 cont-grafico">
+            <a routerLink='/image-company/detail/{{Como}}/{{Tiempo}}/Socioambiental'>
+                <div class="container-grafico">
+                    <label class="subtitle">Evolución de Calificaciones Recibidas - Socioambiental (Media de
+                        calificaciones)</label>
+                    <canvas baseChart width="350" height="120" [datasets]="lineChartDataSocioambiental" [labels]="lineChartLabels"
+                        [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend"
+                        [chartType]="lineChartType">
+                    </canvas>
+                </div>
+            </a>
+        </div>
+
+
         <div class="col-3" *ngIf="Como === 'proveedor'">
+            <a routerLink='/image-company/detail/{{Como}}/{{Tiempo}}/Oferta'>
             <div class="card card-general">
                 <div class="card-body">
                     <span class="titulo">Calificación media</span>
@@ -93,8 +158,10 @@
                     <span class="leyenda">({{text_leyenda}})</span>
                 </div>
             </div>
+        </a>
         </div>
         <div class="col-9 cont-grafico" *ngIf="Como === 'proveedor'">
+            <a routerLink='/image-company/detail/{{Como}}/{{Tiempo}}/Oferta'>
             <div class="container-grafico">
                 <label class="subtitle">Evolucion de Calificaciones Recibidas - Oferta (Media de calificaciones)</label>
                 <canvas baseChart width="350" height="120" [datasets]="lineChartDataOferta" [labels]="lineChartLabels"
@@ -102,7 +169,7 @@
                     [chartType]="lineChartType">
                 </canvas>
             </div>
-        
+            </a>
         </div>
     </div>
 </div>

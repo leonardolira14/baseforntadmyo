@@ -35,6 +35,12 @@ export class GirosServiceService {
     return this.http.post(this.url_serve + 'reggiro', datos)
       .pipe(map(data => data));
   }
+
+  // funcion para obtener todos los giros registrados 
+  getAllGiiro() {
+    return this.http.get(this.url_serve + 'getallsector')
+      .pipe(map(data => data));
+  }
   service_principal(datos) {
     return this.http.post(this.url_serve + 'principal', datos)
       .pipe(map(data => data));

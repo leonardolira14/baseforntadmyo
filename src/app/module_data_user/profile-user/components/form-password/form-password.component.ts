@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserServiceService } from '../../../../services/data_user/user-service.service';
 import { CookieService } from 'ngx-cookie-service';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { Serviecokie } from '../../../../library/servercokie';
 @Component({
   selector: 'app-form-password',
   templateUrl: './form-password.component.html',
@@ -17,12 +18,12 @@ export class FormPasswordComponent implements OnInit {
   text_alert = 'Algunos de los campos parecen incompletos. Por favor revisalos y revisa la información correspondiente.';
   constructor(
     private http: UserServiceService,
-    private serviceCoooki: CookieService,
+    private serviceCoooki: Serviecokie,
     private form_build: FormBuilder
   ) {
-    this.data_user = JSON.parse(this.serviceCoooki.get('data_user'));
-    this.data_company = JSON.parse(this.serviceCoooki.get('data_company'));
-    this.token = this.serviceCoooki.get('token');
+    this.data_user = this.serviceCoooki.getCokie('data_user');
+    this.data_company = this.serviceCoooki.getCokie('data_company');
+    this.token = this.serviceCoooki.getCokie('token');
     this.form_data_pass = this.form_build.group({
       IDUsuario: [this.data_user['IDUsuario']],
       IDEmpresa: [this.data_user['IDEmpresa']],

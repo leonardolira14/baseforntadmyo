@@ -57,6 +57,16 @@
             font-family: map-get($fonts, medium );
             font-size: 14px;
         } 
+        & .caja{
+           
+        display: flex;
+        width: 40px;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        color: #fff;
+        margin-right: 10px;
+        }
         
     }
 
@@ -74,6 +84,9 @@
             & .material-icons{
             color:map-get($colors, danger);
         }
+         & .caja{
+              background:map-get($colors, danger);
+         }
     }
 }
 .media-calif{
@@ -83,14 +96,20 @@
             & .material-icons{
             color:map-get($colors, naranja);
         }
+         & .caja{
+              background:map-get($colors, naranja);
+         }
     }
 }
 .alta-calif{
-   border-color:transparent;
+   border-color:map-get($colors, aqua2);
     & .heder,& .mat-expansion-panel-header{
          & .material-icons{
             color:map-get($colors, aqua2);
         }
+        & .caja{
+              background:map-get($colors, aqua2);
+         }
     }
   
 }

@@ -1,1 +1,77 @@
-<p>menu-home works!</p>
+<nav class="bg-primary ">
+    <ul class="menu">
+        <li><a href="#"><img style="width: 100px;" class="img-fluid" src="/assets/img/logoblanco.png" alt=""></a></li>
+        <li>
+            <a class="d-none" >Software</a>
+        </li>
+        <li>
+            <a class="d-none">Precios</a>
+        </li>
+        <li>
+            <a class="d-none">Recursos</a>
+        </li>
+        <li>
+            <a class="d-none">Patners</a>
+        </li>
+        <li>
+            <a class="d-none">Buscar</a>
+        </li>
+        
+        <li class="btnIngresar"><a (click)="loginForm =!loginForm" class="calificar">Ingresar</a></li>
+      
+    </ul>
+</nav>
+
+
+
+
+
+
+<!--========================================
+    ===========Incio modal de salida=====---->
+
+<div class="preload-modal" *ngIf='loginForm'>
+    <div class="container">
+        <div class="row">
+            <div class="col-5 card m-auto">
+
+                <div class="card-body">
+                    <div class="d-block text-center m-b-30 m-t-30">
+                        <img src="/assets/img/logo-admyo2.png" class="m-auto img-fluid logologin" alt="">
+                    </div>
+
+                    <span class="titulos d-block text-center">Ingresa a tu perfil</span>
+                    <form [formGroup]="form_login">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">ID de usuario </label>
+                            <input formControlName="user" type="email" class="form-control" id="exampleInputEmail1"
+                                aria-describedby="emailHelp">
+                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Contraseña</label>
+                            <input formControlName="password" type="password" class="form-control" id="exampleInputPassword1">
+                            <small class="olvidado">¿Has olvidado tu contraseña?</small>
+                        </div>
+                        <div class="btn-group d-flex justify-content-between">
+                            <button (click)="login()" class="btn btn-azulcielo mr-3">Iniciar sesión</button>
+                            <button (click)="loginForm =!loginForm" class="btn btn-outline-azulcielo ">Cancelar</button>
+                        </div>
+                        
+                        <div class="form-group form-check">
+                            <input formControlName="guarda" type="checkbox" class="form-check-input" id="exampleCheck1">
+                            <label class="form-check-label" for="exampleCheck1">Recordar mi usuario y contraseña</label>
+                        </div>
+                    </form>
+                    <span class="aunnoties">¿Aún no tienes cuenta?</span>
+                    <button (click)="ir('home/registro')"  class="btn btn-outline-azulcielo w-100 m-t-20">¡Regístrate ahora!</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--========================================
+        ===========fin modal de salida=====---->
+    <div   class="alert alert-card w-70" style="z-index: 10000;" rol='alert' *ngIf="alert_">
+        Usuario Y/O contraseña no validos
+    </div>

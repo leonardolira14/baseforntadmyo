@@ -1,0 +1,30 @@
+<div class="container-fluid bg-white">
+    <div class="container">
+        
+        <div class="row">
+            <!-----inciop de cardd-->
+            <div *ngFor='let item of marcas_list' class="col-6 card-data m-b-30">
+                <div class="card container-fluid">
+                    <div class="row">
+                        <div class="col-3">
+                            <img [src]="dameLogo(item.Foto)" class="logo-marca" alt="">
+                        </div>
+                        <div class="col-9">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="titulo">{{item.Producto}}</div>
+                                </div>
+                                <div class="col-12 mt-3 ">
+                                    <div class="small">Descripción</div>
+                                    <div class="fecha">{{item.Descripcion}}</div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!--fin de cards-->
+        </div>
+    </div>
+</div>

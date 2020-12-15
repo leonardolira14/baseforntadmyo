@@ -8,7 +8,7 @@
     </div>
     <div class="row" *ngIf='data_receptor.length !== 0'>
         <div class="col-12  head-cu">
-            1.- Calidad
+            Calidad
         </div>
         <div id="{{item.Nump}}" *ngFor="let item of cuestionario_calidad; let i=index;" class="{{(item.dependecia==='SI')?'d-none':''}}"  class="col-12 tbody-cu">
             <div class="row">
@@ -16,7 +16,7 @@
                     {{item.Pregunta}}
                 </div>
                 <div class="col-4">
-                    <form class="row" *ngIf="item.Forma==='Si/No'">
+                    <form class="row" *ngIf="item.Forma==='SI/NO'">
                         <label class="col containerbtn">
                             SI
                             <input (change)="ver_dependencia(item.Nump,'calidad')" [(ngModel)]="item.Respuesta_usuario" type="radio"
@@ -31,7 +31,7 @@
                         </label>
                        
                     </form>
-                    <form class="row" *ngIf="item.Forma==='Si/No/NA'">
+                    <form class="row" *ngIf="item.Forma==='SI/NO/NA'">
                         <label class="col containerbtn">
                             SI
                             <input (change)="ver_dependencia(item.Nump,'calidad')" [(ngModel)]="item.Respuesta_usuario" type="radio"
@@ -63,7 +63,7 @@
         </div>
        
         <div class="col-12  head-cu">
-            2.- Cumplimiento
+            Cumplimiento
         </div>
         <div id="{{item.Nump}}" *ngFor="let item of cuestionario_cumplimiento; let i=index;" class="{{(item.dependecia==='SI')?'d-none':''}}" class="col-12 tbody-cu">
             <div class="row">
@@ -71,7 +71,7 @@
                     {{item.Pregunta}}
                 </div>
                 <div class="col-4">
-                    <form class="row" *ngIf="item.Forma==='Si/No'">
+                    <form class="row" *ngIf="item.Forma==='SI/NO'">
                         <label class="col containerbtn">
                             SI
                             <input (change)="ver_dependencia(item.Nump,'cumplimiento')" [(ngModel)]="item.Respuesta_usuario" type="radio" value="SI" name="micro">
@@ -88,7 +88,7 @@
                             <span class="checkmark"></span>
                         </label>
                     </form>
-                    <form class="row" *ngIf="item.Forma==='Si/No/NA'">
+                    <form class="row" *ngIf="item.Forma==='SI/NO/NA'">
                         <label class="col containerbtn">
                             SI
                             <input (change)="ver_dependencia(item.Nump,'cumplimiento')" [(ngModel)]="item.Respuesta_usuario" type="radio"
@@ -117,8 +117,150 @@
                 </div>
             </div>
         </div>
+    <div class="col-12  head-cu">
+        Sanidad
+    </div>
+    <div id="{{item.Nump}}" *ngFor="let item of cuestionario_sanidad; let i=index;"
+        class="{{(item.dependecia==='SI')?'d-none':''}}" class="col-12 tbody-cu">
+        <div class="row">
+            <div class="col-8">
+                {{item.Pregunta}}
+            </div>
+            <div class="col-4">
+                <form class="row" *ngIf="item.Forma==='SI/NO'">
+                    <label class="col containerbtn">
+                        SI
+                        <input (change)="ver_dependencia(item.Nump,'sanidad')" [(ngModel)]="item.Respuesta_usuario"
+                            type="radio" value="SI" name="micro">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class=" col containerbtn">
+                        NO
+                        <input (change)="ver_dependencia(item.Nump,'sanidad')" [(ngModel)]="item.Respuesta_usuario"
+                            type="radio" value="NO" name="micro">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="col containerbtn">
+                        No Aplica
+                        <input (change)="ver_dependencia(item.Nump,'sanidad')" [(ngModel)]="item.Respuesta_usuario"
+                            type="radio" value="NA" name="micro">
+                        <span class="checkmark"></span>
+                    </label>
+                </form>
+                <form class="row" *ngIf="item.Forma==='SI/NO/NA'">
+                    <label class="col containerbtn">
+                        SI
+                        <input (change)="ver_dependencia(item.Nump,'sanidad')" [(ngModel)]="item.Respuesta_usuario"
+                            type="radio" value="SI" name="micro">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class=" col containerbtn">
+                        NO
+                        <input (change)="ver_dependencia(item.Nump,'sanidad')" [(ngModel)]="item.Respuesta_usuario"
+                            type="radio" value="NO" name="micro">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class=" col containerbtn">
+                        No Aplica
+                        <input (change)="ver_dependencia(item.Nump,'sanidad')" [(ngModel)]="item.Respuesta_usuario"
+                            type="radio" value="NA" name="micro">
+                        <span class="checkmark"></span>
+                    </label>
+                </form>
+                <input class="form-control"
+                    *ngIf="cuestionario_sanidad[i].Forma==='NUM' || cuestionario_sanidad[i].Forma=== 'DIAS' || cuestionario_sanidad[i].Forma==='MESES' || cuestionario_sanidad[i].Forma==='HORAS'"
+                    (keyup)="ver_dependencia(item.Nump,'sanidad')"
+                    [(ngModel)]="cuestionario_sanidad[i].Respuesta_usuario" type="number">
+    
+                <input class="form-control" *ngIf="cuestionario_sanidad[i].Forma==='AB' || item.Forma==='OM'"
+                    (keyup)="ver_dependencia(item.Nump,'sanidad')" [(ngModel)]="item.Respuesta_usuario" type="text">
+    
+            </div>
+        </div>
+    </div>
+        <div class="col-12  head-cu">
+             Socioambiental
+        </div>
+        <div id="{{item.Nump}}" *ngFor="let item of cuestionario_socioambiental; let i=index;"
+            class="{{(item.dependecia==='SI')?'d-none':''}}" class="col-12 tbody-cu">
+            <div class="row">
+                <div class="col-8">
+                    {{item.Pregunta}}
+                </div>
+                <div class="col-4">
+                    <form class="row" *ngIf="item.Forma==='SI/NO'">
+                        <label class="col containerbtn">
+                            SI
+                            <input (change)="ver_dependencia(item.Nump,'socioambiental')" [(ngModel)]="item.Respuesta_usuario"
+                                type="radio" value="SI" name="micro">
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class=" col containerbtn">
+                            NO
+                            <input (change)="ver_dependencia(item.Nump,'socioambiental')" [(ngModel)]="item.Respuesta_usuario"
+                                type="radio" value="NO" name="micro">
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="col containerbtn">
+                            No Aplica
+                            <input (change)="ver_dependencia(item.Nump,'socioambiental')" [(ngModel)]="item.Respuesta_usuario"
+                                type="radio" value="NA" name="micro">
+                            <span class="checkmark"></span>
+                        </label>
+                    </form>
+                    <form class="row" *ngIf="item.Forma==='SI/NO/NA'">
+                        <label class="col containerbtn">
+                            SI
+                            <input (change)="ver_dependencia(item.Nump,'socioambiental')" [(ngModel)]="item.Respuesta_usuario"
+                                type="radio" value="SI" name="micro">
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class=" col containerbtn">
+                            NO
+                            <input (change)="ver_dependencia(item.Nump,'socioambiental')" [(ngModel)]="item.Respuesta_usuario"
+                                type="radio" value="NO" name="micro">
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class=" col containerbtn">
+                            No Aplica
+                            <input (change)="ver_dependencia(item.Nump,'socioambiental')" [(ngModel)]="item.Respuesta_usuario"
+                                type="radio" value="NA" name="micro">
+                            <span class="checkmark"></span>
+                        </label>
+                    </form>
+                    <form class="row" *ngIf="item.Forma==='SI/NO/NS'">
+                        <label class="col containerbtn">
+                            SI
+                            <input (change)="ver_dependencia(item.Nump,'socioambiental')" [(ngModel)]="item.Respuesta_usuario" type="radio"
+                                value="SI" name="micro">
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class=" col containerbtn">
+                            NO
+                            <input (change)="ver_dependencia(item.Nump,'socioambiental')" [(ngModel)]="item.Respuesta_usuario" type="radio"
+                                value="NO" name="micro">
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class=" col containerbtn">
+                            No Sabe
+                            <input (change)="ver_dependencia(item.Nump,'socioambiental')" [(ngModel)]="item.Respuesta_usuario" type="radio"
+                                value="NS" name="micro">
+                            <span class="checkmark"></span>
+                        </label>
+                    </form>
+                    <input class="form-control"
+                        *ngIf="cuestionario_socioambiental[i].Forma==='NUM' || cuestionario_socioambiental[i].Forma=== 'DIAS' || cuestionario_socioambiental[i].Forma==='MESES' || cuestionario_socioambiental[i].Forma==='HORAS'"
+                        (keyup)="ver_dependencia(item.Nump,'socioambiental')"
+                        [(ngModel)]="cuestionario_socioambiental[i].Respuesta_usuario" type="number">
+        
+                    <input class="form-control" *ngIf="cuestionario_socioambiental[i].Forma==='AB' || item.Forma==='OM'"
+                        (keyup)="ver_dependencia(item.Nump,'socioambiental')" [(ngModel)]="item.Respuesta_usuario" type="text">
+        
+                </div>
+            </div>
+        </div>
         <div class="col-12  head-cu" *ngIf='cuestionario_oferta.length !== 0'>
-            3.- Oferta
+            Oferta
         </div>
         <div id="{{item.Nump}}" *ngFor="let item of cuestionario_oferta; let i=index;"
             class="{{(item.dependecia==='SI')?'d-none':''}}" class="col-12 tbody-cu">
@@ -127,7 +269,7 @@
                     {{item.Pregunta}}
                 </div>
                 <div class="col-4">
-                    <form class="row" *ngIf="item.Forma==='Si/No'">
+                    <form class="row" *ngIf="item.Forma==='SI/NO'">
                         <label class="col containerbtn">
                             SI
                             <input (change)="ver_dependencia(item.Nump,'oferta')" [(ngModel)]="item.Respuesta_usuario"
@@ -147,7 +289,7 @@
                             <span class="checkmark"></span>
                         </label>
                     </form>
-                    <form class="row" *ngIf="item.Forma==='Si/No/NA'">
+                    <form class="row" *ngIf="item.Forma==='SI/NO/NA'">
                         <label class="col containerbtn">
                             SI
                             <input (change)="ver_dependencia(item.Nump,'oferta')" [(ngModel)]="item.Respuesta_usuario"
@@ -179,7 +321,7 @@
             </div>
         </div>
         <div class="col-12  head-cu">
-            4.- Recomendación
+            Recomendación
         </div>
         <div id="{{item.Nump}}" *ngFor="let item of cuestionario_recomendacion; let i=index;"
             class="{{(item.dependecia==='SI')?'d-none':''}}" class="col-12 tbody-cu">
@@ -188,7 +330,7 @@
                     {{item.Pregunta}}
                 </div>
                 <div class="col-4">
-                    <form class="row" *ngIf="item.Forma==='Si/No'">
+                    <form class="row" *ngIf="item.Forma==='SI/NO'">
                         <label class="col containerbtn">
                             SI
                             <input (change)="ver_dependencia(item.Nump,'recomendacion')" [(ngModel)]="item.Respuesta_usuario"
@@ -208,7 +350,7 @@
                             <span class="checkmark"></span>
                         </label>
                     </form>
-                    <form class="row" *ngIf="item.Forma==='Si/No/NA'">
+                    <form class="row" *ngIf="item.Forma==='SI/NO/NA'">
                         <label class="col containerbtn">
                             SI
                             <input (change)="ver_dependencia(item.Nump,'recomendacion')" [(ngModel)]="item.Respuesta_usuario"

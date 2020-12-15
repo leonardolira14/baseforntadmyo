@@ -38,6 +38,7 @@
         display: flex;
         li{
             text-align: center;
+            
         }
         a{
             padding-left: 0;
@@ -47,6 +48,7 @@
     & li{
         flex:auto;
         position: relative;
+           
         &:last-child{
             border-right: none;
         }
@@ -221,4 +223,13 @@ background-color: map-get($colors, azulcielo);
         max-height: 45px;
     }
    
+}
+
+.alert{
+    z-index: 10000;
+    width: 80%;
+    margin: 0 auto;
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
 }

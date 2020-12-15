@@ -24,6 +24,15 @@ const routes: Routes = [
     ],
   },
   {
+    path: 'detail',
+    children: [
+      {
+        path: ':como/:tiempo/:quality',
+        component: DetalleComponent
+      },
+    ],
+  },
+  {
     path: 'recibidas',
     children: [
       {

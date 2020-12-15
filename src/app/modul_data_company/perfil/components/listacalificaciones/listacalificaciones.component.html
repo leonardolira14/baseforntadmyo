@@ -1,0 +1,171 @@
+<div class="container">
+    <div class="row bg-primary head">
+
+        <div class="col-2">Calificación</div>
+        <div class="col-2">Fecha</div>
+        <div class="col-5 text-left">Razón Social</div>
+        <div class="col-3">Acciones</div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <mat-accordion class="col-12 p-0" multi>
+            <mat-expansion-panel *ngFor='let item of list_calificaciones'>
+                <mat-expansion-panel-header class="container-fluid" style="height:60px">
+                    <div class="row w-100">
+                        <div class="col-1 "><span class="media"
+                                [ngClass]="{'media-baja':item.Media<6.0,'media-media':item.Media>=6.0 && item.Media<=8.0,'media-alta':item.Media>8.0}">{{item.Media}}</span>
+                        </div>
+                        <div class="col-2 text-center">{{item.Fecha | formatDate}}</div>
+                        <div class="col-6 text-left text-azulcielo titulo_razon">{{item.Razon_Social}}</div>
+                        <div class="col-3 bnts text-center">
+                            <div class="btn-group">
+                                <button class="btn btn-azulcielo" (click)="ngDetalle(item.IDValora)">
+                                    <span class="material-icons">
+                                        visibility
+                                    </span>
+                                </button>
+                             
+                            </div>
+                        </div>
+                    </div>
+                </mat-expansion-panel-header>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-3 d-flex justify-content-center align-items-center">
+                            <img [src]="ngLogo(item.Logo)" class="img-fluid" alt="">
+                        </div>
+                        <div class="col-9">
+                            <div class="row">
+                                <div class="col-12">
+                                    <small class="d-block text-uppercase text-muted text-medium text-semiBold">
+                                        Nombre comercial
+                                    </small>
+                                    <span class="d-block text-uppercase  text-semiBold">
+                                        {{item.Nombre_comer}}
+                                    </span>
+                                </div>
+                                <div class="col-4 ">
+
+                                    <br>
+                                    <small class="d-block text-uppercase text-muted text-medium text-semiBold">
+                                        Usuaurio que califica
+                                    </small>
+                                    <span class="d-block text-uppercase  text-semiBold">
+                                        {{item.UsuarioEmisor}}
+                                    </span>
+                                    <br>
+                                    <small class="d-block text-uppercase text-muted text-medium text-semiBold">
+                                        Usuaurio a quien califica
+                                    </small>
+                                    <span class="d-block text-uppercase  text-semiBold">
+                                        {{item.UsuarioReceptor}}
+                                    </span>
+
+                                </div>
+
+                                <div class="col-4 offset-4">
+                                    <br>
+                                    <small class="d-block text-uppercase text-muted text-medium text-semiBold">
+                                        Correo electrónico de quien califica
+                                    </small>
+                                    <span class="d-block text-uppercase  text-semiBold">
+                                        {{item.CorreoEmisor}}
+                                    </span>
+                                    <br>
+                                    <small class="d-block text-uppercase text-muted text-medium text-semiBold">
+                                        Correo electrónico a quien se califica
+                                    </small>
+
+                                    <span class="d-block text-uppercase  text-semiBold">
+                                        {{item.CorreoReceptor}}
+                                    </span>
+                                </div>
+                                <div class="col-12 m-t-10">
+                                    <div class="row">
+                                        <div class="col-4">
+                                            <small class="d-block text-uppercase text-muted text-medium text-semiBold">
+                                                Estado Activo
+                                            </small>
+
+                                            <span class="d-block text-uppercase  text-semiBold">
+                                                {{  item.Status | formatStatus }}
+                                            </span>
+                                        </div>
+                                        <div class="col-4">
+                                            <small class="d-block text-uppercase text-muted text-medium text-semiBold">
+                                                Fecha de solicitud de cambio
+                                            </small>
+
+                                            <span class="d-block text-uppercase  text-semiBold">
+                                                {{item.FechaPuesta }}
+                                            </span>
+                                        </div>
+                                        <div class="col-4">
+                                            <small class="d-block text-uppercase text-muted text-medium text-semiBold">
+                                                Fecha de modificación
+                                            </small>
+
+                                            <span class="d-block text-uppercase  text-semiBold">
+                                                {{item.FechaModificacion }}
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </mat-expansion-panel>
+        </mat-accordion>
+    </div>
+
+</div>
+
+<div class="preload-modal modal-detalle" *ngIf="modal_detalle">
+    <div class="container">
+        <div class="row">
+            <div class="col-10 m-auto">
+                <div class="card">
+
+                    <div class="card-body container">
+                        <div class="row">
+                            <div class="col-12 text-center numero">
+                                {{Mediacal}}
+                            </div>
+                            <div class="col-12 titulos text-center m-b-30">
+                                Detalle de la calificación
+                            </div>
+                            <div class="col-9 bg-primary head">
+                                Pregunta
+                            </div>
+                            <div class="col-3 bg-primary head text-center">
+                                Respuesta
+                            </div>
+                            <div *ngFor="let item of list_preguntas" class="body col-12">
+                                <div class="row w-100">
+                                    <div class="col-9">
+                                        {{item.Pregunta}}
+                                    </div>
+                                    <div class="col-3 text-center">
+                                        {{item.calificacion}}
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="col-12 text-center m-t-30">
+                                <button class="btn btn-outline-azulcielo m-auto"
+                                    (click)="modal_detalle = !modal_detalle">
+                                    Cerrar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

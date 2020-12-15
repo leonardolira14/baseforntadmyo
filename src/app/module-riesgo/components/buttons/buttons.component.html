@@ -2,20 +2,20 @@
     <div class="row">
         <div class="col-6">
             <div class="btn-group">
-                <button class="btn btn-secondary mr-3">Resumen</button>
-                <button class="btn btn-outline-secondary">Detalle</button>
+                <button  routerLinkActive='btn-secondary '  routerLink="/riesgo-company/resume/{{como}}/{{tiempo}}" class="btn btn-outline-secondary mr-3">Resumen</button>
+                <button  routerLinkActive='btn-secondary '  routerLink="/riesgo-company/detalle/{{como}}/{{tiempo}}" class="btn btn-outline-secondary">Detalle</button>
             </div>
         </div>
         <div class="col-6 form-group">
-            <select  class="form-control">
-                <option value="">Tus clientes como clientes</option>
-                <option value="">Tus clientes como proveedores</option>
+            <select [(ngModel)]="cambio"  class="form-control" (change)="ngCambio($event)">
+                <option value="cliente">Tus {{plural}} como clientes</option>
+                <option value="proveedor">Tus {{plural}} como proveedores</option>
             </select>
         </div>
         <div class="col-12 m-t-30">
-            <span class="titulos">Tu riesgo por la reputación de tus clientes como clientes</span>
+            <span class="titulos">Tu riesgo por la reputación de tus {{plural}} como {{comoplural}}</span>
             <br>
-            <span class="subtitulo m-t-40">Basado en las calificiaciones que han recibido tus clientes</span>
+            <span class="subtitulo m-t-40">Basado en las calificiaciones que han recibido tus {{plural}}</span>
         </div>
     </div>
 </div>

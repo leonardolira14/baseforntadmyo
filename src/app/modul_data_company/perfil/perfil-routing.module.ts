@@ -4,6 +4,8 @@ import { ResumenComponent } from './pages/resumen/resumen.component';
 import { CertificacionesComponent } from './pages/certificaciones/certificaciones.component';
 import { MarcaComponent } from './pages/marca/marca.component';
 import { FollowComponent } from './pages/follow/follow.component';
+import { RealizadasComponent } from './pages/realizadas/realizadas.component';
+import { ListcpComponent } from './pages/listcp/listcp.component';
 
 
 const routes: Routes = [
@@ -13,6 +15,24 @@ const routes: Routes = [
       {
         path: ':tiempo',
         component: ResumenComponent
+      },
+    ],
+  },
+  {
+    path: 'calificacion',
+    children: [
+      {
+        path: ':para',
+        component: RealizadasComponent
+      },
+    ],
+  },
+  {
+    path: 'lista',
+    children: [
+      {
+        path: ':quien',
+        component: ListcpComponent
       },
     ],
   },

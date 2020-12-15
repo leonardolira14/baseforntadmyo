@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1440" height="298" viewBox="0 0 1440 298">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#0732b9"/>
+      <stop offset="1" stop-color="#04195d"/>
+    </linearGradient>
+  </defs>
+  <g id="Grupo_1063" data-name="Grupo 1063" transform="translate(0 -1573)">
+    <g id="Grupo_1055" data-name="Grupo 1055" transform="translate(0 -587)">
+      <rect id="Rectángulo_15" data-name="Rectángulo 15" width="1440" height="298" transform="translate(0 2160)" fill="url(#linear-gradient)"/>
+      <text id="_Dónde_estamos_" data-name="¿Dónde estamos?" transform="translate(197 2316)" fill="#fff" font-size="28" font-family="WorkSans-SemiBold, Work Sans" font-weight="600"><tspan x="0" y="0">¿Dónde estamos?</tspan></text>
+      <text id="_150_empresas_participando" data-name="+ 150 
+empresas participando" transform="translate(742 2297)" fill="#fff" font-size="29" font-family="WorkSans-SemiBold, Work Sans" font-weight="600"><tspan x="-42.222" y="0">+ 150</tspan><tspan y="0" font-size="36"> </tspan><tspan font-size="19" font-family="WorkSans-Light, Work Sans" font-weight="300"><tspan x="-101.954" y="27">empresas participando</tspan></tspan></text>
+      <text id="_300_consultas_mensuales" data-name="+ 300 
+consultas mensuales" transform="translate(1028 2297)" fill="#fff" font-size="29" font-family="WorkSans-SemiBold, Work Sans" font-weight="600"><tspan x="-45.688" y="0">+ 300</tspan><tspan y="0" font-size="36"> </tspan><tspan font-size="19" font-family="WorkSans-Light, Work Sans" font-weight="300"><tspan x="-94.126" y="27">consultas mensuales</tspan></tspan></text>
+      <text id="_8_000_empresas_calificadas" data-name="+ 8,000 
+empresas calificadas" transform="translate(1285 2301)" fill="#fff" font-size="29" font-family="WorkSans-SemiBold, Work Sans" font-weight="600"><tspan x="-58.189" y="0">+ 8,000 </tspan><tspan font-size="18" font-family="WorkSans-Light, Work Sans" font-weight="300"><tspan x="-88.371" y="24">empresas calificadas</tspan></tspan></text>
+    </g>
+    <g id="Grupo_1062" data-name="Grupo 1062" transform="translate(23.944 1623.553)">
+      <path id="Trazado_2365" data-name="Trazado 2365" d="M42.232,32.923a5.918,5.918,0,1,0-11.762.612A3.806,3.806,0,0,0,24.024,37.4a4.138,4.138,0,0,0,.952,7.96l-.008.056H41.5l.571-11.131h-.011A5.876,5.876,0,0,0,42.232,32.923Z" transform="translate(0.058 1.117)" fill="#e7f0fd"/>
+      <path id="Trazado_2366" data-name="Trazado 2366" d="M53.318,37.475a6.908,6.908,0,0,0-7.177-6.6,6.908,6.908,0,0,0-7.176,6.6,5.729,5.729,0,0,0,.075.683,4.777,4.777,0,0,0-3.521-1.518,4.463,4.463,0,0,0-4.638,4.266,3.951,3.951,0,0,0,.332,1.568,4.66,4.66,0,0,0-3.206,4.312,4.776,4.776,0,0,0,4.362,4.577l-.011.063h20.07L53.12,39h-.013A6.071,6.071,0,0,0,53.318,37.475Z" transform="translate(1.185 1.773)" fill="#fff"/>
+      <rect id="Rectángulo_132" data-name="Rectángulo 132" width="46.207" height="94.803" transform="translate(51.714 43.998)" fill="#1476fc"/>
+      <rect id="Rectángulo_133" data-name="Rectángulo 133" width="40.63" height="4.78" transform="translate(54.503 39.218)" fill="#04195d"/>
+      <rect id="Rectángulo_134" data-name="Rectángulo 134" width="34.655" height="4.183" transform="translate(57.49 35.21)" fill="#0732b9"/>
+      <rect id="Rectángulo_135" data-name="Rectángulo 135" width="28.605" height="4.407" transform="translate(60.527 31.6)" fill="#04195d"/>
+      <rect id="Rectángulo_136" data-name="Rectángulo 136" width="23.228" height="4.033" transform="translate(63.291 28.14)" fill="#0732b9"/>
+      <rect id="Rectángulo_137" data-name="Rectángulo 137" width="3.062" height="7.693" transform="translate(73.224 20.447)" fill="#04195d"/>
+      <rect id="Rectángulo_138" data-name="Rectángulo 138" width="30.672" height="69.908" transform="translate(21.043 68.894)" fill="#feb238"/>
+      <rect id="Rectángulo_139" data-name="Rectángulo 139" width="4.481" height="54.273" transform="translate(28.511 77.359)" fill="#fff"/>
+      <rect id="Rectángulo_140" data-name="Rectángulo 140" width="4.481" height="54.273" transform="translate(40.113 77.359)" fill="#fff"/>
+      <rect id="Rectángulo_141" data-name="Rectángulo 141" width="27.087" height="4.979" transform="translate(24.628 63.915)" fill="#ffe0af"/>
+      <rect id="Rectángulo_142" data-name="Rectángulo 142" width="23.203" height="4.88" transform="translate(28.511 59.035)" fill="#feb238"/>
+      <rect id="Rectángulo_143" data-name="Rectángulo 143" width="30.871" height="54.572" transform="translate(97.921 84.23)" fill="#d3d3d3"/>
+      <rect id="Rectángulo_144" data-name="Rectángulo 144" width="26.987" height="4.631" transform="translate(97.921 79.599)" fill="#e7f0fd"/>
+      <rect id="Rectángulo_145" data-name="Rectángulo 145" width="23.103" height="4.195" transform="translate(97.921 75.989)" fill="#d3d3d3"/>
+      <rect id="Rectángulo_146" data-name="Rectángulo 146" width="22.705" height="2.838" transform="translate(98.319 92.147)" fill="#fff"/>
+      <rect id="Rectángulo_147" data-name="Rectángulo 147" width="22.705" height="2.838" transform="translate(98.12 101.483)" fill="#fff"/>
+      <rect id="Rectángulo_148" data-name="Rectángulo 148" width="22.705" height="2.838" transform="translate(98.12 110.819)" fill="#fff"/>
+      <rect id="Rectángulo_149" data-name="Rectángulo 149" width="22.705" height="2.838" transform="translate(98.12 120.005)" fill="#fff"/>
+      <rect id="Rectángulo_150" data-name="Rectángulo 150" width="22.705" height="2.838" transform="translate(98.12 129.192)" fill="#fff"/>
+      <line id="Línea_59" data-name="Línea 59" y2="78.829" transform="translate(60.453 53.156)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" stroke-dasharray="0 10"/>
+      <line id="Línea_60" data-name="Línea 60" y2="78.829" transform="translate(69.216 53.156)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" stroke-dasharray="0 10"/>
+      <line id="Línea_61" data-name="Línea 61" y2="78.829" transform="translate(78.925 53.156)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" stroke-dasharray="0 10"/>
+      <line id="Línea_62" data-name="Línea 62" y2="78.829" transform="translate(87.689 53.156)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" stroke-dasharray="0 10"/>
+    </g>
+  </g>
+</svg>

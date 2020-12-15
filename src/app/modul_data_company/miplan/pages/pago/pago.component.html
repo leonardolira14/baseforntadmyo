@@ -1,0 +1,73 @@
+<div class="container-fluid">
+    <div class="container">
+        <div class="row m-t-30  m-b-40">
+            <div class="col-12 titulos m-b-30">
+                Mi Plan
+            </div>
+            <div class="col-12 text-uppercase d-flex align-content-center">
+                <div class="cuadro-bineta mr-3"></div>
+                <p class="subtitle">Datos de pago</p>
+            </div>
+            <div class="col-4 m-t-30">
+                <p class="text">Nombre del plan</p>
+                <p class="text m-t-30">{{nombre_plan}}</p>
+            </div>
+            <div class="col-4 m-t-30">
+                <p class="text">Costo del Plan</p>
+                <p class="text m-t-30">{{costo_plan | currency:'USD':'symbol':'2.2'}} MXP</p>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+<div class="container">
+    <form class="row" (ngSubmit)="pagar()"  [formGroup]="form_pago">
+        <div class="form-group col-6">
+            <label for="razon_social">Nombre <span class="text-danger">*</span></label>
+            <input [ngClass]="{'is-invalid': submitted &&  get_form.Nombre.errors}"  formControlName='Nombre'  type="text"
+                class="form-control ">
+            <small *ngIf=' submitted &&  get_form.Nombre.errors' class="text-danger">Este campo es necesario</small>
+        </div>
+        <div class="form-group col-6">
+            <label for="razon_social">Apellidos <span class="text-danger">*</span></label>
+            <input [ngClass]="{'is-invalid': submitted &&  get_form.Apellidos.errors}" formControlName='Apellidos'  type="text" class="form-control ">
+            <small *ngIf=' submitted &&  get_form.Apellidos.errors' class="text-danger">Este campo es necesario</small>
+        </div>
+        <div class="form-group col-6">
+            <label for="razon_social">Correo Electrónico <span class="text-danger">*</span></label>
+            <input  [ngClass]="{'is-invalid': submitted &&  get_form.Correo.errors}"  formControlName='Correo' type="text" class="form-control ">
+            <small *ngIf=' submitted &&  get_form.Correo.errors'  class="text-danger">Este campo es necesario</small>
+        </div>
+        <div class="form-group col-6">
+            <label for="razon_social">No de Tarjeta<span class="text-danger">*</span></label>
+            <input [ngClass]="{'is-invalid': submitted &&  get_form.Tarjeta.errors}"   formControlName='Tarjeta'  type="text" class="form-control ">
+            <small *ngIf=' submitted &&  get_form.Tarjeta.errors'  class="text-danger">Este campo es necesario</small>
+        </div>
+        <div class="form-group col-4">
+            <label for="razon_social">Mes de Vencimiento<span class="text-danger">*</span></label>
+            <select [ngClass]="{'is-invalid': submitted &&  get_form.Mes.errors}" formControlName='Mes' class="form-control">
+                <option value="{{i}}" *ngFor="let i of messes" >{{i}}</option>
+            </select>
+            <small *ngIf=' submitted &&  get_form.Mes.errors'  class="text-danger">Este campo es necesario</small>
+        </div>
+        <div class="form-group col-4">
+            <label for="razon_social">Año de vencimiento<span class="text-danger">*</span></label>
+            <select [ngClass]="{'is-invalid': submitted &&  get_form.Anio.errors}" formControlName='Anio' class="form-control" >
+                <option value="{{i}}" *ngFor="let i of anio">{{i}}</option>
+            </select>
+            
+            <small *ngIf=' submitted &&  get_form.Anio.errors' class="text-danger">Este campo es necesario</small>
+        </div>
+        <div class="form-group col-4">
+            <label for="razon_social">cvv<span class="text-danger">*</span></label>
+            <input [ngClass]="{'is-invalid': submitted &&  get_form.CVV.errors}" formControlName='CVV' type="password" class="form-control ">
+            <small *ngIf=' submitted &&  get_form.CVV.errors' class="text-danger">Este campo es necesario</small>
+        </div>
+        <div class="col-12 text-right">
+            <div class="btn-group">
+                <button class="btn btn-primary">Pagar</button>
+            </div>
+        </div>
+    </form>
+</div>

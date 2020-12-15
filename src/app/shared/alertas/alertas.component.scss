@@ -1,0 +1,10 @@
+@import '../../../styles.scss';
+
+.alert{
+    z-index: 10000;
+    width: 80%;
+    margin: 0 auto;
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+}

@@ -1,0 +1,35 @@
+@import '../../../../styles.scss';
+
+.titulos{
+    &.srayas{
+        &::before{
+            content: '';
+            background-color: map-get($colors, orange );
+            width: 150px;
+            height: 2px;
+            position: absolute;
+            top: 35px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+    }
+}
+.texto{
+    font-size: 40px;
+    color:#fff;
+    font-family: map-get($fonts, bold );
+    z-index: 2;
+    width: 35%;
+    line-height: 1;
+    margin-left: 50px;
+    & .boton{
+        width: 200px;
+        height: 40px;
+        background-color: map-get($colors, orange );
+        font-size: 20px;
+        border-radius: 4px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}

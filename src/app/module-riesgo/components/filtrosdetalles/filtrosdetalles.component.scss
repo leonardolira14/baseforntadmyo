@@ -1,0 +1,50 @@
+@import '../../../../styles.scss';
+
+.card{
+    &.blue{
+        background: map-get($colors ,card_riesgo);
+    }
+    &.normal{
+         border-color: white;
+        & .numero{
+             color: #D3D3D3 !important;
+        }
+    }
+    &.riesgo{
+        width: 329px;
+        height: 329px;
+        padding: 30px;
+        & .titulo{
+            display: block;
+            text-transform: uppercase;
+            font-size: 12px;
+            font-family: map-get($fonts, semiBold );
+            font-weight: 700;
+        }
+        & .subtitulo{
+            display: block;
+            font-size: 22px;
+            font-family: map-get($fonts, light );
+        }
+        & .numero{
+            color: #04195D;
+            font-family: map-get($fonts, semiBold );
+            display: block;
+            font-size:120px;
+            position: absolute;
+            top:60%;
+            left: 50%;
+            transform: translateY(-30%) translateX(-50%);
+        }
+        & .nota{
+            display: block;
+            font-size: 12px;
+            font-family: map-get($fonts, regular );
+            text-align: center;
+            position: absolute;
+            top:80%;
+            left: 50%;
+            transform:  translateX(-50%);
+        }
+    }
+}

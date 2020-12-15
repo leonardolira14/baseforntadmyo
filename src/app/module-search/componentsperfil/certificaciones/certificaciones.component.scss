@@ -1,0 +1,11 @@
+@import '../../../../styles.scss';
+.name_cetifiation{
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 5px 20px;
+    color:#fff;
+    background-color: map-get($colors, secondary );
+    font-family: map-get($fonts, medium );
+    font-size: 14px;
+}

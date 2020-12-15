@@ -1,0 +1,58 @@
+@import '../../../../../styles.scss';
+
+.card-clie{
+    padding: 5px 20px;
+    border-color:white;
+    & .cont{
+            display: flex;
+        align-items: center;
+    }
+    & .avatar{
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+    & .razon_social,& .nombre_comercial,& .numero_clientes{
+        display: block;
+        
+    }
+    & .nombre_comercial,& .numero_clientes{
+          font-family: map-get($fonts,medium );
+          font-size: 14px;
+        
+    }
+    & .numero_clientes{
+          font-family: map-get($fonts,medium );
+          font-size: 12px;
+          color:rgba(#000000, 0.5)
+        
+    }
+    & .razon_social{
+        color:map-get($colors, azulprimary );
+       font-family: map-get($fonts,semiBold );
+       font-size: 16px;
+    }
+}
+
+.bnts{
+    & .btn-group{
+        margin-top: 0px;
+    }
+    & .btn{
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        margin-right:10px ;
+        & .material-icons{
+            font-size: 18px;
+        }
+        
+    }
+}
+.ray{
+    margin:10px auto;
+    position: relative;
+    border:1px solid rgba(map-get($colorsN, gris2N), 0.3);
+    width: 80%;
+}

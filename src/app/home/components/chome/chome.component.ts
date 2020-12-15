@@ -12,7 +12,33 @@ import { Serviecokie } from '../../../library/servercokie';
 })
 export class ChomeComponent implements OnInit {
   form_login: FormGroup;
-  
+  public tarjetas = [
+    {
+      titulo: 'Gestiona tu imagen empresarial',
+      icono: 'apartment'
+    },
+    {
+      titulo: 'Gestiona tu riesgo empresarial',
+      icono: 'admin_panel_settings'
+    },
+    {
+      titulo: 'Seguimineto empresarial ',
+      icono: 'search'
+    },
+    {
+      titulo: 'Gestiona tu documentación',
+      icono: 'thumb_up'
+    },
+    {
+      titulo: 'Publicita tus productos',
+      icono: 'insert_drive_file'
+    },
+    {
+      titulo: 'Notificaciones de riesgo y calificaciones',
+      icono: 'notification_important'
+    }
+  ];
+
   constructor(
     private http_service: EventsServiceService,
     private formBuilder: FormBuilder,
@@ -24,10 +50,12 @@ export class ChomeComponent implements OnInit {
       user: ['', Validators.required],
       password: ['', Validators.required],
     });
+    console.log(this.tarjetas);
    }
 
   ngOnInit(): void {
     this.http_service.preloadEvent$.emit(false);
+
   }
   login() {
     if (this.form_login.valid) { 
@@ -50,6 +78,7 @@ export class ChomeComponent implements OnInit {
     
   }
   ir(ruta) {
+    console.log(this.tarjetas);
     this.route.navigateByUrl('/' + ruta);
   }
   

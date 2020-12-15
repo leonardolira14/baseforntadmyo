@@ -5,15 +5,15 @@
             <div class="card riesgo blue">
                 <span class="titulo">tu riesgo de clientes</span>
                 <br>
-                <span class="subtitulo">Estable</span>
+                
                 
                 <span class="numero">
-                    0%
+                    {{porcentajes['General']}}%
                 </span>
                 <span class="nota">
                     Nivel de riesgo a la fecha
                     <br>
-                    (20 de Mayo 2020)
+                    ({{periodo}})
                 </span>
             </div>
         </div>
@@ -24,22 +24,24 @@
                 </div>
                 <div class="col-12 form-group">
                     <label>Sector</label>
-                    <select class="form-control">
-                        <option value="">Tus clientes como clientes</option>
-                        <option value="">Tus clientes como proveedores</option>
+                    <select #myselect (change)="ngGetSubSector(myselect.value)"  class="form-control">
+                        <option value="">Selecciona</option>
+                        <option *ngFor='let item of sector' value="{{item.IDNivel1}}">{{item.Giro}}</option>
+                        
                     </select>
                 </div>
                 <div class="col-12 form-group">
                     <label>SubSector</label>
                     <select [(ngModel)]="subSector" class="form-control">
-                        <option value="">Tus clientes como clientes</option>
-                        <option value="">Tus clientes como proveedores</option>
+                        <option  value="">Selecciona</option>
+                        <option *ngFor='let item of  list_subsector' value="{{item.IDNivel2}}" >{{item.Giro}}</option>
+                        
                     </select>
                 </div>
                
                 <div class="col-12">
                     <div class="btn-group">
-                        <button class="btn btn-azulcielo mr-3">Aplicar filtros</button>
+                        <button (click)="ngGetRiesgo()" class="btn btn-azulcielo mr-3">Aplicar filtros</button>
                         <button class="btn btn-outline-azulcielo">Limpiar filtros</button>
                     </div>
                 </div>
@@ -59,17 +61,18 @@
                 Da clic para ver el listado de clientes de acuerdo a su evolución
             </div>
             <div class="minicard red">
-                <div class="numero">0</div>
+                <div class="numero">{{NumEmpeorados}}</div>
                 <div class="label">¿Quíenes han empeorado?</div>
             </div>
             <div class="minicard medium">
-                <div class="numero">0</div>
+                <div class="numero">{{NumMejorados}}</div>
                 <div class="label">¿Quíenes han mejorado?</div>
             </div>
             <div class="minicard greey">
-                <div class="numero">0</div>
-                <div class="label">¿Quíenes se mantienen?</div>
+                <div class="numero">{{NumSD}}</div>
+                <div class="label">Sin Datos</div>
             </div>
+           
 
             <div class="card riesgo normal m-t-40">
                 <span class="titulo">riesgo por</span>
@@ -77,27 +80,48 @@
                 <span class="subtitulo">Calidad</span>
             
                 <span class="numero">
-                    0%
+                   {{porcentajes['Calidad']}}%
                 </span>
               
             </div>
             <div class="card riesgo normal m-t-40">
                 <span class="titulo">riesgo por</span>
                 <br>
-                <span class="subtitulo">Compromiso</span>
+                <span class="subtitulo">Cumplimiento</span>
             
                 <span class="numero">
-                    0%
+                  {{porcentajes['Cumplimiento']}}%
                 </span>
             
             </div>
             <div class="card riesgo normal m-t-40">
                 <span class="titulo">riesgo por</span>
                 <br>
+                <span class="subtitulo">Socioambiental</span>
+            
+                <span class="numero">
+                    {{porcentajes['Cumplimiento']}}%
+                </span>
+            
+            </div>
+            <div class="card riesgo normal m-t-40">
+                <span class="titulo">riesgo por</span>
+                <br>
+                <span class="subtitulo">Sanidad</span>
+            
+                <span class="numero">
+                    {{porcentajes['Cumplimiento']}}%
+                </span>
+            
+            </div>
+          
+            <div class="card riesgo normal m-t-40" *ngIf='comoQue ==="proveedor"'>
+                <span class="titulo">riesgo por</span>
+                <br>
                 <span class="subtitulo">Oferta</span>
             
                 <span class="numero">
-                    0%
+                    {{porcentajes['Oferta']}}%
                 </span>
             
             </div>
@@ -115,23 +139,39 @@
                 <div class="col-12 m-t-60">
                     <div class="container-grafico">
                         <label class="subtitle text-uppercase">Evolución de clientes - Calidad</label>
-                        <canvas baseChart width="350" [labels]="barChartLabels" height="120" [datasets]="barChartData"
+                        <canvas baseChart width="350" [labels]="barChartLabels" height="120" [datasets]="barChartData_calidad"
                             [options]="barChartOption" [legend]="lineChartLegend" [chartType]="barChartType">
                         </canvas>
                     </div>
                 </div>
                 <div class="col-12">
                     <div class="container-grafico m-t-60">
-                        <label class="subtitle text-uppercase">Evolución de clientes - Compromiso</label>
-                        <canvas baseChart width="350" [labels]="barChartLabels" height="120" [datasets]="barChartData"
+                        <label class="subtitle text-uppercase">Evolución de clientes - Cumplimiento</label>
+                        <canvas baseChart width="350" [labels]="barChartLabels" height="120" [datasets]="barChartData_cumplimiento"
                             [options]="barChartOption" [legend]="lineChartLegend" [chartType]="barChartType">
                         </canvas>
                     </div>
                 </div>
                 <div class="col-12">
+                    <div class="container-grafico m-t-60">
+                        <label class="subtitle text-uppercase">Evolución de clientes - Socioambiental</label>
+                        <canvas baseChart width="350" [labels]="barChartLabels" height="120" [datasets]="barChartData_cumplimiento"
+                            [options]="barChartOption" [legend]="lineChartLegend" [chartType]="barChartType">
+                        </canvas>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="container-grafico m-t-60">
+                        <label class="subtitle text-uppercase">Evolución de clientes - Sanidad</label>
+                        <canvas baseChart width="350" [labels]="barChartLabels" height="120" [datasets]="barChartData_cumplimiento"
+                            [options]="barChartOption" [legend]="lineChartLegend" [chartType]="barChartType">
+                        </canvas>
+                    </div>
+                </div>
+                <div class="col-12" *ngIf='comoQue ==="proveedor"'>
                     <div class="container-grafico m-t-60">
                         <label class="subtitle text-uppercase">Evolución de clientes - Oferta</label>
-                        <canvas baseChart width="350" [labels]="barChartLabels" height="120" [datasets]="barChartData"
+                        <canvas baseChart width="350" [labels]="barChartLabels" height="120" [datasets]="barChartData_oferta"
                             [options]="barChartOption" [legend]="lineChartLegend" [chartType]="barChartType">
                         </canvas>
                     </div>

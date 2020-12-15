@@ -4,6 +4,7 @@ import { ListaClass } from '../../../certifications/class/class_list_certificati
 import { EventsServiceService } from '../../../../services/events-service.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Serviecokie } from '../../../../library/servercokie';
+
 @Component({
   selector: 'app-cardcertification',
   templateUrl: './cardcertification.component.html',
@@ -20,7 +21,7 @@ export class CardcertificationComponent implements OnInit {
   constructor(
     private http_service: EventsServiceService,
     private http: CertificationsServiceService,
-    private service_cokie: Serviecokie
+    private service_cokie: Serviecokie,
   ) {
     
     this.Token = this.service_cokie.getCokie('token');
