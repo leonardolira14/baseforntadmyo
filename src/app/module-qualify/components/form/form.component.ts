@@ -4,7 +4,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { DateAdapter } from '@angular/material/core';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
-import { QualifyServicesService } from '../../../services/qualify/qualify-services.service';
+import { QualifyServicesService } from '../../../services/module-services/qualify/qualify-services.service';
 import { EventsServiceService } from '../../../services/events-service.service';
 @Component({
   selector: 'app-form',

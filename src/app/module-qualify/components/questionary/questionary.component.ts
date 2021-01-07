@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { QualifyServicesService } from '../../../services/qualify/qualify-services.service';
+import { QualifyServicesService } from '../../../services/module-services/qualify/qualify-services.service';
 import { EventsServiceService } from '../../../services/events-service.service';
 import { Serviecokie } from '../../../library/servercokie';
 import { Router } from '@angular/router';

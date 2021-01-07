@@ -47,7 +47,7 @@ export class ChomeComponent implements OnInit {
     private serviceCokie: Serviecokie
   ) {
     this.form_login = this.formBuilder.group({
-      user: ['', Validators.required],
+      correo: ['', Validators.required],
       password: ['', Validators.required],
     });
     console.log(this.tarjetas);
@@ -61,6 +61,8 @@ export class ChomeComponent implements OnInit {
     if (this.form_login.valid) { 
       this.http.service_login(this.form_login.value)
         .subscribe(data => {
+          console.log(data);
+          return;
           const expiredDate = new Date();
           expiredDate.setDate(expiredDate.getDate() + 1);
           console.log(data);

@@ -21,13 +21,13 @@ export class ServiceDataCompanyService {
       this.datos_usuario = this.serviceCokie.getCokie('data_company');
       console.log(this.datos_usuario);
       this.headers = new HttpHeaders({
-        'Authorization': this.datos_usuario['token']
+        'x-token': this.datos_usuario['token']
       });
     }
    }
 
   service_login(datos) {
-    return this.http.post(this.url_serve + 'login', datos);
+    return this.http.post(this.url_serve + '/api/auth/login', datos);
   }
 
   // funcion para obtener los datos de la empresa

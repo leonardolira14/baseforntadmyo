@@ -1,8 +1,8 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { environment } from '../../../environments/environment';
+import { environment } from '../../../../environments/environment';
 import { map } from 'rxjs/operators';
-import { Serviecokie } from '../../library/servercokie';
+import { Serviecokie } from '../../../library/servercokie';
 
 @Injectable({
   providedIn: 'root'
