@@ -30,36 +30,36 @@
                 <div class="card container-fluid">
                     <div class="row">
                         <div class="col-12">
-                            <img ng-fallimg src="{{url_server}}/assets/img/asociaciones/{{i.Imagen}}" class="logo-marca" alt="">
+                            <img ng-fallimg [src]="dameLogo(i.Asociacion[0].Imagen)" class="logo-marca" alt="">
                         </div>
                         <div class="col-12">
-                            <div class="titulo">{{i.Nombre}}</div>
+                            <div class="titulo">{{i.Asociacion[0].Nombre}}</div>
                         </div>
                         <div class="col-12 mt-3">
                             <div class="small">Siglas</div>
-                            <div class="fecha">{{i.Siglas}}</div>
+                            <div class="fecha">{{i.Asociacion[0].Siglas}}</div>
                         </div>
                         <div class="col-12 mt-3 ">
                             <div class="small">Página Web</div>
-                            <div class="fecha">{{i.Web}}</div>
+                            <div class="fecha">{{i.Asociacion[0].Web}}</div>
                         </div>
                    
                         <div class="col-12  mt-3">
                             <div class="small">Telefono</div>
-                            <div class="fecha">{{i.Telefono}}</div>
+                            <div class="fecha">{{i.Asociacion[0].Telefono}}</div>
                         </div>
-                        <div class="col-12  mt-3" *ngIf="i.Direccion!==''">
+                        <div class="col-12  mt-3" *ngIf="i.Asociacion[0].Direccion!==''">
                             <div class="small">Dirección</div>
-                            <div class="fecha">{{i.Direccion}}, Col. {{i.Colonia}}, {{i.Municipio}} {{i.Estado}}</div>
+                            <div class="fecha">{{i.Asociacion[0].Direccion}},{{i.Asociacion[0].Colonia}}, {{i.Asociacion[0].Municipio}} {{i.Asociacion[0].Estado}}</div>
                         </div>
                         
                         <div class="col-12 btn-rigth m-t-20 btn-button">
-                            <span (click)="ngEdit(i.IDAsocia)" class="bt-rodn mr-2">
+                           <!-- <span (click)="ngEdit(i.id)" class="bt-rodn mr-2">
                                 <span class="material-icons">
                                     edit
                                 </span>
-                            </span>
-                            <span (click)="delete(i.IDAsocia)" class="bt-rodn">
+                            </span>-->
+                            <span (click)="delete(i.id)" class="bt-rodn">
                                 <span class="material-icons">
                                     delete
                                 </span>

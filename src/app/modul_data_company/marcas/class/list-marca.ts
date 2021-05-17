@@ -22,7 +22,7 @@ export class ListaClass {
     public GetMarca(id) {
         let datos: any = [];
         this.lista.forEach(norma => {
-            if (id === norma.IDMarca) {
+            if (id === norma.id) {
                 datos = norma;
                 return;
             }

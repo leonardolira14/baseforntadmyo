@@ -30,7 +30,7 @@
                 <div class="card container-fluid giro_principal">
                     <div class="row">
                         <div class="col-12">
-                            <img [src]="dameLogo(item.Imagen)" class="logo-marca" alt="">
+                            <img [src]="dameLogo(item.Logo)" class="logo-marca" alt="">
                         </div>
                         <div class="col-12 m-t-20">
                             <div class="titulo">{{item.Nombre}} {{item.Apellidos}}</div>
@@ -45,15 +45,15 @@
                         </div>
 
                         <div class="col-12 btn-rigth m-t-20">
-                            <span *ngIf="item.Tipo_Usuario===''" (click)='ngMaster(item.IDUsuario)' class="bt-rodn mr-2">
+                            <span *ngIf="item.Tipo_Usuario===false" (click)='ngMaster(item.id)' class="bt-rodn mr-2">
                                 <span class="material-icons">
                                     start
                                 </span>
                             </span>
-                            <span (click)='ngEdit(item.IDUsuario)' class="bt-rodn mr-2"><span class="material-icons">
+                            <span (click)='ngEdit(item.id)' class="bt-rodn mr-2"><span class="material-icons">
                                 edit
                             </span></span>
-                            <span (click)='ngDelete(item.IDUsuario,item.Status)'  class="bt-rodn">
+                            <span (click)='ngDelete(item.id)'  class="bt-rodn">
                                 <span class="material-icons">
                                     delete
                                 </span>

@@ -9,40 +9,41 @@ import { Serviecokie } from '../../library/servercokie';
 })
 export class MarcasServiceService {
   public url_serve = environment.url_serve;
-  public datos_usuario: any = [];
+  public token;
+  public option;
   public headers: any;
   NewMarca$ = new EventEmitter<boolean>();
   dataMarca$ = new EventEmitter<any>();
   constructor(
     private http: HttpClient,
-    private cookie_service: Serviecokie
+    private serviceCokie: Serviecokie
   ) {
-    if (this.cookie_service.getCokie('data_user')) {
-      this.datos_usuario = this.cookie_service.getCokie('data_user');
-      this.headers = new HttpHeaders({
-        'Authorization': this.datos_usuario['token']
-      });
+    if (this.serviceCokie.getCokie('token')) {
+      this.token = this.serviceCokie.getCokie('token');
+     this.option = {
+        headers: new HttpHeaders().append('x-token',this.token)
+     }
     }
   }
 
-  service_getall(datos) {
-    return this.http.post(this.url_serve + 'getallmarca', datos)
+  service_getall() {
+    return this.http.get(this.url_serve + '/api/marca/getall', this.option)
       .pipe(map(data => data));
   }
   // funcion para agregar nueva certificacion
   marca_add(datos) {
-    return this.http.post(this.url_serve + 'addmarca', datos)
+    return this.http.post(this.url_serve + '/api/marca', datos,this.option)
       .pipe(map(data => data));
   }
 
   // funcion para actualizar una certificacion
-  ngUpdate(datos) {
-    return this.http.post(this.url_serve + 'updatemarca', datos)
+  ngUpdate(datos,id) {
+    return this.http.put(this.url_serve + '/api/marca/'+id,datos,this.option)
       .pipe(map(data => data));
   }
 
   ngDelete(datos) {
-    return this.http.post(this.url_serve + 'deletemarca', datos)
+    return this.http.delete(this.url_serve + '/api/marca/'+datos, this.option)
       .pipe(map(data => data));
   }
 

@@ -34,32 +34,37 @@
                 </div>
                 <div class="row">
                     <div class="col-12">
-                        <div class="titulo">{{item.Norma}}</div>
+                        <div class="titulo">{{item.Certificacion}}</div>
                     </div>
                     <div class="col-12 mt-3">
                         <div class="small">calificación</div>
                     </div>
                     <div class="col-12 m-b-25">
-                        <div class="numero">{{item.Calif}}</div>
+                        <div class="numero">{{item.Calificacion}}</div>
+                    </div>  
+                    <div class="col-12 m-b-25">
+                        <div class="small">Archivo de virificación</div>
+                        <div class="fecha"><a [href]="converterurl_(item.Archivo)" target="_blank">Clic aquí para visualizar</a></div>
                     </div>
+                    
                     <div class="col-6 ">
                         <div class="small">fecha de certificación</div>
-                        <div class="fecha">{{item.Fecha}}</div>
+                        <div class="fecha">{{item.FechaCertificacion}}</div>
                     </div>
                     <div class="col-6">
-                        <div class="small">fecha de verificación</div>
+                        <div class="small">fecha de vencimiento</div>
                         <div class="fecha">{{item.FechaVencimiento}}</div>
                     </div>
                     <div class="col-2 m-t-20">
                         
                     </div>
                     <div class="col-9 btn-rigth m-t-20">
-                        <span (click)="ngUpdate(item.IDNorma)" class="bt-rodn mr-2">
+                        <span (click)="ngUpdate(item.id)" class="bt-rodn mr-2">
                             <span class="material-icons">
                                 edit
                             </span>
                         </span>
-                        <span (click)="ngDelete(item.IDNorma)" class="bt-rodn">
+                        <span (click)="ngDelete(item.id)" class="bt-rodn">
                             <span class="material-icons">
                                 delete
                             </span>

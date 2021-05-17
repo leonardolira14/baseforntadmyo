@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { EventsServiceService } from '../../../services/events-service.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Serviecokie } from '../../../library/servercokie';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-chome',
   templateUrl: './chome.component.html',
@@ -71,7 +72,10 @@ export class ChomeComponent implements OnInit {
           this.serviceCokie.setCookie('data_company', data['response']['empresa']);
           this.ir('profile-company/resume/MA');
         },
-          error => {
+          (error: HttpErrorResponse) => {
+            if(error.status === 400){
+              Swal.fire('Error',error.error.msg,'error');
+            } 
             console.log(error);
           });
     } else {

@@ -7,7 +7,7 @@ export class ListaClass {
     }
     additem(item) {
         let temp;
-        if (item['Principal'] === '1') {
+        if (item['Principal']) {
             if (this.lista.length === 0) {
                 this.lista.push(item);
             } else {
@@ -20,7 +20,7 @@ export class ListaClass {
         }
     }
     public busquedapalabra(palabra) {
-        return this.lista.filter(grupo => grupo.giron1.toLocaleLowerCase().includes(palabra.toLocaleLowerCase()));
+        return this.lista.filter(grupo => grupo.Giro[0].Giro.toLocaleLowerCase().includes(palabra.toLocaleLowerCase()));
     }
     public getLista() {
         return this.lista;
@@ -31,7 +31,7 @@ export class ListaClass {
     public GetCertification(id) {
         let datos: any = [];
         this.lista.forEach(norma => {
-            if (id === norma.IDGE) {
+            if (id === norma.id) {
                 datos = norma;
                 return;
             }

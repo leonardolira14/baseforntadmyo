@@ -5,6 +5,8 @@ import { ListaClass } from '../../class/class_list_certifications';
 import { EventsServiceService } from '../../../../services/events-service.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Serviecokie } from '../../../../library/servercokie';
+import Swal from 'sweetalert2';
+import {DomSanitizer} from '@angular/platform-browser';
 @Component({
   selector: 'app-cards',
   templateUrl: './cards.component.html',
@@ -22,6 +24,7 @@ export class CardsComponent implements OnInit {
     private http_service: EventsServiceService,
     private http: CertificationsServiceService,
     private service_cokie: Serviecokie,
+    private DomSanitizer : DomSanitizer
   ) {
     this.http_service.preloadEvent$.emit(true);
     this.Token = this.service_cokie.getCokie('token');
@@ -40,10 +43,10 @@ export class CardsComponent implements OnInit {
   ngGetall() {
     this.http_service.preloadEvent$.emit(true);
     this.ListCertifications.clearlist();
-    const data = { IDEmpresa: this.data_company['IDEmpresa'], Token: this.Token };
-    this.http.service_getall(data)
+    this.http.service_getall()
       .subscribe(data => {
-        data['result'].forEach(item => {
+        console.log(data);
+        data['data'].forEach(item => {
           this.ListCertifications.additem(item);
         });
         this.ngGetList();
@@ -64,32 +67,37 @@ export class CardsComponent implements OnInit {
     this.certification = this.ListCertifications.busquedapalabra(this.palabra);
   }
   ngUpdate(IDCertification) {
-    if (this.data_user['Tipo_Usuario'] === '') {
-      alert('Solo el usuario Master puede hacer esta accion.');
-      return;
-    }
+    
     const certifiation: any = this.ListCertifications.GetCertification(IDCertification);
+  
     this.http.Certification$.emit(certifiation);
   }
   // funcion para elimar una  certificacion
   ngDelete(IDCertificacion) {
-    if (this.data_user['Tipo_Usuario'] === '') {
-      alert('Solo el usuario Master puede hacer esta accion.');
-      return;
-    }
+    
     this.http_service.preloadEvent$.emit(true);
-    const data = { token: this.Token, IDNorma: IDCertificacion, IDEmpresa: this.data_company['IDEmpresa'] };
-    this.http.ngDelete(data)
+    this.http.ngDelete(IDCertificacion)
       .subscribe(data => {
-        alert('Certificación Eliminada');
+       Swal.fire('Exito','Certificación eliminada','success');
         this.ngGetall();
       }, (error: HttpErrorResponse) => {
           this.http_service.preloadEvent$.emit(false);
-          alert('algo paso ' + error.message + ' Status: ' + error.status);
+          if(error.status === 500){
+            Swal.fire('Error','Error favor de contactar al administrador','info');
+          }
+          if(error.status === 404){
+            Swal.fire('Error',error.error.msg,'info');
+          }
+          if(error.status === 400){
+            Swal.fire('Error',error.error.msg,'info');
+          }
           console.log(error);
-          console.log(error.error, error.status);
       }, () => {
         this.http_service.preloadEvent$.emit(false);
       });
   }
+  converterurl_(url){
+    return this.DomSanitizer.bypassSecurityTrustUrl(url);
+  }
 }
+

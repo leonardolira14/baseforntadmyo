@@ -1,3 +1,4 @@
+import { GirosServiceService } from './../../../services/data_company/giros-service.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -6,6 +7,7 @@ import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { QualifyServicesService } from '../../../services/module-services/qualify/qualify-services.service';
 import { EventsServiceService } from '../../../services/events-service.service';
+
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
@@ -30,7 +32,8 @@ export class FormComponent implements OnInit {
     private ruta_activa: ActivatedRoute,
     private formBuild: FormBuilder,
     private http: QualifyServicesService,
-    private http_services: EventsServiceService
+    private http_services: EventsServiceService,
+    private http_giros:GirosServiceService
   ) {
     this._adapter.setLocale('es');
     this.ruta_activa.params.subscribe(data => {
@@ -44,7 +47,7 @@ export class FormComponent implements OnInit {
       }
     });
     this.form_qualify = this.formBuild.group({
-      Razon_Social: ['', Validators.required],
+      RazonSocial: ['', Validators.required],
       Correo: ['', Validators.required],
       RFC: ['', Validators.required],
       Fecha: ['', Validators.required],
@@ -60,14 +63,15 @@ export class FormComponent implements OnInit {
     this.http_services.preloadEvent$.emit(true);
     this.http.ngGetdata()
       .subscribe(data => {
+        console.log(data);
         this.http_services.preloadEvent$.emit(false);
-        this.Giros = data['allgiros'];
-        this.Empresas = data['empresas'];
+        this.Giros = data['Giros'];
+        this.Empresas = data['Empresas'];
       }, error => {
         this.http_services.preloadEvent$.emit(false);
         console.log(error);
       });
-    this.filteredOptions = this.form_qualify.controls['Razon_Social'].valueChanges.pipe(
+    this.filteredOptions = this.form_qualify.controls['RazonSocial'].valueChanges.pipe(
       startWith(''),
       map(value => this._filter(value))
     );
@@ -83,7 +87,7 @@ export class FormComponent implements OnInit {
   }
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
-    return this.Empresas.filter(item => item.Razon_Social.toLowerCase().indexOf(filterValue) === 0);
+    return this.Empresas.filter(item => item.RazonSocial.toLowerCase().indexOf(filterValue) === 0);
   }
 
   get from_get_data() {
@@ -98,21 +102,25 @@ export class FormComponent implements OnInit {
   select_empresa(IDEmpresa) {
     this.http_services.preloadEvent$.emit(true);
     this.Empresas.forEach(element => {
-      if (element.IDEmpresa === IDEmpresa) {
-        this.form_qualify.controls['RFC'].setValue(element.RFC);
-        this.form_qualify.controls['IDReceptor'].setValue(IDEmpresa);
+      if (element.id === IDEmpresa) {
+        this.form_qualify.controls['RFC'].setValue(element.Rfc);
+        this.form_qualify.controls['IDReceptor'].setValue(element.id);
         return;
       }
     });
-    const datos = { IDEmpresa };
+    const datos =  IDEmpresa ;
     this.http.ngGetDataQualify(datos)
       .subscribe(data => {
-        this.SubSectores = data['Subgiros'];
-        this.Ramas = data['Ramas'];
+        console.log(data);
+        this.SubSectores = data['subgiros'];
+        this.Ramas = data['ramas'];
         this.Usuarios = data['Usuarios'];
-        this.form_qualify.controls['Giro'].setValue(data['GiroPrincipal'][0]['IDGiro']);
-        this.form_qualify.controls['SubGiro'].setValue(data['GiroPrincipal'][0]['IDGiro2']);
-        this.form_qualify.controls['Rama'].setValue(data['GiroPrincipal'][0]['IDGiro3']);
+        if(data['GiroPrincipal'].length>0){
+          this.form_qualify.controls['Giro'].setValue(data['GiroPrincipal'][0]['Giro'][0]['_id']);
+          this.form_qualify.controls['SubGiro'].setValue(data['GiroPrincipal'][0]['SubGiro'][0]['_id']);
+          this.form_qualify.controls['Rama'].setValue(data['GiroPrincipal'][0]['Rama'][0]['_id']);
+        }
+        
         this.http_services.preloadEvent$.emit(false);
       }, error => {
         this.http_services.preloadEvent$.emit(false);
@@ -131,19 +139,20 @@ export class FormComponent implements OnInit {
   ngGetSubgiro() {
     this.http_services.preloadEvent$.emit(true);
     const giro =   this.form_qualify.controls['Giro'].value;
-    this.http.getsubsector(giro)
+    this.http_giros.getallsubsector(giro)
       .subscribe(data => {
+        console.log(data);
         this.http_services.preloadEvent$.emit(false);
-        this.SubSectores = data['response']['result'];
+        this.SubSectores = data['subgiros'];
       });
   }
   ngGetRamas() {
     this.http_services.preloadEvent$.emit(true);
     const Subgiro = this.form_qualify.controls['SubGiro'].value;
-    this.http.getrama(Subgiro)
+    this.http_giros.getrama(Subgiro)
       .subscribe(data => {
         this.http_services.preloadEvent$.emit(false);
-        this.Ramas = data['response']['result'];
+        this.Ramas = data['ramas'];
       }, error => {
         this.http_services.preloadEvent$.emit(false);
         console.log(error);

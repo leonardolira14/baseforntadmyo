@@ -1,7 +1,7 @@
 export interface Certificationsinferface{
-    IDNorma?: string;
-    Norma?: string;
-    Tipo?: string;
+    id?: string;
+    Certificacion?: string;
+    TipoCertificacion?: string;
     FechaCertificacion?: string;
     FechaVencimiento?: string;
     Calificacion?: string;

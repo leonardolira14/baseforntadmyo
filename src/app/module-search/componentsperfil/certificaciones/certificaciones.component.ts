@@ -30,8 +30,8 @@ export class CertificacionesComponent implements OnInit {
   }
   ngGetall() {
     this.http_service.preloadEvent$.emit(true);
-    const data = { IDEmpresa: this.idEmpresa, Token: this.Token };
-    this.http.service_getall(data)
+   
+    this.http.service_getall()
       .subscribe(data => {
         console.log(data);
         this.lista = data['result'];

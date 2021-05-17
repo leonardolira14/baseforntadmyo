@@ -131,7 +131,7 @@ export class GraphicsComponent implements OnInit {
     },
     {
       data: [15, 50, 7, 42, 20, 8, 15, 20, 30, 10, 25, 0],
-      label: '2019'
+      label: '201gh9'
     }
 
   ];
@@ -159,16 +159,20 @@ export class GraphicsComponent implements OnInit {
       this.activo_mes = false;
       this.activo_mes_anio = true;
     }
-    const datos = { IDEmpresa: this.data_empresa['IDEmpresa'], token: this.token, Anio: mes };
+    const datos = mes;
     this.http_services.preloadEvent$.emit(true);
     this.http.service_getall(datos)
       .subscribe(data => {
-        console.log(data);
-        this.text = data['response']['result']['text'];
-        this.totales = data['response']['result']['Total'];
-        this.generaGrafica1(data['response']['result']['Grafica1']['Clientes'], data['response']['result']['Grafica1']['Proveedores'], data['response']['result']['Grafica1']['Otras'], data['response']['result']['Grafica1']['Anonimas'], data['response']['result']['Periodo'][0], data['response']['result']['Periodo'][1]);
-        this.generaGrafica2(data['response']['result']['series1']['dataActual'], data['response']['result']['series1']['dataPasado'], data['response']['result']['PeriodoG2'][0], data['response']['result']['PeriodoG2'][1]);
-        console.log(data);
+        this.http_services.preloadEvent$.emit(false);
+       
+        this.text = data['periodo'];
+        this.totales = data['total'];
+        this.generaGrafica1(data['Grafica1'][0]['dataCliente'],data['Grafica1'][0]['dataProveedor'],data['Grafica1'][0]['dataOtras'],data['label']);
+        this.lineChartData[0].label =data['Grafica2'][0]['Anio1'];
+        this.lineChartData[1].label =data['Grafica2'][0]['Anio2'];
+
+        this.lineChartData[0].data =data['Grafica2'][0]['datA'];
+        this.lineChartData[1].data =data['Grafica2'][0]['datP'];
       }, (error: HttpErrorResponse) => {
         this.http_services.preloadEvent$.emit(false);
         alert('algo paso ' + error.message + ' Status: ' + error.status);
@@ -177,12 +181,12 @@ export class GraphicsComponent implements OnInit {
       }, () => this.http_services.preloadEvent$.emit(false));
   }
 
-  generaGrafica1(dataClientes, dataProveedores, dataOtras, dataAnonimas, periodo1, periodo2) {
+  generaGrafica1(dataClientes, dataProveedores, dataOtras, periodo) {
     this.chartOptions = {
       series: [
         {
           name: 'Clientes',
-          data: dataClientes
+          data: dataClientes,
         },
         {
           name: 'Proveedores',
@@ -191,12 +195,6 @@ export class GraphicsComponent implements OnInit {
         {
           name: 'Otras',
           data: dataOtras
-        },
-        {
-
-          name: 'Anonimas',
-          data: dataAnonimas,
-
         },
 
       ],
@@ -212,14 +210,14 @@ export class GraphicsComponent implements OnInit {
       },
       stroke: {
         width: 1,
-        colors: ['#0732B9', '#707070', '#1476FC', '#FF851B'],
+        colors: [ '#707070', '#1476FC', '#FF851B'],
 
       },
       title: {
         text: 'Perfil de Visitantes'
       },
       xaxis: {
-        categories: [periodo1, periodo2],
+        categories: periodo,
 
       },
       yaxis: {
@@ -232,16 +230,16 @@ export class GraphicsComponent implements OnInit {
         theme: 'dark'
       },
       fill: {
-        colors: ['#0732B9', '#707070', '#1476FC', '#FF851B'],
+        colors: ['#707070', '#1476FC', '#FF851B'],
         opacity: 1
       },
       legend: {
         markers: {
-          width: 12,
+          width: 50,
           height: 12,
           strokeWidth: 0,
           strokeColor: '#fff',
-          fillColors: ['#0732B9', '#707070', '#1476FC', '#FF851B'],
+          fillColors: [ '#707070', '#1476FC', '#FF851B'],
           radius: 12
         },
         position: 'bottom',

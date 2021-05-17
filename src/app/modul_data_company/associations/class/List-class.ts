@@ -10,7 +10,7 @@ export class ListaClass {
         this.lista.push(item);
     }
     public busquedapalabra(palabra) {
-        return this.lista.filter(grupo => grupo.Nombre.toLocaleLowerCase().includes(palabra.toLocaleLowerCase()));
+        return this.lista.filter(grupo => grupo.Asociacion[0].Nombre.toLocaleLowerCase().includes(palabra.toLocaleLowerCase()));
     }
     public getLista() {
         return this.lista;
@@ -21,7 +21,7 @@ export class ListaClass {
     public GetMarca(id) {
         let datos: any = [];
         this.lista.forEach(norma => {
-            if (id === norma.IDAsocia) {
+            if (id === norma.id) {
                 datos = norma;
                 return;
             }

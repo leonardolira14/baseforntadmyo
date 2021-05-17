@@ -14,33 +14,33 @@
                 <div class="row m-t-30 m-b-30">
                     <div class="form-group col-6">
                         <label for="razon_social">Giro <span class="text-danger">*</span></label>
-                        <select [ngClass]="{'is-invalid': submitt &&  get_Form_data.IDGiro.errors}" (change)="selectSub()" formControlName='IDGiro' class="form-control " >
-                            <option [value]="item.IDNivel1" *ngFor="let item of Lista_giros">
+                        <select [ngClass]="{'is-invalid': submitt &&  get_Form_data.Giro.errors}" (change)="selectSub()" formControlName='Giro' class="form-control " >
+                            <option [value]="item.id" *ngFor="let item of Lista_giros">
                                 {{item.Giro}}
                             </option>
                         </select>
-                        <small *ngIf='get_Form_data.IDGiro.errors && submitt' class="text-danger">Este campo es necesario</small>
+                        <small *ngIf='get_Form_data.Giro.errors && submitt' class="text-danger">Este campo es necesario</small>
 
                     </div>
 
                     <div class="form-group col-6">
                         <label for="nombre_comercial">Subgiro <span class="text-danger">*</span></label>
-                        <select [ngClass]="{'is-invalid': submitt &&  get_Form_data.IDGiro2.errors}" (change)="Rama()" formControlName='IDGiro2' class="form-control " >
-                        <option  [value]="item.IDNivel2" *ngFor="let item of Lista_subgiros">
+                        <select [ngClass]="{'is-invalid': submitt &&  get_Form_data.SubGiro.errors}" (change)="Rama()" formControlName='SubGiro' class="form-control " >
+                        <option  [value]="item.id" *ngFor="let item of Lista_subgiros">
                             {{item.Giro}}
                         </option>
                         </select>
-                        <small *ngIf='get_Form_data.IDGiro2.errors && submitt' class="text-danger">Este campo es necesario</small>
+                        <small *ngIf='get_Form_data.SubGiro.errors && submitt' class="text-danger">Este campo es necesario</small>
 
                     </div>
                     <div class="form-group col-6">
                         <label for="razon_social">Rama <span class="text-danger">*</span></label>
-                        <select [ngClass]="{'is-invalid': submitt &&  get_Form_data.IDGiro3.errors}" formControlName='IDGiro3' class="form-control ">
-                        <option [value]="item.IDGiro3" *ngFor="let item of Lista_Ramas">
+                        <select [ngClass]="{'is-invalid': submitt &&  get_Form_data.Rama.errors}" formControlName='Rama' class="form-control ">
+                        <option [value]="item.id" *ngFor="let item of Lista_Ramas">
                             {{item.Giro}}
                         </option>
                         </select>
-                        <small *ngIf='get_Form_data.IDGiro3.errors && submitt' class="text-danger">Este campo es necesario</small>
+                        <small *ngIf='get_Form_data.Rama.errors && submitt' class="text-danger">Este campo es necesario</small>
 
                     </div>
                 

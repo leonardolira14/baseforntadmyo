@@ -12,13 +12,13 @@
     <form class="row"   [formGroup]='form_qualify'>
     <div class="form-group col-8">
         <label for="razon_social">Nombre o Razón Social <span class="text-danger">*</span></label>
-        <input [matAutocomplete]="auto" [ngClass]="{'is-invalid': subttmited && from_get_data.Razon_Social.errors}" formControlName='Razon_Social' type="text"
+        <input [matAutocomplete]="auto" [ngClass]="{'is-invalid': subttmited && from_get_data.RazonSocial.errors}" formControlName='RazonSocial' type="text"
             class="form-control ">
-        <small *ngIf='subttmited &&  from_get_data.Razon_Social.errors' class="text-red-t-danger">Este campo es
+        <small *ngIf='subttmited &&  from_get_data.RazonSocial.errors' class="text-red-t-danger">Este campo es
             necesario</small>
             <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-                <mat-option (click)="select_empresa(option.IDEmpresa)" *ngFor="let option of filteredOptions | async" [value]="option.Razon_Social">
-                    {{option.Razon_Social}}
+                <mat-option (click)="select_empresa(option.id)" *ngFor="let option of filteredOptions | async" [value]="option.RazonSocial">
+                    {{option.RazonSocial}}
                 </mat-option>
             </mat-autocomplete>
     </div>
@@ -47,7 +47,7 @@
             <select (change)="ngGetSubgiro()" [ngClass]="{'is-invalid': subttmited && from_get_data.Giro.errors}" formControlName='Giro' type="text"
                 class="form-control ">
                 <option value="">Selecciona</option>
-                <option *ngFor="let item of Giros" value="{{item.IDNivel1}}">{{item.Giro}}</option>
+                <option *ngFor="let item of Giros" value="{{item.id}}">{{item.Giro}}</option>
             </select>
         <small *ngIf='subttmited &&  from_get_data.Giro.errors' class="text-red-t-danger">Este campo es
             necesario</small>
@@ -57,7 +57,7 @@
         <select   (change)="ngGetRamas()"   [ngClass]="{'is-invalid': subttmited && from_get_data.SubGiro.errors}" formControlName='SubGiro' type="text"
             class="form-control ">
             <option value="">Selecciona</option>
-            <option *ngFor="let item of SubSectores" value="{{item.IDNivel2}}">{{item.Giro}}</option>
+            <option *ngFor="let item of SubSectores" value="{{item.id}}">{{item.Giro}}</option>
         </select>
         <small *ngIf='subttmited &&  from_get_data.SubGiro.errors' class="text-red-t-danger">Este campo es
             necesario</small>
@@ -67,7 +67,7 @@
     <select [ngClass]="{'is-invalid': subttmited && from_get_data.Rama.errors}" formControlName='Rama' type="text"
         class="form-control ">
         <option value="">Selecciona</option>
-        <option *ngFor="let item of Ramas" value="{{item.IDNivel3}}">{{item.Giro}}</option>
+        <option *ngFor="let item of Ramas" value="{{item.id}}">{{item.Giro}}</option>
     </select>
         <small *ngIf='subttmited &&  from_get_data.Rama.errors' class="text-red-t-danger">Este campo es
             necesario</small>

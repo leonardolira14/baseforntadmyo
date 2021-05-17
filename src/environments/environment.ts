@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
  // url_serve: 'http://localhost/admyo/web/admyoback/'
-  url_serve:'http://ec2-3-80-191-77.compute-1.amazonaws.com'
+  //url_serve:'http://ec2-3-80-191-77.compute-1.amazonaws.com'
+  url_serve:'http://localhost:3700'
 };
 
 /*

@@ -1,6 +1,7 @@
 export interface Marcainferface {
-    IDMarca?: string;
+    id?: string;
     Marca?: string;
-    logo?: string;
+    Logo?: string;
     IDEmpresa?: string;
+    FechaAlta?:string
 }

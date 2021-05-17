@@ -34,29 +34,25 @@
                        
                         <div class="col-12 mt-3 m-b-25">
                             <div class="small">Giro</div>
-                            <div class="fecha text-bold">{{ item.giron1}}</div>
+                            <div class="fecha text-bold">{{ item.Giro[0].Giro}}</div>
                         </div>
                         <div class="col-12 m-b-25">
-                            <div class="small">fecha de certificación</div>
-                            <div class="fecha">{{ item.giron2}}</div>
+                            <div class="small">SubGiro</div>
+                            <div class="fecha">{{ item.SubGiro[0].Giro}}</div>
                         </div>
                         <div class="col-12 ">
                             <div class="small">Rama</div>
-                            <div class="fecha">{{ item.giron3}}</div>
+                            <div class="fecha">{{ item.Rama[0].Giro}}</div>
                         </div>
                         
                         <div class="col-12 btn-rigth m-t-20">
-                            <span *ngIf=' item.Principal!=="1"' (click)="ngPricipal(item.IDGE)" class="bt-rodn mr-2">
+                            <span *ngIf=' !item.Principal' (click)="ngPricipal(item.id)" class="bt-rodn mr-2">
                                 <span class="material-icons">
-                                    edit
+                                    verified
                                 </span>
                             </span>
-                            <span (click)="ngEditar(item.IDGE)" class="bt-rodn mr-2">
-                                <span class="material-icons">
-                                    edit
-                                </span>
-                            </span>
-                            <span (click)="ngDelete(item.IDGE)" class="bt-rodn">
+                           
+                            <span (click)="ngDelete(item.id)" class="bt-rodn">
                                 <span class="material-icons">
                                     delete
                                 </span>

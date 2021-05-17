@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { UserServiceService } from '../../../services/data_user/user-service.service';
-import { Serviecokie } from '../../../library/servercokie';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { environment } from '../../../../environments/environment.prod';
+import {DomSanitizer} from '@angular/platform-browser';
+import Swal from 'sweetalert2';
+import { EventsServiceService } from '../../../services/events-service.service';
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
@@ -15,33 +16,31 @@ export class FormComponent implements OnInit {
   data_company = [];
   token = '';
   filemarcalogo: File = null;
-  logitomarca: any;
+  logitomarca: any ='/assets/img/foto-no-disponible.jpg';
   submitted = false;
 
 
   constructor(
     private http: UserServiceService,
-    private serviceCoooki: Serviecokie,
-    private form_build: FormBuilder
+    private form_build: FormBuilder,
+    private DomSanitizer : DomSanitizer,
+    private http_services:EventsServiceService
   )
   {
-    this.data_user = this.serviceCoooki.getCokie('data_user');
-    this.data_company = this.serviceCoooki.getCokie('data_company');
-    this.token = this.serviceCoooki.getCokie('token');
+
     this.http.dataMarca$.subscribe(data => {
       this.ngEditForm(data);
     });
  
     this.form_data = this.form_build.group({
-      IDEmpresa: [''],
       Nombre: ['', Validators.required],
       Apellidos: ['', Validators.required],
       Status: [''],
       Puesto: ['', Validators.required],
       Visible: [''],
       Correo: ['', Validators.required],
-      IDUsuario: [''],
-      Imagen: [''],
+      id: [''],
+      Logo: [''],
       Tipo_Usuario: ['']
     });
     
@@ -54,12 +53,10 @@ export class FormComponent implements OnInit {
   ngOnInit(): void {
   }
   verificar_logo(logo_) {
-    const base_logo = '/assets/img/foto-no-disponible.jpg';
-    const logo = environment.url_serve + 'assets/img/logosUsuarios/' + logo_;
-    if (logo_ === '' || logo_ === null || logo_ === 'null') {
-      this.logitomarca = base_logo;
+    if (logo_ === '' || logo_ === null || logo_ === undefined) {
+      this.logitomarca = '/assets/img/foto-no-disponible.jpg';
     } else {
-      this.logitomarca = logo;
+      this.logitomarca =  this.DomSanitizer.bypassSecurityTrustUrl(logo_);
     }
   }
   // previw de imagenb
@@ -88,47 +85,51 @@ export class FormComponent implements OnInit {
     this.form_data_get['Puesto'].setValue(data['Puesto']);
     this.form_data_get['Visible'].setValue(data['Visible']);
     this.form_data_get['Correo'].setValue(data['Correo']);
-    this.form_data_get['IDUsuario'].setValue(data['IDUsuario']);
-    this.form_data_get['Imagen'].setValue(data['Imagen']);
-    this.verificar_logo(data['Imagen']);
+    this.form_data_get['id'].setValue(data['id']);
+    if(data['Logo']){
+      this.form_data_get['Logo'].setValue(data['Logo']);
+    }
+    
+    this.verificar_logo(data['Logo']);
   }
 
   ngUpdate(form) {
-    if (this.data_user['Tipo_Usuario'] === '') {
-      alert('Solo el usuario Master puede hacer esta accion.');
-      return;
-    }
-    this.http.ngUpdate(form)
+    this.http_services.preloadEvent$.emit(true);
+   
+    this.http.ngUpdate(this.form_data.controls['id'].value ,form)
       .subscribe(data => {
-        alert('Usuario Actualizado');
+        this.http_services.preloadEvent$.emit(false);
+        Swal.fire('Exito','Usuario actualizado','success');
         console.log(data);
         this.form_data.reset();
         this.http.NewMarca$.emit(true);
+        this.logitomarca = '/assets/img/foto-no-disponible.jpg'
       }, error => {
+        this.http_services.preloadEvent$.emit(false);
           if (error['status'] === 500) {
             if (error.error['code'] === 1995 || error.error['code'] === 1992 || error.error['code'] === 1990) {
               alert(error.error['result']);
               return;
             }
             alert('Error al cargar los datos');
+            Swal.fire('Error','Error al cargar los datos','error');
             console.log(error);
           }
       });
     console.log(this.data_user);
   }
   ngSave(form) {
-    if (this.data_user['Tipo_Usuario'] === '') {
-      alert('Solo el usuario Master puede hacer esta accion.');
-      return;
-    }
+    this.http_services.preloadEvent$.emit(true);
     this.http.ngadd(form)
       .subscribe(data => {
-        console.log(data);
-        alert('Nuevo usuario agregado');
+        this.http_services.preloadEvent$.emit(false);
+        
+        Swal.fire('Exito','Nuevo usuario agregado','success');
         this.form_data.reset();
         this.http.NewMarca$.emit(true);
       }, error => {
-          alert('Existe un error al guardar');
+        this.http_services.preloadEvent$.emit(false);
+          Swal.fire('Error','Existe un error al guardar','error');
           console.log(error);
       });
   }
@@ -137,18 +138,21 @@ export class FormComponent implements OnInit {
     if (this.form_data.valid) {
       this.submitted = false;
       const Formdata = new FormData();
-      Formdata.append('IDUsuario', this.form_data_get['IDUsuario'].value);
+      Formdata.append('id', this.form_data_get['id'].value);
       Formdata.append('Nombre', this.form_data_get['Nombre'].value);
       Formdata.append('Apellidos', this.form_data_get['Apellidos'].value);
       Formdata.append('Status', this.form_data_get['Status'].value);
       Formdata.append('Puesto', this.form_data_get['Puesto'].value);
       Formdata.append('Visible', this.form_data_get['Visible'].value);
       Formdata.append('Correo', this.form_data_get['Correo'].value);
-      Formdata.append('IDEmpresa', this.data_company['IDEmpresa']);
-      Formdata.append('Imagen', this.form_data_get['Imagen'].value);
-      Formdata.append('Archivo', this.filemarcalogo);
-      Formdata.append('token', this.token);
-      if (this.form_data_get['IDUsuario'].value === '') {
+     
+      if(this.filemarcalogo === null){
+        Formdata.append('Logo', this.form_data_get['Logo'].value);
+      }else{
+        Formdata.append('Logo', this.filemarcalogo);
+      }
+      
+      if (this.form_data_get['id'].value === '') {
         this.ngSave(Formdata);
       } else {
         this.ngUpdate(Formdata);

@@ -44,7 +44,6 @@
                     </p>
                     <ul class="list-certificacion">
                         <li *ngFor='let i of normas'>
-                            <img [src]="ngSelectLogoCer(i.Archivo)" alt="ayo-ogunseinde-2.jpg">
                             <span>{{i.Norma}}</span>
                         </li>
                         
@@ -59,7 +58,7 @@
                 </div>
                 <ul class="list-marcas">
                     <li *ngFor="let i of marcas">
-                        <img src="{{url_server }}assets/img/logosmarcas/{{i.logo}}" alt="{{i.logo}}">
+                        <img [src]="ngSelectLogoCer(i.logo)" alt="{{i.logo}}">
                         <span>{{i.Marca}}</span>
                     </li>
                    
@@ -83,34 +82,36 @@
 
                     <div class="form-group col-6">
                         <label for="razon_social">Razón Social <span class="text-danger">*</span></label>
-                        <input [ngClass]="{'is-invalid':subttmited && get_form_Data.razon_social.errors}"  formControlName="razon_social" type="text" class="form-control " id="razon_social">
-                        <small *ngIf="get_form_Data.razon_social.errors" class="text-danger">Este campo es requerido</small>
+                        <input [ngClass]="{'is-invalid':subttmited && get_form_Data.RazonSocial.errors}"  formControlName="RazonSocial" type="text" class="form-control " id="razon_social">
+                        <small *ngIf="get_form_Data.RazonSocial.errors" class="text-danger">Este campo es requerido</small>
                     </div>
 
                     <div class="form-group col-6">
                         <label for="nombre_comercial">Nombre Comercial <span class="text-danger">*</span></label>
-                        <input [ngClass]="{'is-invalid':subttmited && get_form_Data.nombre_comercial.errors}" type="text" formControlName="nombre_comercial" class="form-control " id="nombre_comercial">
-                        <small *ngIf="get_form_Data.nombre_comercial.errors" class="text-danger">Este campo es requerido</small>
+                        <input [ngClass]="{'is-invalid':subttmited && get_form_Data.NombreComercial.errors}" type="text" formControlName="NombreComercial" class="form-control " id="nombre_comercial">
+                        <small *ngIf="get_form_Data.NombreComercial.errors" class="text-danger">Este campo es requerido</small>
                     </div>
                     <div class="form-group col-6">
                         <label for="razon_social">R.F.C. (Registro Federal del Contribuyente) <span
                                 class="text-danger">*</span></label>
-                        <input  [ngClass]="{'is-invalid':subttmited && get_form_Data.rfc.errors}" type="text"  formControlName="rfc" class="form-control " id="razon_social">
-                            <small *ngIf="get_form_Data.rfc.errors" class="text-danger">Este campo es requerido</small>
+                        <input  [ngClass]="{'is-invalid':subttmited && get_form_Data.Rfc.errors}" type="text"  formControlName="Rfc" class="form-control " >
+                            <small *ngIf="get_form_Data.Rfc.errors" class="text-danger">Este campo es requerido</small>
                     </div>
                     <div class="form-group col-6">
-                        <label for="tipo_empresa">Tipo Empresa <span class="text-danger">*</span></label>
-                        <select [ngClass]="{'is-invalid':subttmited && get_form_Data.tempresa.errors}" class="form-control "  formControlName="tempresa" id="tipo_empresa">
-                            <option *ngFor='let i of tipoempresas' value='i.Tipo'>
+                        <label for="tipo_empresa">Tipo Empresa   <span class="text-danger">*</span></label>
+                        <select [ngClass]="{'is-invalid':subttmited && get_form_Data.TipoEmpresa.errors}" class="form-control "  formControlName="TipoEmpresa" id="tipo_empresa">
+                            <option value="">Selecciona</option>
+                            <option *ngFor='let i of tipoempresas' value='{{i.Tipo}}'>
                                 {{ i.Tipo }}
                             </option>
                         </select>
-                        <small *ngIf="get_form_Data.tempresa.errors"  class="text-danger">Este campo es requerido</small>
+                        <small *ngIf="get_form_Data.TipoEmpresa.errors"  class="text-danger">Este campo es requerido</small>
                     </div>
                     <div class="form-group col-4">
                         <label for="empleados">No. de Empleados </label>
-                        <select class="form-control" formControlName="nempleados" id="empleados">
-                            <option  *ngFor='let i of noempleados'  value='i.Num' >
+                        <select class="form-control" formControlName="NoEmpleados" id="empleados">
+                            <option value="">Selecciona</option>
+                            <option  *ngFor='let i of noempleados'  value='{{i.Num}}' >
                                 {{ i.Num }}
                             </option>
                         </select>
@@ -118,8 +119,9 @@
                     </div>
                     <div class="form-group col-4">
                         <label for="facturacion_anual">Facturación Anual </label>
-                        <select class="form-control " formControlName="facanual" id="facturacion_anual">
-                            <option *ngFor='let i of factanual' value='i.FacAnual'>
+                        <select class="form-control " formControlName="FacAnual" id="FacAnual">
+                            <option value="">Selecciona</option>
+                            <option *ngFor='let i of factanual' value='{{i.FacAnual}}'>
                                 {{ i.FacAnual }}
                             </option>
                         </select >
@@ -127,14 +129,14 @@
                     </div>
                     <div class="form-group col-4">
                         <label for="dias_pago">Días de Pago </label>
-                        <input type="email" class="form-control " formControlName="diaspagoempresa"  id="dias_pago">
+                        <input type="email" class="form-control " formControlName="Diaspago"  id="dias_pago">
                         
                     </div>
                     <div class="form-group col-12">
                         <label for="descripcion">Descripción de la Empresa <span class="text-danger">*</span></label>
-                        <textarea [ngClass]="{'is-invalid':subttmited && get_form_Data.perfil.errors}" class="form-control" formControlName="perfil" placeholder="Escribe algo aquí" id="descripcion"
+                        <textarea [ngClass]="{'is-invalid':subttmited && get_form_Data.Perfil.errors}" class="form-control" formControlName="Perfil" placeholder="Escribe algo aquí" id="descripcion"
                             rows="8"></textarea>
-                        <small *ngIf="get_form_Data.perfil.errors" class="text-danger">Este campo es requerido</small>
+                        <small *ngIf="get_form_Data.Perfil.errors" class="text-danger">Este campo es requerido</small>
                     </div>
 
                 </div>
@@ -147,56 +149,63 @@
                     </div>
                 </div>
 
-                <div class="row ">
+                <div class="row " formGroupName='Contacto'>
 
 
-                    <div class="form-group col-6">
+                    <div class="form-group col-6"  >
                         <label for="web">Pagína Web </label>
-                        <input formControlName="Sitio_Web" type="text" class="form-control " id="web">
+                        <input formControlName="Web" type="text" class="form-control" id="web">
+
+                    </div>
+                    <div class="form-group col-6">
+                        <label for="web">Facebook </label>
+                        <input formControlName="Faceboock" type="text" class="form-control">
 
                     </div>
 
-
+                </div>
+                <div class="row" formGroupName='Direccion'>
                     <div class="form-group col-6">
                         <label for="estado">Estado <span class="text-danger">*</span></label>
-                        <select [ngClass]="{'is-invalid':subttmited && get_form_Data.Estado.errors}" formControlName="Estado" class="form-control " id="estado">
-                            <option *ngFor='let i of estados' value='{{i.Siglas}}'>
-                                {{ i.estadonombre }}
+                        <select [ngClass]="{'is-invalid':subttmited && Direccion_get.Estado.errors}" formControlName="Estado" class="form-control " id="estado">
+                            <option *ngFor='let i of estados' value='{{i.id}}'>
+                                {{ i.nom_ent }}
                             </option>
                         </select>
-                        <small *ngIf="get_form_Data.Estado.errors" class="text-danger">Este campo es requerido</small>
+                        <small *ngIf="Direccion_get.Estado.errors" class="text-danger">Este campo es requerido</small>
                     </div>
                     <div class="form-group col-6">
                         <label for="alcaldia">Alcaldía / Municipío <span class="text-danger">*</span> </label>
-                        <input [ngClass]="{'is-invalid':subttmited && get_form_Data.Deleg_Mpo.errors}" formControlName="Deleg_Mpo" type="text" class="form-control " id="Deleg_Mpo">
-                        <small *ngIf="get_form_Data.Estado.errors" class="text-danger">Este campo es requerido</small>
+                        <input [ngClass]="{'is-invalid':subttmited && Direccion_get.Municipio.errors}" formControlName="Municipio" type="text" class="form-control ">
+                        <small *ngIf="Direccion_get.Municipio.errors" class="text-danger">Este campo es requerido</small>
                     </div>
                     <div class="form-group col-6">
                         <label for="colonia">Colonia</label>
                         <input formControlName="Colonia" type="text" class="form-control " id="colonia">
-                        
+
 
                     </div>
                     <div class="form-group col-6">
                         <label for="cp">Código Postal </label>
-                        <input placeholder="99999" Class="form-control" type="text" formControlName="Codigo_Postal">
+                        <input placeholder="99999" Class="form-control" type="text" formControlName="Cp">
                         
                     </div>
                     <div class="form-group col-6">
                         <label for="direccion">Direccion (Calle y Número) </label>
-                        <input type="text" class="form-control " id="direccion" formControlName="Direc_Fiscal">
+                        <input type="text" class="form-control " id="direccion" formControlName="CalleNumero">
                     </div>
                 </div>
-                <div class="row"  formGroupName="Tel1">
+                <div formGroupName='Telefono'>
+                    <div class="row"  formGroupName="TelefonoP">
                         <div class="form-group col-6">
                             <label for="Tel1">Teléfono Principal</label>
-                            <input   placeholder="(999) 999-9999" Class="form-control" type="text" formControlName="TelP">
+                            <input   placeholder="(999) 999-9999" Class="form-control" type="text" formControlName="Numero">
                             
                         
                         </div>
                         <div class="form-group col-6">
                             <label for="cp">Tipo Teléfono Principal</label>
-                            <select class="form-control " formControlName="TTelP">
+                            <select class="form-control " formControlName="Tipo">
                                 <option value="Fijo">
                                     Fijo
                                 </option>
@@ -206,16 +215,16 @@
                             </select>
                         </div>
                 </div>
-                <div class="row" formGroupName="Tel2">
+                <div class="row" formGroupName="TelefonoD">
                         <div class="form-group col-6">
                             <label for="Tel1">Teléfono 2</label>
-                            <input placeholder="(999) 999-9999" Class="form-control" type="text" formControlName="Tel2">
+                            <input placeholder="(999) 999-9999" Class="form-control" type="text" formControlName="Numero">
                            
                         
                         </div>
                         <div class="form-group col-6">
                             <label for="cp">Tipo Teléfono 2</label>
-                            <select class="form-control " formControlName="TTel2">
+                            <select class="form-control " formControlName="Tipo">
                                 <option value="Fijo">
                                     Fijo
                                 </option>
@@ -225,15 +234,15 @@
                             </select>
                         </div>
                 </div>
-                <div class="row" formGroupName="Tel3">
+                <div class="row" formGroupName="TelefonoT">
                         <div class="form-group col-6">
                             <label for="Tel1">Teléfono 3</label>
-                            <input placeholder="(999) 999-9999" Class="form-control" type="text" formControlName="Tel3">
+                            <input placeholder="(999) 999-9999" Class="form-control" type="text" formControlName="Numero">
                         
                         </div>
                         <div class="form-group col-6">
                             <label for="cp">Tipo Teléfono 3</label>
-                            <select formControlName="TTel3" class="form-control ">
+                            <select formControlName="Tipo" class="form-control ">
                                 <option value="Fijo">
                                     Fijo
                                 </option>
@@ -244,6 +253,8 @@
                             </select>
                         </div>
                 </div>
+                </div>
+                
                 <div class="row">               
                     
                     <div class="col-12 m-t-30">

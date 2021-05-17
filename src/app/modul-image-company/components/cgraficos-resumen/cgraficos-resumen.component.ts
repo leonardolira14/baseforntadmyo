@@ -187,83 +187,84 @@ export class CgraficosResumenComponent implements OnInit {
     this.http_service.IDEmpresa$.subscribe(data => {
       console.log(data);
       this.Tiempo = data[0]['tiempo'];
-      this.IDEmpresa = data[0]['IDEmpresa'];
       this.Como = data[0]['como'];
+      
       this.ngGenera();
     });
    }
   ngGenera() {
     this.http_service.preloadEvent$.emit(true);
-    const datos = { 'IDEmpresa': this.IDEmpresa, fecha: this.Tiempo, tipo: this.Como };
-    this.http.ngGetImagen(datos)
+    const datos = {fecha: this.Tiempo, tipo: this.Como };
+    this.http.ngGetImagen(this.Tiempo,this.Como)
       .subscribe(data => {
-        console.log(data);
-        const cade = '('+data['response']['result']['imagen']['Periodo'][0] +'-'+ data['response']['result']['imagen']['Periodo'][1]+')';
-        this.http_service.periodoImagen$.emit(cade);
-        this.text_leyenda = data['response']['result']['imagen']['text'];
-        this.lineChartDataCalidad[1]['data'] = data['response']['result']['imagen']['evolucion_calidad']['data']['data_actual'];
-        this.lineChartDataCalidad[0]['data'] = data['response']['result']['imagen']['evolucion_calidad']['data']['data_pasado'];
+        
+       
+        this.http_service.periodoImagen$.emit( data['periodo']);
+        this.text_leyenda = data['periodo'];
+        this.numero_total_calificaciones = data['numeroCalificaciones'];
 
-        this.lineChartDataCalidad[1]['label'] = data['response']['result']['imagen']['PeriodoG2'][0];
-        this.lineChartDataCalidad[0]['label'] = data['response']['result']['imagen']['PeriodoG2'][1];
+        this.lineChartLabels = data['labelGraficos'];
 
-        this.lineChartDataCumplimiento[1]['data'] = data['response']['result']['imagen']['evolucion_cumplimiento']['data']['data_actual'];
-        this.lineChartDataCumplimiento[0]['data'] = data['response']['result']['imagen']['evolucion_cumplimiento']['data']['data_pasado'];
+        this.lineChartData[1]['data'] = data['dataGraphicNumeroEvolucion']['data_actual'];
+        this.lineChartData[0]['data'] = data['dataGraphicNumeroEvolucion']['data_pasado'];
 
-        this.lineChartDataCumplimiento[1]['label'] = data['response']['result']['imagen']['PeriodoG2'][0];
-        this.lineChartDataCumplimiento[0]['label'] = data['response']['result']['imagen']['PeriodoG2'][1];
+        this.lineChartData[1]['label'] =data['dataGraphicNumeroEvolucion']['Periodo_Actual'];
+        this.lineChartData[0]['label'] = data['dataGraphicNumeroEvolucion']['Periodo_Pasado'];
 
-        this.lineChartDataSanidad [1]['data'] = data['response']['result']['imagen']['evolucion_sanidad']['data']['data_actual'];
-        this.lineChartDataSanidad[0]['data'] = data['response']['result']['imagen']['evolucion_sanidad']['data']['data_pasado'];
+        
+        this.calificacion_media_general = data['MediaGeneral'];
+        this.calificacion_media_calidad = data['MediaCalidad'];
+        this.calificacion_media_cumplimiento = data['MediaCumplimiento'];
+        this.calificacion_media_sanidad = data['MediaSanidad'];
+        this.calificacion_media_socioambiental = data['MediaSocioambiental'];
 
-        this.lineChartDataSanidad[1]['label'] = data['response']['result']['imagen']['PeriodoG2'][0];
-        this.lineChartDataSanidad[0]['label'] = data['response']['result']['imagen']['PeriodoG2'][1];
+        this.lineChartDataCalidad[1]['data'] = data['dataGraphicMediaEvolucionCaldiad']['data_actual'];
+        this.lineChartDataCalidad[0]['data'] = data['dataGraphicMediaEvolucionCaldiad']['data_pasado'];
+        this.lineChartDataCalidad[1]['label'] = data['dataGraphicMediaEvolucionCaldiad']['Periodo_Actual'];
+        this.lineChartDataCalidad[0]['label'] = data['dataGraphicMediaEvolucionCaldiad']['Periodo_Pasado'];
 
-        this.lineChartDataSocioambiental[1]['label'] = data['response']['result']['imagen']['PeriodoG2'][0];
-        this.lineChartDataSocioambiental[0]['label'] = data['response']['result']['imagen']['PeriodoG2'][1];
+        this.lineChartDataCumplimiento[1]['data'] = data['dataGraphicMediaEvolucioncumplimiento']['data_actual'];
+        this.lineChartDataCumplimiento[0]['data'] = data['dataGraphicMediaEvolucioncumplimiento']['data_pasado'];
+
+        this.lineChartDataCumplimiento[1]['label'] = data['dataGraphicMediaEvolucioncumplimiento']['Periodo_Actual'];
+        this.lineChartDataCumplimiento[0]['label'] = data['dataGraphicMediaEvolucioncumplimiento']['Periodo_Pasado'];
+
+
+      
+
+        this.lineChartDataSanidad [1]['data'] =data['dataGraphicMediaEvolucionSanidad']['data_actual'];
+        this.lineChartDataSanidad[0]['data'] = data['dataGraphicMediaEvolucionSanidad']['data_pasado'];
+
+        this.lineChartDataSanidad[1]['label'] = data['dataGraphicMediaEvolucionSanidad']['Periodo_Actual'];
+        this.lineChartDataSanidad[0]['label'] = data['dataGraphicMediaEvolucionSanidad']['Periodo_Pasado'];
+
+        this.lineChartDataSocioambiental[1]['label'] = data['dataGraphicMediaEvolucionSocioambiental']['Periodo_Actual'];
+        this.lineChartDataSocioambiental[0]['label'] =  data['dataGraphicMediaEvolucionSocioambiental']['Periodo_Pasado'];
        
 
-        this.lineChartDataSocioambiental[1]['data'] = data['response']['result']['imagen']['evolucion_socioambiental']['data']['data_actual'];
-        this.lineChartDataSocioambiental[0]['data'] = data['response']['result']['imagen']['evolucion_socioambiental']['data']['data_pasado'];
-
-       
-
-        this.lineChartDataGeneral[1]['data'] = data['response']['result']['imagen']['evolucionmedia']['data']['data_actual'];
-        this.lineChartDataGeneral[0]['data'] = data['response']['result']['imagen']['evolucionmedia']['data']['data_pasado'];
-
-        this.lineChartDataGeneral[1]['label'] = data['response']['result']['imagen']['PeriodoG2'][0];
-        this.lineChartDataGeneral[0]['label'] = data['response']['result']['imagen']['PeriodoG2'][1];
-
-       
-
-        this.lineChartData[1]['data'] = data['response']['result']['imagen']['serievolucion']['data']['data_actual'];
-        this.lineChartData[0]['data'] = data['response']['result']['imagen']['serievolucion']['data']['data_pasado'];
-
-        this.lineChartData[1]['label'] = data['response']['result']['imagen']['PeriodoG2'][0];
-        this.lineChartData[0]['label'] = data['response']['result']['imagen']['PeriodoG2'][1];
-
-
-        this.lineChartLabels = data['response']['result']['imagen']['serievolucion']['label'];
-
+        this.lineChartDataSocioambiental[1]['data'] = data['dataGraphicMediaEvolucionSocioambiental']['data_actual'];
+        this.lineChartDataSocioambiental[0]['data'] = data['dataGraphicMediaEvolucionSocioambiental']['data_pasado'];
+        
+        this.lineChartDataGeneral[1]['data'] = data['dataGraphicMediaEvolucionGeneral']['data_actual'];
+        this.lineChartDataGeneral[0]['data'] = data['dataGraphicMediaEvolucionGeneral']['data_pasado'];
+        this.lineChartDataGeneral[1]['label'] = data['dataGraphicMediaEvolucionGeneral']['Periodo_Actual'];
+        this.lineChartDataGeneral[0]['label'] = data['dataGraphicMediaEvolucionGeneral']['Periodo_Pasado'];
+      
         if (this.Como === 'proveedor') {
-          this.lineChartDataOferta[1]['data'] = data['response']['result']['imagen']['evolucion_oferta']['data']['data_actual'];
-          this.lineChartDataOferta[0]['data'] = data['response']['result']['imagen']['evolucion_oferta']['data']['data_pasado'];
-          this.lineChartDataOferta[1]['label'] = data['response']['result']['imagen']['PeriodoG2'][0];
-          this.lineChartDataOferta[0]['label'] = data['response']['result']['imagen']['PeriodoG2'][1];
-          if (data['response']['result']['imagen']['Oferta']['media'] !== null) {
-            this.calificacion_media_oferta = data['response']['result']['imagen']['Oferta']['media'];
-          }
+          this.lineChartDataOferta[1]['data'] =  data['dataGraphicMediaEvolucionSanidad']['data_actual'];
+          this.lineChartDataOferta[0]['data'] = data['dataGraphicMediaEvolucionSanidad']['data_pasado'];
+          this.lineChartDataOferta[1]['label'] = data['dataGraphicMediaEvolucioncumplimiento']['Periodo_Actual'];
+          this.lineChartDataOferta[0]['label'] = data['dataGraphicMediaEvolucioncumplimiento']['Periodo_Pasado'];
+          this.calificacion_media_oferta = data['MediaOferta'];
+          
         }
-        this.numero_total_calificaciones = data['response']['result']['imagen']['totalCalif'];
-        this.calificacion_media_general = data['response']['result']['imagen']['Media'];
-        this.calificacion_media_calidad = data['response']['result']['imagen']['Calidad']['media'];
-        this.calificacion_media_cumplimiento = data['response']['result']['imagen']['Cumplimiento']['media'];
+        this.http_service.preloadEvent$.emit(false)
 
       }, (error: HttpErrorResponse) => {
         this.http_service.preloadEvent$.emit(false);
         alert('algo paso ' + error.message + ' Status: ' + error.status);
         console.log(error);
-      }, () => this.http_service.preloadEvent$.emit(false));
+      });
    }
   ngOnInit(): void {
     

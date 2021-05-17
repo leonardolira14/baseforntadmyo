@@ -1,9 +1,10 @@
 export class Categoria {
-    public GraphisRs: object;
-    public evolucion: object;
     public IDPregunta: string;
     public Forma: string;
     public Pregunta: string;
+
+    public GraphisRs: object;
+    public evolucion: object;
     public TotalCalificaciones: number;
     public Media: number;
 }

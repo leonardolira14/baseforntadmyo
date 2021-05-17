@@ -33,8 +33,7 @@ export class CardcertificationComponent implements OnInit {
   ngGetall() {
     this.http_service.preloadEvent$.emit(true);
     this.ListCertifications.clearlist();
-    const data = { IDEmpresa: this.data_company['IDEmpresa'], Token: this.Token };
-    this.http.service_getall(data)
+    this.http.service_getall()
       .subscribe(data => {
         data['result'].forEach(item => {
           this.ListCertifications.additem(item);

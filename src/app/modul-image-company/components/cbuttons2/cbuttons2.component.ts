@@ -26,6 +26,9 @@ export class Cbuttons2Component implements OnInit {
     private rutaActiva: ActivatedRoute,
     private cookieservices: Serviecokie
   ) {
+    this.http_services.periodoImagen$.subscribe(data=>{
+      this.text = data;
+    })
     this.token = this.cookieservices.getCokie('token');
     this.data_company = this.cookieservices.getCokie('data_company');
     this.rutaActiva.params.subscribe(data => {

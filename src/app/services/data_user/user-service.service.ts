@@ -12,45 +12,48 @@ export class UserServiceService {
   public url_serve = environment.url_serve;
   public datos_usuario: any = [];
   public headers: any;
+  public token;
+  public option;
   NewMarca$ = new EventEmitter<boolean>();
   dataMarca$ = new EventEmitter<any>();
   constructor(
     private http: HttpClient,
     private cookie_service: Serviecokie
   ) {
-    if (this.cookie_service.getCokie('data_user')) {
-      this.datos_usuario = this.cookie_service.getCokie('data_user');
-      this.headers = new HttpHeaders({
-        'Authorization': this.datos_usuario['token']
-      });
+    if (this.cookie_service.getCokie('token')) {
+      this.token = this.cookie_service.getCokie('token');
+      this.option = {
+          headers: new HttpHeaders().append('x-token',this.token)
+      }
     }
   }
-  service_getall(datos) {
-    return this.http.post(this.url_serve + 'getalluser', datos)
+  service_getall() {
+    return this.http.get(this.url_serve + '/api/usuarios/getall', this.option)
       .pipe(map(data => data));
   }
   // funcion para agregar nueva certificacion
   ngadd(datos) {
-    return this.http.post(this.url_serve + 'saveususer', datos)
+    return this.http.post(this.url_serve + '/api/usuarios/', datos,this.option)
       .pipe(map(data => data));
   }
 
   // funcion para actualizar una certificacion
-  ngUpdate(datos) {
-    return this.http.post(this.url_serve + 'usuarioupdate', datos)
+  ngUpdate(datos,data) {
+    return this.http.put(this.url_serve + '/api/usuarios/'+datos,data,this.option)
       .pipe(map(data => data));
   }
 
   ngDelete(datos) {
-    return this.http.post(this.url_serve + 'updatestatususer', datos)
+    return this.http.delete(this.url_serve + '/api/usuarios/'+datos, this.option)
       .pipe(map(data => data));
   }
   ngMaster(datos) {
-    return this.http.post(this.url_serve + 'master', datos)
+    return this.http.get(this.url_serve + '/api/usuarios/master/'+datos, this.option)
       .pipe(map(data => data));
   }
-  ngUpdatePass(datos) {
-    return this.http.post(this.url_serve + 'updateclave', datos)
+  ngUpdatePass(data) {
+    console.log(data);
+    return this.http.post(this.url_serve + '/api/usuarios/udpatepassword/',data, this.option)
       .pipe(map(data => data));
   }
 

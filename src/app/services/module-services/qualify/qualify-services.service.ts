@@ -9,30 +9,31 @@ import { Serviecokie } from '../../../library/servercokie';
 })
 export class QualifyServicesService {
   public url_serve = environment.url_serve;
-  public datos_usuario: any = [];
+  public token;
+  public option;
   public headers: any;
   FormCuestionario$ = new EventEmitter<any>();
   constructor(
     private http: HttpClient,
     private cookie_service: Serviecokie
   ) {
-    if (this.cookie_service.getCokie('data_user')) {
-      this.datos_usuario = this.cookie_service.getCokie('data_user');
-      this.headers = new HttpHeaders({
-        'Authorization': this.datos_usuario['token']
-      });
+    if (this.cookie_service.getCokie('token')) {
+      this.token = this.cookie_service.getCokie('token');
+     this.option = {
+        headers: new HttpHeaders().append('x-token',this.token)
+     }
     }
   }
 
   // funcion para obtener las empresas
 
   ngGetdata() {
-    return this.http.get(this.url_serve + 'gedataqualify')
+    return this.http.get(this.url_serve + '/api/calificaciones/getdataForm',this.option)
       .pipe(map(data => data));
   }
 
   ngGetDataQualify(datos) {
-    return this.http.post(this.url_serve + 'gedataqualifyC', datos)
+    return this.http.get(this.url_serve + '/api/calificaciones/getdataCompany/'+datos, this.option)
       .pipe(map(data => data));
   }
   getsubsector(sector) {
@@ -47,13 +48,13 @@ export class QualifyServicesService {
 
   // function para obtener el cuestionario
   ngGetCuestionario(datos) {
-    return this.http.post(this.url_serve + 'getcuestionario', datos)
+    return this.http.post(this.url_serve + '/api/calificaciones/getcuestionario', datos,this.option)
       .pipe(map(data => data));
   }
 
   // funcion para califacar una empresa
   ngcalifcar(datos) {
-    return this.http.post(this.url_serve + 'calificar', datos)
+    return this.http.post(this.url_serve + '/api/calificaciones/add', datos,this.option)
       .pipe(map(data => data));
   }
 }

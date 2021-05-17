@@ -5,6 +5,7 @@ import { environment } from '../../../../environments/environment';
 import { HttpErrorResponse } from '@angular/common/http';
 import { EventsServiceService } from '../../../services/events-service.service';
 import { MarcasServiceService } from '../../../services/data_company/marcas-service.service';
+import {DomSanitizer} from '@angular/platform-browser';
 @Component({
   selector: 'app-marcas',
   templateUrl: './marcas.component.html',
@@ -18,7 +19,8 @@ export class MarcasComponent implements OnInit {
     private http_services: EventsServiceService,
     private http: MarcasServiceService,
     private service_cokie: Serviecokie,
-    private rutaactiva: ActivatedRoute
+    private rutaactiva: ActivatedRoute,
+    private DomSanitizer : DomSanitizer
   ) {
     this.rutaactiva.params.subscribe(data => {
       this.idEmpresa = data['empresa'];
@@ -31,10 +33,10 @@ export class MarcasComponent implements OnInit {
   }
   ngGetlist() {
     this.http_services.preloadEvent$.emit(true);
-    const data = { IDEmpresa: this.idEmpresa , token: this.token };
-    this.http.service_getall(data)
+   
+    this.http.service_getall()
       .subscribe(data => {
-        this.listadomarcas = data['Marcas'];
+        this.listadomarcas = data['data'];
 
       }, (error: HttpErrorResponse) => {
         this.http_services.preloadEvent$.emit(false);
@@ -44,12 +46,10 @@ export class MarcasComponent implements OnInit {
       }, () => this.http_services.preloadEvent$.emit(false));
   }
   dameLogo(logo_) {
-    const base_logo = '/assets/img/foto-no-disponible.jpg';
-    const logo = environment.url_serve + 'assets/img/logosmarcas/' + logo_;
     if (logo_ === '' || logo_ === null || logo_ === 'null') {
-      return base_logo;
+      return '/assets/img/foto-no-disponible.jpg';
     } else {
-      return logo;
+      return this.DomSanitizer.bypassSecurityTrustUrl(logo_);
     }
   }
 }

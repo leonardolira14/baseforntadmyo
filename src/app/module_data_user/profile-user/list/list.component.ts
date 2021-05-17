@@ -5,7 +5,8 @@ import { List } from '../../class/List-class';
 import { environment } from '../../../../environments/environment.prod';
 import { EventsServiceService } from '../../../services/events-service.service';
 import { HttpErrorResponse } from '@angular/common/http';
-
+import {DomSanitizer} from '@angular/platform-browser';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
@@ -22,6 +23,7 @@ export class ListComponent implements OnInit {
     private http_services: EventsServiceService,
     public http: UserServiceService,
     private serviceCoooki: Serviecokie,
+    private DomSanitizer : DomSanitizer
   ) {
     this.data_user = this.serviceCoooki.getCokie('data_user');
     this.http.NewMarca$.subscribe(data => {
@@ -36,28 +38,28 @@ export class ListComponent implements OnInit {
   }
   ngGetall() {
     this.List_usuarios.clearlist();
-    const datos = { IDEmpresa: this.data_company['IDEmpresa'], token: this.token };
-    this.http.service_getall(datos)
+    
+    this.http.service_getall()
       .subscribe(data => {
-        data['result'].forEach(item => {
-          this.List_usuarios.additem(item['IDUsuario'], item['Nombre'], item['Apellidos'], item['Visible'], item['Tipo_Usuario'], item['IDEmpresa'], item['Correo'], item['Imagen'], item['Status'], item['Puesto']);
+        
+        data['data'].forEach(item => {
+          this.List_usuarios.additem(item['id'], item['Nombre'], item['Apellidos'], item['Visible'], item['Tipo_Usuario'], item['Correo'], item['Logo'], item['Status'], item['Puesto']);
         });
         this.lista_usuarios = this.List_usuarios.getLista();
-        console.log(data);
+      
       }, (error: HttpErrorResponse) => {
         this.http_services.preloadEvent$.emit(false);
-        alert('algo paso ' + error.message + ' Status: ' + error.status);
+        Swal.fire('Error','algo paso ' + error.message + ' Status: ' + error.status,'error');
         console.log(error);
       }, () => this.http_services.preloadEvent$.emit(false));
   }
 
   dameLogo(logo_) {
-    const base_logo = '/assets/img/foto-no-disponible.jpg';
-    const logo = environment.url_serve + 'assets/img/logosUsuarios/' + logo_;
-    if (logo_ === '' || logo_ === null || logo_ === 'null') {
-      return base_logo;
+   
+    if (logo_ === '' || logo_ === null || logo_ === undefined) {
+      return '/assets/img/foto-no-disponible.jpg';
     } else {
-      return logo;
+      return this.DomSanitizer.bypassSecurityTrustUrl(logo_);
     }
   }
 
@@ -66,51 +68,58 @@ export class ListComponent implements OnInit {
   }
 
   ngEdit(index) {
-    if (this.data_user['Tipo_Usuario'] === '') {
-      alert('Solo el usuario Master puede hacer esta accion.');
-      return;
-    }
+   
     const data = this.List_usuarios.GetMarca(index);
     this.http.dataMarca$.emit(data);
   }
-  ngDelete(index, status) {
-    if (this.data_user['Tipo_Usuario'] === '') {
-      alert('Solo el usuario Master puede hacer esta accion.');
-      return;
-    }
-    if (status === '1') {
-      status = '0';
-    } else {
-      status = '1';
-    }
-    const datos = { IDEmpresa: this.data_company['IDEmpresa'], token: this.token, IDUsuario: index, Status: status };
-    this.http.ngDelete(datos)
+  ngDelete(index) {
+    
+    
+   
+    this.http.ngDelete(index)
       .subscribe(data => {
         console.log(data);
+        Swal.fire("Exito",'El usario se dio de baja, ya no podra ingresar a admyo.com, las calificaciones que realizo seguiran apareciondo en el sistema','success');
         this.ngGetall();
       }, (error: HttpErrorResponse) => {
         this.http_services.preloadEvent$.emit(false);
-        alert('algo paso ' + error.message + ' Status: ' + error.status);
+        Swal.fire('Error','algo paso ' + error.message + ' Status: ' + error.status,'error');
         console.log(error);
       }, () => this.http_services.preloadEvent$.emit(false));
   }
   ngMaster(index) {
-    if (this.data_user['Tipo_Usuario']==='') {
-      alert('Solo el usuario Master puede hacer esta accion.');
-      return;
-    }
-    const opcion = confirm('Esta seguro de cambiar el usuario master');
-    if (!opcion) {
-      return;
-    }
-    const datos = { IDEmpresa: this.data_company['IDEmpresa'], token: this.token, IDUsuario: index };
-    this.http.ngMaster(datos)
-      .subscribe(data => {
-        this.ngGetall();
-      }, (error: HttpErrorResponse) => {
-        this.http_services.preloadEvent$.emit(false);
-        alert('algo paso ' + error.message + ' Status: ' + error.status);
-        console.log(error);
-      }, () => this.http_services.preloadEvent$.emit(false));
+    Swal.fire({
+      title: 'Do you want to save the changes?',
+      icon: 'info',
+      showDenyButton: true,
+      showCancelButton: false,
+      confirmButtonText: `Aceptar`,
+      denyButtonText: `Cancelar`,
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        this.http.ngMaster(index)
+        .subscribe(data => {
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Usuario master actualizado',
+            showConfirmButton: false,
+            timer: 1500
+          })
+         
+          this.ngGetall();
+        }, (error: HttpErrorResponse) => {
+          this.http_services.preloadEvent$.emit(false);
+          alert('algo paso ' + error.message + ' Status: ' + error.status);
+          console.log(error);
+        }, () => this.http_services.preloadEvent$.emit(false));
+      } 
+    })
+
+
+  
+   
+    
   }
 }

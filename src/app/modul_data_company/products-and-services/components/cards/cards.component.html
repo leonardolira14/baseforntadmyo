@@ -30,7 +30,7 @@
                 <div class="card container-fluid">
                     <div class="row">
                         <div class="col-6">
-                            <img [src]="dameLogo(item.Foto)" class="logo-marca" alt="">
+                            <img [src]="dameLogo(item.Logo)" class="logo-marca" alt="">
                         </div>
                         <div class="col-6">
                             <div class="row">
@@ -42,13 +42,13 @@
                                     <div class="fecha">{{item.Descripcion}}</div>
                                 </div>
                                 <div class="col-12 btn-rigth m-t-40">
-                                    <span (click)="ngEdit(item.IDProducto)" class="bt-rodn mr-2">
+                                    <span (click)="ngEdit(item.id)" class="bt-rodn mr-2">
                                         <span class="material-icons">
                                             edit
                                         </span>
                                     </span>
                                     <span class="bt-rodn">
-                                        <span (click)="ngDelete(item.IDProducto)" class="material-icons">
+                                        <span (click)="ngDelete(item.id)" class="material-icons">
                                             delete
                                         </span>
                                     </span>

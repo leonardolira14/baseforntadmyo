@@ -10,24 +10,29 @@ import { Serviecokie } from '../library/servercokie';
 })
 export class ServiceDataCompanyService {
   public url_serve = environment.url_serve;
-  public datos_usuario: any = [];
+  public token;
+  public option;
   public headers: any;
   constructor(
     private http: HttpClient,
     private cookie_service: CookieService,
     private serviceCokie: Serviecokie
   ) {
-    if (this.serviceCokie.getCokie('data_company')) {
-      this.datos_usuario = this.serviceCokie.getCokie('data_company');
-      console.log(this.datos_usuario);
-      this.headers = new HttpHeaders({
-        'x-token': this.datos_usuario['token']
-      });
+    if (this.serviceCokie.getCokie('token')) {
+     this.token = this.serviceCokie.getCokie('token');
+     this.option = {
+        headers: new HttpHeaders().append('x-token',this.token)
+     }
     }
    }
-
+  
   service_login(datos) {
     return this.http.post(this.url_serve + '/api/auth/login', datos);
+  }
+  getdatacompany(){
+    console.log(this.option);
+    return this.http.get(this.url_serve + '/api/company/getdata',this.option);
+    
   }
 
   // funcion para obtener los datos de la empresa
@@ -38,19 +43,20 @@ export class ServiceDataCompanyService {
 
   // funcion para actualizar los datos de una empresa
   updateempresa(empresa) {
-    return this.http.post(this.url_serve + 'updateempresa', empresa)
+    return this.http.put(this.url_serve + '/api/company/updatedate', empresa,this.option)
       .pipe(map(data => data));
   }
 
   // actualizar logo
   updatelogoempresa(empresa) {
-    return this.http.post(this.url_serve + 'updatelogoempresa', empresa)
+    return this.http.put(this.url_serve + '/api/company/updatelogo', empresa,this.option)
       .pipe(map(data => data));
   }
 
   // funcion para registar una empresa
   register(datos) {
-    return this.http.post(this.url_serve + 'saveregister', datos)
+   
+    return this.http.post(this.url_serve + '/api/company/add', datos,this.option)
       .pipe(map(data => data));
   }
 
@@ -63,5 +69,9 @@ export class ServiceDataCompanyService {
   obtenerprecios() {
     return this.http.get('assets/json/precios.json')
       .pipe(map(data => data));
+  }
+  recuperar(data){
+    return this.http.post(this.url_serve + '/api/auth/recupera', data)
+    .pipe(map(data => data));
   }
 }

@@ -28,25 +28,25 @@
         <form [formGroup]='form_certification' (submit)='ngAddCertificacion()' class="row m-b-60">
             <div class="form-group col-6">
                 <label for="razon_social">Nombre de certificación <span class="text-danger">*</span></label>            
-                <input [ngClass]="{'is-invalid': subttmited && from_get_data.Norma.errors}" formControlName='Norma' type="text" class="form-control ">
-                <small *ngIf='subttmited &&  from_get_data.Norma.errors' class="text-red-t-danger">Este campo es
+                <input [ngClass]="{'is-invalid': subttmited && from_get_data.Certificacion.errors}" formControlName='Certificacion' type="text" class="form-control ">
+                <small *ngIf='subttmited &&  from_get_data.Certificacion.errors' class="text-red-t-danger">Este campo es
                     necesario</small>
             </div>
             <div class="form-group col-3">
                 <label for="razon_social">Fecha de certificación <span class="text-danger">*</span></label>
-                <input [ngClass]="{'is-invalid': subttmited &&  from_get_data.Fecha.errors}" formControlName='Fecha' class="form-control" (click)="d.toggle()" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker #d="ngbDatepicker">
-                <small *ngIf='subttmited &&  from_get_data.Fecha.errors' class="text-red-t-danger">Este campo es
+                <input [ngClass]="{'is-invalid': subttmited &&  from_get_data.FechaCertificacion.errors}" formControlName='FechaCertificacion' class="form-control" (click)="d.toggle()" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker #d="ngbDatepicker">
+                <small *ngIf='subttmited &&  from_get_data.FechaCertificacion.errors' class="text-red-t-danger">Este campo es
                     necesario</small>
             </div>
             <div class="form-group col-3">
                 <label for="razon_social">Tipo de certificación <span class="text-danger">*</span></label>
-                <select (change)='ngChangeCertificaciones($event.target.value)' class="form-control" formControlName='Tipo'
-                    [ngClass]="{'is-invalid': subttmited &&  from_get_data.Tipo.errors}">
+                <select (change)='ngChangeCertificaciones($event.target.value)' class="form-control" formControlName='TipoCertificacion'
+                    [ngClass]="{'is-invalid': subttmited &&  from_get_data.TipoCertificacion.errors}">
                     <option class="Calidad">Calidad</option>
                     <option class="Fiscal">Fiscal</option>
             
                 </select>
-                <small *ngIf='subttmited &&  from_get_data.Tipo.errors' class="text-red-t-danger">Este campo es
+                <small *ngIf='subttmited &&  from_get_data.TipoCertificacion.errors' class="text-red-t-danger">Este campo es
                     necesario</small>
             </div>
             <div class="form-group" [ngClass]="{'col-6': !desaparece,'col-3': desaparece}" >
@@ -70,7 +70,7 @@
                     <option *ngFor='let i of tem_certifi' value="{{i}}">{{i}}</option>
                     
                 </select>
-                <small *ngIf='subttmited &&  from_get_data.Tipo.errors' class="text-red-t-danger">Este campo es
+                <small *ngIf='subttmited &&  from_get_data.Clase.errors' class="text-red-t-danger">Este campo es
                     necesario</small>
             </div>
             <div class="form-group" [ngClass]="{'col-6': !desaparece,'col-3': desaparece}">

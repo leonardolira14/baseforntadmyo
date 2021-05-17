@@ -5,6 +5,8 @@ import { environment } from '../../../../../environments/environment';
 import { EventsServiceService } from '../../../../services/events-service.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Serviecokie } from '../../../../library/servercokie';
+import {DomSanitizer} from '@angular/platform-browser';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-cards',
   templateUrl: './cards.component.html',
@@ -21,7 +23,8 @@ export class CardsComponent implements OnInit {
   constructor(
     private http_services: EventsServiceService,
     private http: AsociacionServiceService,
-    private service_cookie: Serviecokie
+    private service_cookie: Serviecokie,
+    private DomSanitizer : DomSanitizer
   ) {
     this.http_services.preloadEvent$.emit(true);
     this.data_company = this.service_cookie.getCokie('data_company');
@@ -36,17 +39,18 @@ export class CardsComponent implements OnInit {
     this.nggetall();
   }
   nggetall() {
-    this.http_services.preloadEvent$.emit(true);
-    const datos = { IDEmpresa: this.data_company['IDEmpresa'], token: this.token };
-    this.http.service_getall(datos)
+    
+    
+    this.http.service_getall()
       .subscribe(data => {
+        console.log(data);
         this.List_asociaciones.clearlist();
-        const listas = { Estados: data['response']['estados'], Certificados: data['response']['data'] };
-        console.log(listas);
-        this.http.ListCertifications$.emit(listas);
-        data['response']['result'].forEach(element => {
-          this.List_asociaciones.additem(element);
-        });
+        
+       
+        //this.http.ListCertifications$.emit(listas);
+        data['data'].forEach(element => {
+         this.List_asociaciones.additem(element);
+       });
         this.Lista_asociaciones = this.List_asociaciones.getLista();
         console.log(data);
       }, (error: HttpErrorResponse) => {
@@ -60,18 +64,24 @@ export class CardsComponent implements OnInit {
   }
   buscar() {
     this.Lista_asociaciones = this.List_asociaciones.busquedapalabra(this.palabra);
+  } 
+  dameLogo(logo_) {
+    
+    if (logo_ === '' || logo_ === null || logo_ === undefined) {
+      return '/assets/img/foto-no-disponible.jpg';
+    } else {
+      return this.DomSanitizer.bypassSecurityTrustUrl(logo_);
+    }
   }
   delete(index) {
-    const datos = { IDEmpresa: this.data_company['IDEmpresa'], token: this.token, IDAsocia: index };
     this.http_services.preloadEvent$.emit(true);
-    this.http.ngDelete(datos)
+    this.http.ngDelete(index)
       .subscribe(data => {
-        alert('Asociacion Eliminada');
+        Swal.fire('Exito','Asociacion Eliminada','success');
         this.nggetall();
-        console.log(data);
       }, (error: HttpErrorResponse) => {
         this.http_services.preloadEvent$.emit(false);
-        alert('algo paso ' + error.message + ' Status: ' + error.status);
+        Swal.fire('Error','algo paso ' + error.message + ' Status: ' + error.status,'error');
         console.log(error);
         console.log(error.error, error.status);
       }, () => {

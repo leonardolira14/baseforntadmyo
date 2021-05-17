@@ -34,6 +34,7 @@ export class GraficosdetailsComponent implements OnInit {
   form_filtro: FormGroup;
   como: string;
   tiempo: string;
+  giro='5fe3d4fe2751491a0ec444eb';
   Categorias = {
     Calidad: true,
     Cumplimiento: true,
@@ -144,37 +145,36 @@ export class GraficosdetailsComponent implements OnInit {
     return this.form_filtro.controls;
   }
   ngOnInit(): void {
-    const array = {
-      IDEmpresa: this.data_company['IDEmpresa'],
-      fecha: this.tiempo,
-      tipo: this.como
-    };
+   
     this.htt_service.preloadEvent$.emit(true);
-    this.http.ngDetalles(array)
+
+    this.http.ngDetalles(this.tiempo,this.como,this.giro)
       .subscribe(data => {
         console.log(data);
+        this.text = data['periodo'];
+        this.MediaGeneral = data['MediaGeneral'];
+    
         this.list_Calidad.limpiarlista();
         this.list_Complimineto.limpiarlista();
         this.list_Oferta.limpiarlista();
         this.list_Sanidad.limpiarlista();
         this.list_Sociambiental.limpiarlista();
-        this.text = data['response']['result']['imagen']['Periodo'];
-        this.MediaGeneral = data['response']['result']['imagen']['MediaGenral'];
-        data['response']['result']['imagen']['listCalidad'].forEach(item => {
+       
+        data['listCalidad'].forEach(item => {
           this.list_Calidad.add_medicamento(item);
         });
-        data['response']['result']['imagen']['listCumplimiento'].forEach(item => {
+        data['listCumplimiento'].forEach(item => {
           this.list_Complimineto.add_medicamento(item);
         });
-        data['response']['result']['imagen']['listSanidad'].forEach(item => {
+        data['listSanidad'].forEach(item => {
           this.list_Sanidad.add_medicamento(item);
         });
-        data['response']['result']['imagen']['listSociambiental'].forEach(item => {
+        data['listSociambiental'].forEach(item => {
           this.list_Sociambiental.add_medicamento(item);
         });
 
         if (this.como === 'proveedor') {
-          data['response']['result']['imagen']['listOferta'].forEach(item => {
+          data['listOferta'].forEach(item => {
             this.list_Oferta.add_medicamento(item);
           });
           this.ListOferta = this.list_Oferta.getlista();
@@ -183,7 +183,7 @@ export class GraficosdetailsComponent implements OnInit {
         this.ListCumplimiento = this.list_Complimineto.getlista();
         this.ListSanidad = this.list_Sociambiental.getlista();
         this.ListSociambiental = this.list_Sociambiental.getlista();
-        this.filter();
+        //this.filter();
       }, error => {
           this.htt_service.preloadEvent$.emit(false);
           console.log(error);

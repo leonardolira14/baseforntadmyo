@@ -5,6 +5,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Serviecokie } from '../../../../library/servercokie';
 import { EventsServiceService } from '../../../../services/events-service.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-ccertifications',
   templateUrl: './ccertifications.component.html',
@@ -21,6 +22,7 @@ export class CcertificationsComponent implements OnInit {
   nombreFile: any;
   data_company: [];
   data_user: [];
+  temp_id = '';
   LisCertificaciones = {
     Calidad: [
       'ISO', 'Q', 'PESC', 'FSC', 'EMAS', 'OHSAS', 'IFS', 'FSSC', 'BRC', 'HACCP', 'GLOBALGAP',
@@ -29,7 +31,7 @@ export class CcertificationsComponent implements OnInit {
     Fiscal: [
     ]
   };
-  tem_certifi = [];
+  tem_certifi = ['Fiscal','Calidad'];
   constructor(
     private http_service: EventsServiceService,
     private http: CertificationsServiceService,
@@ -42,18 +44,15 @@ export class CcertificationsComponent implements OnInit {
     this.data_user = this.service_cookie.getCokie('data_user');
     this.data_company = this.service_cookie.getCokie('data_company');
     this.form_certification = this.formBuild.group({
-      Norma: ['', Validators.required],
-      Fecha: ['', Validators.required],
+      Certificacion: ['', Validators.required],
+      FechaCertificacion: ['', Validators.required],
       Calificacion: [''],
       FechaVencimiento: [''],
-      Tipo: ['', Validators.required],
+      TipoCertificacion: ['', Validators.required],
       Clase: [''],
       EmpresaCertificadora: ['', Validators.required],
       Archivo: ['', Validators.required],
       Filey: [''],
-      IDEmpresa: [this.data_company['IDEmpresa']],
-      token: [this.service_cookie.getCokie('token')],
-      IDCertificacion: ['']
     });
    }
 
@@ -86,47 +85,63 @@ export class CcertificationsComponent implements OnInit {
 
       const formdata = new FormData();
       formdata.append('Logo', this.filemarcalogo);
-      formdata.append('Norma', this.form_certification.controls['Norma'].value);
-
+      formdata.append('Certificacion', this.form_certification.controls['Certificacion'].value);
       formdata.append('Calificacion', this.form_certification.controls['Calificacion'].value);
       formdata.append('Archivo', this.form_certification.controls['Archivo'].value);
       formdata.append('Clase', this.form_certification.controls['Clase'].value);
-      formdata.append('Tipo', this.form_certification.controls['Tipo'].value);
+      formdata.append('TipoCertificacion', this.form_certification.controls['TipoCertificacion'].value);
       formdata.append('EmpresaCertificadora', this.form_certification.controls['EmpresaCertificadora'].value);
-      formdata.append('IDEmpresa', this.form_certification.controls['IDEmpresa'].value);
-      formdata.append('token', this.form_certification.controls['Norma'].value);
-      formdata.append('IDCertificacion', this.form_certification.controls['IDCertificacion'].value);
       let fech = this.form_certification.controls['FechaVencimiento'].value;
       formdata.append('FechaVencimiento', fech.year + '-' + fech.month + '-' + fech.day);
-      fech = this.form_certification.controls['Fecha'].value;
-      formdata.append('Fecha', fech.year + '-' + fech.month + '-' + fech.day);
+      fech = this.form_certification.controls['FechaCertificacion'].value;
+      formdata.append('FechaCertificacion', fech.year + '-' + fech.month + '-' + fech.day);
 
       this.http_service.preloadEvent$.emit(true);
-      if (this.form_certification.get('IDCertificacion').value === '') {
+      if (this.temp_id === '') {
 
        // si esta vacio quiere decir que lo voy agregar
       this.http.service_add(formdata)
         .subscribe(data => {
-          alert('Certificación Registrada');
+          console.log(data);
+        Swal.fire('Exito','Certificacion registrada','success');
           this.form_certification.reset();
           this.http.NewCertification$.emit(true);
         }, (error: HttpErrorResponse) => {
             this.http_service.preloadEvent$.emit(false);
-            alert('algo paso ' + error.message + ' Status: ' + error.status);
+            if(error.status === 500){
+              Swal.fire('Error','Error favor de contactar al administrador','info');
+            }
+            if(error.status === 404){
+              Swal.fire('Error',error.error.msg,'info');
+            }
+            if(error.status === 400){
+              Swal.fire('Error',error.error.msg,'info');
+            }
+
             console.log(error);
         }, () => {
             this.http_service.preloadEvent$.emit(false);
         });
     } else {
        // ahora lo actualizo
-      this.http.ngUpdateCerticate(formdata)
+      this.http.ngUpdateCerticate(formdata,this.temp_id)
         .subscribe(data => {
-          alert('Certificación Actualizada');
+          console.log(data);
+          Swal.fire('Exito','Datos actualizados','success');
           this.form_certification.reset();
           this.http.NewCertification$.emit(true);
         }, (error: HttpErrorResponse) => {
           this.http_service.preloadEvent$.emit(false);
-          alert('algo paso ' + error.message + ' Status: ' + error.status);
+          if(error.status === 500){
+            Swal.fire('Error','Error favor de contactar al administrador','info');
+          }
+          if(error.status === 404){
+            Swal.fire('Error',error.error.msg,'info');
+          }
+          if(error.status === 400){
+            Swal.fire('Error',error.error.msg,'info');
+          }
+
           console.log(error);
         },  () => {
           this.http_service.preloadEvent$.emit(false);
@@ -159,24 +174,25 @@ export class CcertificationsComponent implements OnInit {
 
   // funcion para obtener los datos de una certificacion
   ngGetCertification(data) {
-    let fe = data['Fecha'].split('-');
+   
+    let fe = data['FechaCertificacion'].split('-');
     // tslint:disable-next-line: radix
     const date = new NgbDate(parseInt(fe[0]), parseInt(fe[1]), parseInt(fe[2]));
 
     fe = data['FechaVencimiento'].split('-');
     // tslint:disable-next-line: radix
     const datev = new NgbDate(parseInt(fe[0]), parseInt(fe[1]), parseInt(fe[2]));
+    this.ngChangeCertificaciones(  data['TipoCertificacion']);
 
-    this.form_certification.controls['Norma'].setValue(data['Norma']);
-    this.form_certification.controls['IDEmpresa'].setValue(data['IDEmpresa']);
-    this.form_certification.controls['Fecha'].setValue(date);
-    this.form_certification.controls['Calificacion'].setValue(data['Calif']);
+    this.form_certification.controls['Certificacion'].setValue(data['Certificacion']);
+    this.temp_id  = data['id'];
+    this.form_certification.controls['FechaCertificacion'].setValue(date);
+    this.form_certification.controls['Calificacion'].setValue(data['Calificacion']);
     this.form_certification.controls['Archivo'].setValue(data['Archivo']);
     this.form_certification.controls['FechaVencimiento'].setValue(datev);
-    this.form_certification.controls['Tipo'].setValue(data['Tipo']);
+    this.form_certification.controls['TipoCertificacion'].setValue(data['TipoCertificacion']);
     this.form_certification.controls['Clase'].setValue(data['Clase']);
     this.form_certification.controls['EmpresaCertificadora'].setValue(data['EmpresaCertificadora']);
-    this.form_certification.controls['IDCertificacion'].setValue(data['IDNorma']);
   }
 
 

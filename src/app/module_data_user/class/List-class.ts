@@ -6,8 +6,8 @@ export class List{
     constructor() {
 
     }
-    public additem(IDUsuario, Nombre, Apellidos, Visible, Tipo_Usuario, IDEmpresa, Correo, Imagen, Status, Puesto) {
-        this.lista.push({ IDUsuario, Nombre, Apellidos, Visible, Tipo_Usuario, IDEmpresa, Correo, Imagen, Status, Puesto });
+    public additem(id, Nombre, Apellidos, Visible, Tipo_Usuario, Correo, Logo, Status, Puesto) {
+        this.lista.push({ id, Nombre, Apellidos, Visible, Tipo_Usuario, Correo, Logo, Status, Puesto });
     }
     public busquedapalabra(palabra) {
         return this.lista.filter(grupo => grupo.Nombre.toLocaleLowerCase().includes(palabra.toLocaleLowerCase()));
@@ -22,7 +22,7 @@ export class List{
         console.log(this.lista, id);
         let datos: any = [];
         this.lista.forEach(norma => {
-            if (id === norma.IDUsuario) {
+            if (id === norma.id) {
                 datos = norma;
                 return;
             }

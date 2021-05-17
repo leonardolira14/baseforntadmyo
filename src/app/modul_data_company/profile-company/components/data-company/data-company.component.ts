@@ -5,6 +5,8 @@ import { ServiceDataCompanyService } from '../../../../services/service-data-com
 import { environment } from '../../../../../environments/environment';
 import { HttpErrorResponse } from '@angular/common/http';
 import { EventsServiceService } from '../../../../services/events-service.service';
+import Swal from 'sweetalert2';
+import {DomSanitizer} from '@angular/platform-browser';
 @Component({
   selector: 'app-data-company',
   templateUrl: './data-company.component.html',
@@ -34,44 +36,52 @@ export class DataCompanyComponent implements OnInit {
     private http_services: EventsServiceService,
     private formBuilder: FormBuilder,
     private service_cokie: Serviecokie,
-    private http: ServiceDataCompanyService
+    private http: ServiceDataCompanyService,
+    private DomSanitizer : DomSanitizer
   ) {
     this.http_services.preloadEvent$.emit(true);
-    this.data_company = this.service_cokie.getCokie('data_company');
-    this.tel1 = JSON.parse(this.data_company['Tel1']);
-    this.tel2 = JSON.parse(this.data_company['Tel2']);
-    this.tel3 = JSON.parse(this.data_company['Tel2']);
+    
     console.log(this.tel1);
     this.form_company = this.formBuilder.group({
-      razon_social: [this.data_company['Razon_Social'], Validators.required],
-      nombre_comercial: [this.data_company['Nombre_Comer'], Validators.required],
-      rfc: [this.data_company['RFC'], Validators.required],
-      tempresa: [this.data_company['TipoEmpresa'], Validators.required],
-      nempleados: [this.data_company['NoEmpleados'], Validators.required],
-      facanual: [this.data_company['FacAnual'], Validators.required],
-      diaspagoempresa: [this.data_company['DiasPago']],
-      perfil: [this.data_company['Perfil'], Validators.required],
-      Sitio_Web: [this.data_company['Sitio_Web'], Validators.required],
-      Estado: [this.data_company['Estado'], Validators.required],
-      Deleg_Mpo: [this.data_company['Deleg_Mpo'], Validators.required],
-      Colonia: [this.data_company['Colonia'], Validators.required],
-      Codigo_Postal: [this.data_company['Codigo_Postal'], Validators.required],
-      Direc_Fiscal: [this.data_company['Direc_Fiscal'], Validators.required],
-      Tel1: new FormGroup({
-        TelP: new FormControl(this.tel1['Tel']),
-        TTelP: new FormControl(this.tel1['Tipo']),
+      RazonSocial: ['', Validators.required],
+      NombreComercial: ['',Validators.required],
+      Rfc: ['', Validators.required],
+      TipoEmpresa: ['', Validators.required],
+      NoEmpleados: ['', Validators.required],
+      FacAnual: ['', Validators.required],
+      Diaspago: [''],
+      Perfil: ['', Validators.required],
+      Estatus: [''],
+      Logo:[''],
+      Contacto: this.formBuilder.group({
+        Web: [''],
+        Faceboock:[''],
       }),
-      Tel2: new FormGroup({
-        Tel2: new FormControl(this.tel2['Tel']),
-        TTel2: new FormControl(this.tel2['Tipo']),
+      Direccion: this.formBuilder.group({
+        CalleNumero: [''],
+        Estado: ['',Validators.required],
+        Municipio: ['',Validators.required],
+        Colonia: [''],
+        Cp: ['']
       }),
-      Tel3: new FormGroup({
-        Tel3: new FormControl(this.tel2['Tel']),
-        TTel3: new FormControl(this.tel2['Tipo']),
+      Telefono: this.formBuilder.group({
+          TelefonoP: this.formBuilder.group({
+            Numero: [''],
+            Tipo: ['']
+          }),
+          TelefonoD: this.formBuilder.group({
+            Numero: [''],
+            Tipo: ['']
+          }),
+          TelefonoT: this.formBuilder.group({
+            Numero: [''],
+            Tipo: ['']
+          }),
+
       }),
 
     });
-    this.ngSeleclogo();
+    //this.ngSeleclogo();
     this.ngPerfil();
   }
 
@@ -81,68 +91,80 @@ export class DataCompanyComponent implements OnInit {
   get get_form_Data() {
     return this.form_company.controls;
   }
+  get Direccion_get(){
+    return this.form_company.controls['Direccion']['controls'];
+  }
   ngPerfil() {
-    console.log(this.data_company);
-    const empresa = { empresa: this.data_company['IDEmpresa'], token: this.service_cokie.getCokie('token') };
-    this.http.getperfilempresa(empresa)
-      .subscribe(data => {
-        console.log(data);
-        this.tipoempresas = data['response']['result']['tipoempresas'];
-        this.noempleados = data['response']['result']['noempleados'];
-        this.factanual = data['response']['result']['factanual'];
-        this.estados = data['response']['result']['Estados'];
-        this.marcas = data['response']['result']['marcas'];
-        this.normas = data['response']['result']['Normas']
-        console.log(data);
-      }, (error: HttpErrorResponse) => {
-        this.http_services.preloadEvent$.emit(false);
-        alert('algo paso ' + error.message + ' Status: ' + error.status);
-        console.log(error);
-        console.log(error.error, error.status);
-      }, () => this.http_services.preloadEvent$.emit(false));
+   
+   this.http.getdatacompany()
+   .subscribe(data=>{
+     console.log(data);
+     
+    this.http_services.preloadEvent$.emit(false);
+    this.estados = data['listestados'];
+    this.marcas = data['marcas'];
+    this.normas  = data['certificaciones'];
+    this.tipoempresas = data['tiposEmpresa'];
+    this.factanual = data['lisfacturacion'];
+    this.noempleados  =data['lisempleados'];
+    this.form_company.patchValue(data['empresa']);
+    if(this.form_company.controls['Logo'].value){
+      this.logitomarca = this.DomSanitizer.bypassSecurityTrustUrl(this.form_company.controls['Logo'].value);
+    }else{
+      this.logitomarca = '/assets/icons/AMY_Photo.svg';
+    }
+    
+    
+   },(error:HttpErrorResponse)=>{
+     this.http_services.preloadEvent$.emit(false);
+     if(error.status === 400){
+      Swal.fire('Error',error.error.msg,'error');
+     }
+     if(error.status === 404){
+      Swal.fire('Error',error.error.msg,'error');
+     }
+     if(error.status === 500){
+      Swal.fire('Error','Error al obtener información, contacta al adminstrador','error');
+     }
+     console.log(error);
+   })
+  
   }
 
   // seleccionar logo de empresa
-  ngSeleclogo() {
-    const iconog = '/assets/icons/AMY_Photo.svg';
-    const cade = this.url_server + 'assets/img/logosEmpresas/' + this.data_company['Logo'];
-    if (this.data_company['Logo'] === '') {
-      this.logitomarca = iconog;
-    } else {
-      this.logitomarca = cade;
+  ngSeleclogo(logo) {
+    
+    if(!logo){
+      console.log('sdfsdf')
+      this.logitomarca='/assets/icons/AMY_Photo.svg'; 
+    }else{
+      this.logitomarca = logo;
     }
   }
+
+
   ngSelectLogoCer(logo) {
-    const iconog = '/assets/icons/AMY_Photo.svg';
-    const cade = this.url_server + 'assets/certificaciones/' + logo;
-    if (logo === '') {
-      return iconog;
-    } else {
-      return cade;
+    if(!logo){
+      console.log('sdfsdf')
+      return'/assets/icons/AMY_Photo.svg'; 
+    }else{
+      return logo;
     }
   }
 
   ngEnviarFormulario() {
-    if (this.data_user['Tipo_Usuario'] === '') {
-      alert('Solo el usuario Master puede hacer esta accion.');
-      return;
-    }
-
+  
     if (this.form_company.valid) {
       this.http_services.preloadEvent$.emit(true);
       this.subttmited = false;
       this.ivalid = false;
-      this.form_company.addControl('token', new FormControl(this.service_cokie.getCokie('data_company')));
-      this.form_company.addControl('IDEmpresa', new FormControl(this.data_company['IDEmpresa']));
       this.http.updateempresa(this.form_company.value)
         .subscribe(data => {
-          alert('datos Actualizados');
-          console.log(data);
+          Swal.fire('Exito','Datos actualizados','success');
         }, (error: HttpErrorResponse) => {
           this.http_services.preloadEvent$.emit(false);
           alert('algo paso ' + error.message + ' Status: ' + error.status);
           console.log(error);
-          console.log(error.error, error.status);
         }, () => this.http_services.preloadEvent$.emit(false));
     } else {
       this.ivalid = true;
@@ -170,29 +192,21 @@ export class DataCompanyComponent implements OnInit {
     };
   }
   ngChangelogo() {
-    if (this.data_user['Tipo_Usuario'] === '') {
-      alert('Solo el usuario Master puede hacer esta accion.');
-      return;
-    }
+   
     const confirmi = confirm("quieres cambiar el logo");
     if (!confirmi) {
-      this.ngSeleclogo();
+      this.ngSeleclogo('');
     } else {
       this.http_services.preloadEvent$.emit(true);
       const form = new FormData();
       form.append('Logo', this.filemarcalogo);
-      form.append('IDEmpresa', this.data_company['IDEmpresa']);
-      form.append('token', this.service_cokie.getCokie('token') );
       this.http.updatelogoempresa(form)
         .subscribe(data => {
-          if (data['code'] === 0) {
-            this.data_company['Logo'] = data['Logo'];
-            this.service_cokie.setCookie('data_company', this.data_company);
-            
-            alert('Logo actualizado');
-          } else {
-            alert('algo paso');
-          }
+          console.log(data);
+          this.http_services.preloadEvent$.emit(false);
+          this.form_company.patchValue(data['data']);
+          Swal.fire('Exito','Logo actualizado','success');
+           
         }, (error: HttpErrorResponse) => {
           this.http_services.preloadEvent$.emit(false);
           alert('algo paso ' + error.message + ' Status: ' + error.status);

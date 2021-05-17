@@ -34,7 +34,7 @@ export class MenuProfileComponent implements OnInit {
       this.data_user = this.server_cookie.getCokie('data_user'); 
       console.log(this.data_user);
     }
-    if (!this.server_cookie.getCokie('data_company')) {
+    if (!this.server_cookie.getCokie('token')) {
       this.ir('');
     }
     config.placement = 'bottom-right';

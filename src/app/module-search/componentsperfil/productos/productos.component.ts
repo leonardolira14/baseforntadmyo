@@ -34,9 +34,9 @@ export class ProductosComponent implements OnInit {
   ngGetAll() {
     this.http_services.preloadEvent$.emit(true);
     const datos = { IDEmpresa: this.idEmpresa, token: this.token };
-    this.http.service_getall(datos)
+    this.http.service_getall()
       .subscribe(data => {
-        this.marcas_list = data['response']['result'];
+        this.marcas_list = data['data'];
         console.log(data);
       }, (error: HttpErrorResponse) => {
         this.http_services.preloadEvent$.emit(false);

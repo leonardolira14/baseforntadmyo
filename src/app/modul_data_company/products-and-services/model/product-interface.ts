@@ -1,6 +1,6 @@
 export interface Productointerface{
     Logo?: string;
-    IDProducto?: string;
+    id?: string;
     Producto?: string;
     Descripcion?: string;
 }

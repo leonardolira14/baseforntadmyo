@@ -13,7 +13,7 @@ export class AppComponent {
     private service_cookie: Serviecokie,
     private http: EventsServiceService
   ) {
-    if (this.service_cookie.getCokie('data_user')) {
+    if (this.service_cookie.getCokie('token')) {
       this.logueado = true;
     }
     this.http.Cambio_menu$.subscribe(data => {

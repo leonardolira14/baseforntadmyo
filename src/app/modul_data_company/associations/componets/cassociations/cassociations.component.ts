@@ -5,6 +5,11 @@ import { environment } from '../../../../../environments/environment';
 import { EventsServiceService } from '../../../../services/events-service.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Serviecokie } from '../../../../library/servercokie';
+import { Asociacioninterface } from '../../models/asociation-interface'
+import Swal from 'sweetalert2';
+import {Observable} from 'rxjs';
+import {debounceTime, distinctUntilChanged, map} from 'rxjs/operators';
+import {DomSanitizer} from '@angular/platform-browser';
 @Component({
   selector: 'app-cassociations',
   templateUrl: './cassociations.component.html',
@@ -25,11 +30,13 @@ export class CassociationsComponent implements OnInit {
   token = '';
   logitomarca: any = '/assets/img/foto-no-disponible.jpg';
   url_server = environment.url_serve;
+  ietm:any = [];
   constructor(
     private htt_services: EventsServiceService,
     private http: AsociacionServiceService,
     private formBuild: FormBuilder,
-    private service_cookie: Serviecokie
+    private service_cookie: Serviecokie,
+    private DomSanitizer : DomSanitizer
   ) {
     this.data_company = this.service_cookie.getCokie('data_company');
     this.data_user = this.service_cookie.getCokie('data_user');
@@ -38,81 +45,118 @@ export class CassociationsComponent implements OnInit {
       Nombre: ['', Validators.required],
       Siglas: ['', Validators.required],
       Web: ['', Validators.required],
-      Tel: ['', Validators.required],
-      Calle: ['', Validators.required],
-      Colonia: ['', Validators.required],
+      Telefono: ['', Validators.required],
+      Direccion: ['', Validators.required],
+      Colonia: [''],
       Municipio: [''],
       Estado: [''],
       CP: [''],
-      IDAsociacion: [''],
-      IDAsocia: [''],
-      IDEmpresa: [''],
-      Archivo: [''],
-      Token: ['']
+      id: [''],    
+      Imagen: [''],
+      IDRelacion:['']
+      
     });
     this.http.Certification$.subscribe(data => {
       this.ngPutdata(data);
     });
-    this.http.ListCertifications$.subscribe(data => {
-      console.log(data);
-      this.estados = data['Estados'];
-      this.Lita_Asociation = data['Certificados'];
-    });
+    
   }
 
   get from_get_data() {
     return this.form_asociacion.controls;
   }
   ngOnInit(): void {
+    this.getlist();
   }
+getlist(){
+  this.http.nggetlist()
+  .subscribe(data=>{
+    this.Lita_Asociation = data['data'];
+    this.estados = data['estados'];
+    console.log(data);
+  },(error:HttpErrorResponse)=>{
+    console.log(error);
+    Swal.fire('Error',error.error.msg,'info');
+  })
+}
 
-
-  ngSelect() {
-    console.log(this.data_user['Tipo_Usuario']);
-    if (this.data_user['Tipo_Usuario'] !== 'Master') {
-      this.ivalid = true;
-      this.text_alert = 'Lo sentimos no favor de contactar al usuario master para realizar modificaciones o cambios.';
-      return;
+search = (text$: Observable<string>) =>
+    text$.pipe(
+      debounceTime(200),
+      distinctUntilChanged(),
+      map(term => term.length < 1 ? []
+        : this.Lita_Asociation.filter(v => v.Nombre.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10))
+    )
+    formatter = (result: {Nombre: string}) =>result.Nombre|| '';
+    itemselec(index){
+      console.log(index);
+      this.form_asociacion.patchValue(index.item);
+      
+      console.log(this.form_asociacion.value);
+      this.ietm = index.item;
+      this.selectlogo(index.item.Imagen)
     }
-    console.log(this.data_user);
+    rt = (ers)=>ers.Nombre;
+    selectlogo(logo_){
+      console.log(logo_)
+      if (logo_ === '' || logo_ === null || logo_ === undefined) {
+        this.logitomarca ='/assets/img/foto-no-disponible.jpg';
+        } else {
+          this.logitomarca = logo_;
+        }
+        console.log(this.logitomarca);
+        return this.logitomarca;
+    }
+  ngSelect() {
+    if(this.ietm.length === 0){
+      this.ietm = this.form_asociacion.value;
+    }
+    this.ivalid = false;
     this.submitted = true;
     if (this.form_asociacion.invalid) {
       this.ivalid = true;
       this.text_alert = 'Algunos de los campos parecen incompletos. Por favor revisalos y revisa la información correspondiente.';
     } else {
-      const Formdata = new FormData();
-      Formdata.append('Logo', this.filemarcalogo);
-      Formdata.append('Nombre', this.from_get_data['Nombre'].value);
-      Formdata.append('Siglas', this.from_get_data['Siglas'].value);
-      Formdata.append('Web', this.from_get_data['Web'].value);
-      Formdata.append('Tel', this.from_get_data['Tel'].value);
-      Formdata.append('Calle', this.from_get_data['Calle'].value);
-      Formdata.append('Colonia', this.from_get_data['Colonia'].value);
-      Formdata.append('Municipio', this.from_get_data['Municipio'].value);
-      Formdata.append('Estado', this.from_get_data['Estado'].value);
-      Formdata.append('IDAsociacion', this.from_get_data['IDAsociacion'].value);
-      Formdata.append('IDAsocia', this.from_get_data['IDAsocia'].value);
-      Formdata.append('Archivo', this.from_get_data['Archivo'].value);
-      Formdata.append('IDEmpresa', this.data_company['IDEmpresa']);
-      Formdata.append('Token', this.token);
-      if (this.from_get_data['IDAsocia'].value === '') {
-
-        this.ngAddAsociacion(Formdata);
-      } else {
-        this.ngUpdate(Formdata);
+      
+      let formdata = new FormData();
+      console.log('entra');
+      formdata.append('Nombre',this.ietm.Nombre);
+      formdata.append('Siglas',this.ietm.Siglas);
+      formdata.append('Web', this.ietm.Web);
+      formdata.append('Telefono', this.ietm.Telefono);
+      formdata.append('Direccion', this.ietm.Direccion);
+      formdata.append('Colonia',this.ietm.Colonia);
+      formdata.append('Municipio', this.ietm.Municipio);
+      formdata.append('Estado', this.ietm.Estado);
+      formdata.append('id', this.ietm.id);
+      if(this.filemarcalogo){
+        formdata.append('Imagen', this.filemarcalogo,this.filemarcalogo.name);
+      }else{
+        formdata.append('Imagen', this.ietm.Imagen);
       }
+      console.log(formdata);
+     // if (this.from_get_data['id'].value === '') {
+       
+        this.ngAddAsociacion(formdata);
+      /*} else {
+        this.ngUpdate(formdata);
+      }*/
       this.submitted = false;
       this.ivalid = false;
     }
   }
   ngAddAsociacion(datos) {
-    this.htt_services.preloadEvent$.emit(true);
+   // this.htt_services.preloadEvent$.emit(true);
+   
     this.http.ngAdd(datos)
       .subscribe(data => {
         this.http.NewCertification$.emit(true);
+        Swal.fire('Exito','Asociación registrada','success');
+        this.ietm = [];
+        this.form_asociacion.reset();
       }, (error: HttpErrorResponse) => {
         this.htt_services.preloadEvent$.emit(false);
-        alert('algo paso ' + error.message + ' Status: ' + error.status);
+        Swal.fire('Error',error.message,'error');
         console.log(error);
         console.log(error.error, error.status);
       }, () => {
@@ -121,7 +165,7 @@ export class CassociationsComponent implements OnInit {
   }
   ngUpdate(datos) {
     this.htt_services.preloadEvent$.emit(true);
-    this.http.ngUpdate(datos)
+    this.http.ngUpdate(datos,'')
       .subscribe(data => {
         this.http.NewCertification$.emit(true);
       }, (error: HttpErrorResponse) => {

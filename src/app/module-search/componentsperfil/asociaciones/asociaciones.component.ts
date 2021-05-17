@@ -30,8 +30,8 @@ export class AsociacionesComponent implements OnInit {
   }
   ngGetall() {
     this.http_service.preloadEvent$.emit(true);
-    const data = { IDEmpresa: this.idEmpresa, Token: this.Token };
-    this.http.service_getall(data)
+  
+    this.http.service_getall()
       .subscribe(data => {
         this.certification = data['result'];
         console.log(this.certification);

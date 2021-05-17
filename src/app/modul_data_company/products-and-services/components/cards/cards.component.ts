@@ -5,6 +5,8 @@ import { Lista } from '../../class/product-class';
 import { environment } from '../../../../../environments/environment.prod';
 import { EventsServiceService } from '../../../../services/events-service.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import {DomSanitizer} from '@angular/platform-browser';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-cards',
   templateUrl: './cards.component.html',
@@ -21,7 +23,8 @@ export class CardsComponent implements OnInit {
   constructor(
     private http_services: EventsServiceService,
     private http: ProductsServiceService,
-    private service_cookie: Serviecokie
+    private service_cookie: Serviecokie,
+    private DomSanitizer : DomSanitizer
   ) {
     this.http_services.preloadEvent$.emit(true);
     this.data_user = this.service_cookie.getCokie('data_user');
@@ -38,43 +41,37 @@ export class CardsComponent implements OnInit {
   ngGetAll() {
     this.http_services.preloadEvent$.emit(true);
     this.List_Marcas.clearlist();
-    const datos = { IDEmpresa: this.data_company['IDEmpresa'], token: this.token };
-    this.http.service_getall(datos)
+    
+    this.http.service_getall()
       .subscribe(data => {
-        data['response']['result'].forEach(item => {
+        data['data'].forEach(item => {
           this.List_Marcas.additem(item);
         });
         this.marcas_list = this.List_Marcas.getLista();
         console.log(data);
       }, (error: HttpErrorResponse) => {
         this.http_services.preloadEvent$.emit(false);
-        alert('algo paso ' + error.message + ' Status: ' + error.status);
+        Swal.fire('Error','algo paso ' + error.message + ' Status: ' + error.status,'info');
         console.log(error);
         console.log(error.error, error.status);
       }, () => this.http_services.preloadEvent$.emit(false));
   }
   ngEdit(index) {
-    if (this.data_user['Tipo_Usuario'] === '') {
-      alert('Solo el usuario Master puede hacer esta accion.');
-      return;
-    }
+    
     const data = this.List_Marcas.GetMarca(index);
     this.http.dataMarca$.emit(data);
   }
   ngDelete(index) {
-    if (this.data_user['Tipo_Usuario'] === '') {
-      alert('Solo el usuario Master puede hacer esta accion.');
-      return;
-    }
+    
     this.http_services.preloadEvent$.emit(true);
-    const datos = { IDEmpresa: this.data_company['IDEmpresa'], token: this.token, IDProducto: index };
-    this.http.ngDelete(datos)
+    this.http.ngDelete(index)
+    
       .subscribe(data => {
-        alert('Producto Eliminado');
+        Swal.fire('Exito','Producto Eliminado','success');
         this.ngGetAll();
       }, (error: HttpErrorResponse) => {
         this.http_services.preloadEvent$.emit(false);
-        alert('algo paso ' + error.message + ' Status: ' + error.status);
+        Swal.fire('Error','algo paso ' + error.message + ' Status: ' + error.status,'info');
         console.log(error);
         console.log(error.error, error.status);
       }, () => this.http_services.preloadEvent$.emit(false));
@@ -86,12 +83,11 @@ export class CardsComponent implements OnInit {
   }
 
   dameLogo(logo_) {
-    const base_logo = '/assets/img/foto-no-disponible.jpg';
-    const logo = environment.url_serve + 'assets/img/logoprod/' + logo_;
-    if (logo_ === '' || logo_ === null || logo_ === 'null') {
-      return base_logo;
+    
+    if (logo_ === '' || logo_ === null || logo_ === undefined) {
+      return '/assets/img/foto-no-disponible.jpg';
     } else {
-      return logo;
+      return this.DomSanitizer.bypassSecurityTrustUrl(logo_);
     }
   }
 

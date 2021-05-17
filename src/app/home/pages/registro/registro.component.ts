@@ -27,19 +27,19 @@ export class RegistroComponent implements OnInit {
   ) { 
     this.http_services.preloadEvent$.emit(false);
     this.form_company = this.formBuilder.group({
-      razon_social: ['', Validators.required],
-      nombre_comercial: ['', Validators.required],
-      rfc: ['', Validators.required],
-      tipopersona: ['', Validators.required],
-      sector: ['', Validators.required],
-      subsector: ['', Validators.required],
-      rama: [''],
+      RazonSocial: ['', Validators.required],
+      NombreComercial: ['', Validators.required],
+      Rfc: ['', Validators.required],
+      Persona: ['', Validators.required],
+      Giro: ['', Validators.required],
+      SubGiro: ['', Validators.required],
+      Rama: [''],
       usuario: this.formBuilder.group({
-        nombre: ['', Validators.required],
-        apellidos: ['', Validators.required],
-        correo: ['', [Validators.required,Validators.email]],
+        Nombre: ['', Validators.required],
+        Apellidos: ['', Validators.required],
+        Correo: ['', [Validators.required,Validators.email]],
         correo2: ['', [Validators.required, Validators.email]],
-        password: ['', Validators.required],
+        Password: ['', Validators.required],
         password2: ['', [ Validators.required]]
       })
     });
@@ -51,22 +51,21 @@ export class RegistroComponent implements OnInit {
   ngGetGiros() {
     this.http_giro.getAllGiiro()
       .subscribe(data => {
-        this.giros_list = data['response']['result'];
-        console.log(data);
+        this.giros_list = data['giros'];
       });
   }
   ngsubgiro(index) {
     this.http_giro.getallsubsector(index)
       .subscribe(data => {
-        this.subgiro_list = data['response']['result'];
-        console.log(data);
+        this.subgiro_list = data['subgiros'];
       });
   }
   ngrama(index) {
     this.http_giro.getrama(index)
       .subscribe(data => {
-        this.ramas_list = data['response']['result'];
         console.log(data);
+        this.ramas_list = data['ramas'];
+       
       });
   }
   get form_validator(){
@@ -77,11 +76,11 @@ export class RegistroComponent implements OnInit {
   }
 
   send() {
-    if (this.form_company.get('usuario.password').value !== this.form_company.get('usuario.password2').value) {
+    if (this.form_company.get('usuario.Password').value !== this.form_company.get('usuario.password2').value) {
       Swal.fire('Error', 'Las contraseñas no son iguales.', 'error');
       return false;
     }
-    if (this.form_company.get('usuario.correo').value !== this.form_company.get('usuario.correo2').value) {
+    if (this.form_company.get('usuario.Correo').value !== this.form_company.get('usuario.correo2').value) {
       Swal.fire('Error', 'Las direcciones de correo no son iguales.', 'error');
       return false;
     }
@@ -92,10 +91,10 @@ export class RegistroComponent implements OnInit {
         }, (error: HttpErrorResponse) => {
             console.log(error);
             if (error.status === 404) {
-              Swal.fire('Error', error.error.response.msj, 'error');
+              Swal.fire('Error', error.error.msg, 'error');
               return false;
             }
-            if (error.status === 505) {
+            if (error.status === 500) {
               Swal.fire('Error', 'Error interno consulte al administrador', 'error');
               return false;
             }

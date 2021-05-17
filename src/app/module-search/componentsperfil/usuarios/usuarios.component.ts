@@ -33,7 +33,7 @@ export class UsuariosComponent implements OnInit {
   ngGetAll() {
     this.http_services.preloadEvent$.emit(true);
     const datos = { IDEmpresa: this.idEmpresa, token: this.token };
-    this.http.service_getall(datos)
+    this.http.service_getall()
       .subscribe(data => {
         
         this.usuarios_list = data['result'];

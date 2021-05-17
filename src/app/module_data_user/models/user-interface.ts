@@ -1,12 +1,11 @@
 export interface Userinterfas{
-    IDUsuario?: string;
+    id?: string;
     Nombre?: string;
     Apellidos?: string;
-    Tipo_Usuario?: string;
+    Tipo_Usuario?: boolean;
     Visible?: string;
-    IDEmpresa?: string;
     Correo?: string;
-    Imagen?: string;
+    Logo?: string;
     Status?: string;
     Puesto?: string;
 }

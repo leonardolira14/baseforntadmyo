@@ -27,7 +27,6 @@ import { AlertasComponent } from './shared/alertas/alertas.component';
 
 
 
-
 export const DateFormats = {
   parse: {
     dateInput: ['YYYY-MM-DD']

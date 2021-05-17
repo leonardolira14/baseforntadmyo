@@ -44,14 +44,14 @@
                     <form [formGroup]="form_login">
                         <div class="form-group">
                             <label for="exampleInputEmail1">ID de usuario </label>
-                            <input formControlName="user" type="email" class="form-control" id="exampleInputEmail1"
+                            <input formControlName="correo" type="email" class="form-control" id="exampleInputEmail1"
                                 aria-describedby="emailHelp">
                             <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Contraseña</label>
                             <input formControlName="password" type="password" class="form-control" id="exampleInputPassword1">
-                            <small class="olvidado">¿Has olvidado tu contraseña?</small>
+                            <small (click)="recuperar()" class="olvidado">¿Has olvidado tu contraseña?</small>
                         </div>
                         <div class="btn-group d-flex justify-content-between">
                             <button (click)="login()" class="btn btn-azulcielo mr-3">Iniciar sesión</button>
@@ -75,3 +75,41 @@
     <div   class="alert alert-card w-70" style="z-index: 10000;" rol='alert' *ngIf="alert_">
         Usuario Y/O contraseña no validos
     </div>
+<div class="preload-modal" *ngIf='recuperForm'>
+    <div class="container">
+        <div class="col-5 card m-auto">
+            <div class="card-body">
+                <div class="d-block text-center m-b-30 m-t-30">
+                    <img src="/assets/img/logo-admyo2.png" class="m-auto img-fluid logologin" alt="">
+                </div>
+                <p class="m-t-40 text-center titulos">
+                    Recuperar Contraseña
+                </p>
+            
+                
+                <p class="m-t-40 text-justify">
+                    
+                        Ingresa la dirección de correo electrónico con el que estas registrado en admyo, se enviaran las instrucciones
+                        para recuperar la cuenta.
+                    
+                </p>
+                
+                <form [formGroup]="form_recuper" (ngSubmit)="sendrecupera()">
+                    <div class="form-form_recuper">
+                        <label for="exampleInputEmail1">Correo Electrónico</label>
+                        <input formControlName="correo" type="email" class="form-control" id="exampleInputEmail1"
+                            aria-describedby="emailHelp">
+                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                    </div>
+                   
+                    <div class="btn-group d-flex justify-content-between">
+                        <button type="submit" class="btn btn-azulcielo mr-3">Recuperar</button>
+                        <button (click)="recuperForm =!recuperForm" class="btn btn-outline-azulcielo ">Cancelar</button>
+                    </div>
+                </form>
+                <span class="aunnoties m-t-30">¿Aún no tienes cuenta?</span>
+                <button (click)="ir('home/registro')"  class="btn btn-outline-azulcielo w-100 m-t-20">¡Regístrate ahora!</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,12 +1,18 @@
 export interface Girosinferface {
-    IDEmpresa?: string;
-    IDGE?: string;
-    IDGiro?: string;
-    IDGiro2?: string;
-    IDGiro3?: string;
-    Principal?: string;
-    giron1?: string;
-    giron2?: string;
-    giron3?: string;
-
+    FechaAlta?:string;
+    Giro?:{
+        id?:string,
+        Giro?:string
+    };
+    IDEmpresa?:string;
+    Principal?:boolean;
+    Rama?:{
+        id?:string,
+        Giro?:string
+    };
+    SubGiro?:{
+        id?:string,
+        Giro?:string
+    };
+    id?:string;
 }

@@ -31,6 +31,7 @@ export class ImagenComponent implements OnInit {
   como: string;
   tiempo: string;
   empresa: string;
+  giro='';
   Categorias = {
     Calidad: true,
     Cumplimiento: true,
@@ -141,7 +142,7 @@ export class ImagenComponent implements OnInit {
     };
     console.log(array);
     this.htt_service.preloadEvent$.emit(true);
-    this.http.ngDetalles(array)
+    this.http.ngDetalles(this.tiempo,this.como,this.giro)
       .subscribe(data => {
         this.list_Calidad.limpiarlista();
         this.list_Complimineto.limpiarlista();

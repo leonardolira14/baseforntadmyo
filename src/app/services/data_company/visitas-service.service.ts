@@ -10,22 +10,24 @@ import { Serviecokie } from '../../library/servercokie';
 export class VisitasServiceService {
   public url_serve = environment.url_serve;
   public datos_usuario: any = [];
+  public token;
+  public option;
   public headers: any;
   constructor(
     private http: HttpClient,
     private cookie_service: Serviecokie
   ) {
-    if (this.cookie_service.getCokie('data_user')) {
-      this.datos_usuario = this.cookie_service.getCokie('data_user');
-      this.headers = new HttpHeaders({
-        'Authorization': this.datos_usuario['token']
-      });
+    if (this.cookie_service.getCokie('token')) {
+      this.token = this.cookie_service.getCokie('token');
+     this.option = {
+        headers: new HttpHeaders().append('x-token',this.token)
+     }
     }
   }
 
 
   service_getall(datos) {
-    return this.http.post(this.url_serve + 'visitas', datos)
+    return this.http.get(this.url_serve + '/api/visitas/getall/'+datos,this.option)
       .pipe(map(data => data));
   }
 

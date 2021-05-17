@@ -5,6 +5,8 @@ import { MarcasServiceService } from '../../../../services/data_company/marcas-s
 import { environment } from '../../../../../environments/environment';
 import { HttpErrorResponse } from '@angular/common/http';
 import { EventsServiceService } from '../../../../services/events-service.service';
+import Swal from 'sweetalert2';
+import {DomSanitizer} from '@angular/platform-browser';
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
@@ -26,20 +28,19 @@ export class FormComponent implements OnInit {
     private http_services: EventsServiceService,
     private formBuilder: FormBuilder,
     private http: MarcasServiceService,
-    private serviceCookie: Serviecokie
+    private serviceCookie: Serviecokie,
+    private DomSanitizer : DomSanitizer
   ) {
     this.data_user = this.serviceCookie.getCokie('data_user');
     this.http.dataMarca$
       .subscribe(data => {
         this.editMarca(data);
       });
-    this.token = this.serviceCookie.getCokie('token');
-    this.data_company = this.serviceCookie.getCokie('data_company');
+    
     this.form_marca = this.formBuilder.group({
       Marca: ['', Validators.required],
       Archivo: [''],
       Logo: [''],
-      IDEmpresa: [''],
       IDMarca: ['']
     });
   }
@@ -52,21 +53,22 @@ export class FormComponent implements OnInit {
 
   // funcion para agregar una nueva marca
   addmarca() {
-    if (this.data_user['Tipo_Usuario'] !== 'Master') {
-      this.ivalid = true;
-      this.text_alert = 'Lo sentimos no favor de contactar al usuario master para realizar modificaciones o cambios.'
-      return;
-    }
+    
     if (this.form_marca.valid) {
       this.http_services.preloadEvent$.emit(true);
       this.submitted = true;
-      console.log(this.filemarcalogo);
+      
       const Formdata = new FormData();
-      Formdata.append('Logo', this.filemarcalogo);
-      Formdata.append('Archivo', this.form_marca.controls['Logo'].value);
+      if(this.filemarcalogo){
+        Formdata.append('Logo', this.filemarcalogo);
+      }else{
+        Formdata.append('Logo', this.form_marca.controls['Logo'].value);
+      }
+      
+      
       Formdata.append('Marca', this.form_marca.controls['Marca'].value);
-      Formdata.append('IDEmpresa', this.data_company['IDEmpresa']);
-      Formdata.append('token', this.token);
+      
+
       if (this.form_marca.controls['IDMarca'].value === '') {
         if (this.filemarcalogo === null) {
           const conf = confirm('Desea mandar la marca sin logo');
@@ -78,29 +80,30 @@ export class FormComponent implements OnInit {
         this.http.marca_add(Formdata)
           .subscribe(data => {
             this.http.NewMarca$.emit(true);
-            alert('Marca agregada');
+            Swal.fire('Exito','Marca Registrada','success');
+           
             this.form_marca.reset();
             this.ngOnInit();
           }, (error: HttpErrorResponse) => {
             this.http_services.preloadEvent$.emit(false);
-            alert('algo paso ' + error.message + ' Status: ' + error.status);
+            Swal.fire('error','algo paso ' + error.message + ' Status: ' + error.status,'error');
             console.log(error);
-            console.log(error.error, error.status);
+           
           }, () => this.http_services.preloadEvent$.emit(false));
       } else {
-        Formdata.append('IDMarca', this.form_marca.controls['IDMarca'].value);
+        
         // si esta lleno quiere decitr que la voy a actualizar
-        this.http.ngUpdate(Formdata)
+        this.http.ngUpdate(Formdata,this.form_marca.controls['IDMarca'].value)
           .subscribe(data => {
             this.http.NewMarca$.emit(true);
-            alert('Marca Actualizada');
+            Swal.fire('Exito','Marca actualizada','success');
             this.form_marca.reset();
             this.ngOnInit();
           }, (error: HttpErrorResponse) => {
             this.http_services.preloadEvent$.emit(false);
-            alert('algo paso ' + error.message + ' Status: ' + error.status);
+            Swal.fire('error','algo paso ' + error.message + ' Status: ' + error.status,'error');
             console.log(error);
-            console.log(error.error, error.status);
+           
           }, () => this.http_services.preloadEvent$.emit(false));
       }
     } else {
@@ -108,13 +111,14 @@ export class FormComponent implements OnInit {
    }
   }
   verificar_logo(logo_) {
-    const base_logo = '/assets/img/foto-no-disponible.jpg';
-    const logo = environment.url_serve + 'assets/img/logosmarcas/' + logo_;
-    if (logo_ === '' || logo_ === null || logo_ === 'null') {
-      this.logitomarca = base_logo;
+    if (logo_ === '' || logo_ === null || logo_ === undefined) {
+    this.logitomarca ='/assets/img/foto-no-disponible.jpg';
     } else {
-      this.logitomarca = logo;
+      this.logitomarca =this.DomSanitizer.bypassSecurityTrustUrl(logo_);
     }
+    console.log(this.logitomarca);
+    return this.logitomarca;
+    
   }
   // previw de imagenb
   preview(files) {
@@ -138,11 +142,10 @@ export class FormComponent implements OnInit {
 
   // funcion para poner los datos de una marca en el form
   editMarca(datos) {
-    console.log(datos);
+    
     this.form_marca.controls['Marca'].setValue(datos['Marca']);
-    this.form_marca.controls['IDMarca'].setValue(datos['IDMarca']);
-    this.form_marca.controls['Archivo'].setValue(datos['logo']);
-    this.form_marca.controls['IDEmpresa'].setValue(datos['IDEmpresa']);
-    this.verificar_logo(datos['logo']);
+    this.form_marca.controls['IDMarca'].setValue(datos['id']);
+    this.form_marca.controls['Archivo'].setValue(datos['Logo']);
+    this.verificar_logo(datos['Logo']);
   }
 }
