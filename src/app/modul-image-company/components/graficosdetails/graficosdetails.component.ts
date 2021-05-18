@@ -160,9 +160,11 @@ export class GraficosdetailsComponent implements OnInit {
         this.list_Sanidad.limpiarlista();
         this.list_Sociambiental.limpiarlista();
        
-        data['listCalidad'].forEach(item => {
+        data['listdata'][0]['Calidad'].forEach(item => {
           this.list_Calidad.add_medicamento(item);
         });
+        this.ListCalidad = this.list_Calidad.getlista();
+        return;
         data['listCumplimiento'].forEach(item => {
           this.list_Complimineto.add_medicamento(item);
         });
